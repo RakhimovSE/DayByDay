@@ -14,8 +14,6 @@
 		84E298BC1C4CF4A000DF48B2 /* DayByDay.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 84E298BA1C4CF4A000DF48B2 /* DayByDay.xcdatamodeld */; };
 		84E298BE1C4CF4A000DF48B2 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 84E298BD1C4CF4A000DF48B2 /* Assets.xcassets */; };
 		84E298C11C4CF4A000DF48B2 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 84E298BF1C4CF4A000DF48B2 /* LaunchScreen.storyboard */; };
-		84E422811C56775C0073A0C9 /* MysqlDB.m in Sources */ = {isa = PBXBuildFile; fileRef = 84E4227E1C56775C0073A0C9 /* MysqlDB.m */; settings = {ASSET_TAGS = (); }; };
-		84E422821C56775C0073A0C9 /* MysqlQuery.m in Sources */ = {isa = PBXBuildFile; fileRef = 84E422801C56775C0073A0C9 /* MysqlQuery.m */; settings = {ASSET_TAGS = (); }; };
 		84E422841C5677BC0073A0C9 /* libmysqlclient.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 84E422831C5677BC0073A0C9 /* libmysqlclient.a */; };
 /* End PBXBuildFile section */
 
@@ -31,10 +29,6 @@
 		84E298BD1C4CF4A000DF48B2 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		84E298C01C4CF4A000DF48B2 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		84E298C21C4CF4A000DF48B2 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		84E4227D1C56775C0073A0C9 /* MysqlDB.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MysqlDB.h; sourceTree = "<group>"; };
-		84E4227E1C56775C0073A0C9 /* MysqlDB.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MysqlDB.m; sourceTree = "<group>"; };
-		84E4227F1C56775C0073A0C9 /* MysqlQuery.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MysqlQuery.h; sourceTree = "<group>"; };
-		84E422801C56775C0073A0C9 /* MysqlQuery.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MysqlQuery.m; sourceTree = "<group>"; };
 		84E422831C5677BC0073A0C9 /* libmysqlclient.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libmysqlclient.a; path = "../../../../../usr/local/mysql-connector-c-6.1.6-osx10.8-x86_64/lib/libmysqlclient.a"; sourceTree = "<group>"; };
 		84E4228D1C5677E70073A0C9 /* mysql.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = mysql.h; path = "../../../../../usr/local/mysql-connector-c-6.1.6-osx10.8-x86_64/include/mysql.h"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -98,10 +92,6 @@
 		84E2E5571C554F80006834A0 /* Mysql */ = {
 			isa = PBXGroup;
 			children = (
-				84E4227D1C56775C0073A0C9 /* MysqlDB.h */,
-				84E4227E1C56775C0073A0C9 /* MysqlDB.m */,
-				84E4227F1C56775C0073A0C9 /* MysqlQuery.h */,
-				84E422801C56775C0073A0C9 /* MysqlQuery.m */,
 			);
 			name = Mysql;
 			sourceTree = "<group>";
@@ -180,9 +170,7 @@
 				84E298BC1C4CF4A000DF48B2 /* DayByDay.xcdatamodeld in Sources */,
 				84E298B61C4CF4A000DF48B2 /* ViewController.m in Sources */,
 				84E298B31C4CF4A000DF48B2 /* AppDelegate.m in Sources */,
-				84E422821C56775C0073A0C9 /* MysqlQuery.m in Sources */,
 				84E298B01C4CF4A000DF48B2 /* main.m in Sources */,
-				84E422811C56775C0073A0C9 /* MysqlDB.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
