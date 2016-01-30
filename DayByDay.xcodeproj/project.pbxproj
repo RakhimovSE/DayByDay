@@ -14,7 +14,7 @@
 		84E298BC1C4CF4A000DF48B2 /* DayByDay.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 84E298BA1C4CF4A000DF48B2 /* DayByDay.xcdatamodeld */; };
 		84E298BE1C4CF4A000DF48B2 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 84E298BD1C4CF4A000DF48B2 /* Assets.xcassets */; };
 		84E298C11C4CF4A000DF48B2 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 84E298BF1C4CF4A000DF48B2 /* LaunchScreen.storyboard */; };
-		84E422841C5677BC0073A0C9 /* libmysqlclient.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 84E422831C5677BC0073A0C9 /* libmysqlclient.a */; };
+		84E458E41C5D183400779E3F /* Constants.m in Sources */ = {isa = PBXBuildFile; fileRef = 84E458E31C5D183400779E3F /* Constants.m */; settings = {ASSET_TAGS = (); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -29,8 +29,8 @@
 		84E298BD1C4CF4A000DF48B2 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		84E298C01C4CF4A000DF48B2 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		84E298C21C4CF4A000DF48B2 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		84E422831C5677BC0073A0C9 /* libmysqlclient.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libmysqlclient.a; path = "../../../../../usr/local/mysql-connector-c-6.1.6-osx10.8-x86_64/lib/libmysqlclient.a"; sourceTree = "<group>"; };
-		84E4228D1C5677E70073A0C9 /* mysql.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = mysql.h; path = "../../../../../usr/local/mysql-connector-c-6.1.6-osx10.8-x86_64/include/mysql.h"; sourceTree = "<group>"; };
+		84E458E21C5D183400779E3F /* Constants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Constants.h; sourceTree = "<group>"; };
+		84E458E31C5D183400779E3F /* Constants.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Constants.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -38,18 +38,24 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				84E422841C5677BC0073A0C9 /* libmysqlclient.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		843223091C5D21DA009D21D2 /* Classes */ = {
+			isa = PBXGroup;
+			children = (
+				84E458E21C5D183400779E3F /* Constants.h */,
+				84E458E31C5D183400779E3F /* Constants.m */,
+			);
+			name = Classes;
+			sourceTree = "<group>";
+		};
 		84E298A21C4CF4A000DF48B2 = {
 			isa = PBXGroup;
 			children = (
-				84E4228D1C5677E70073A0C9 /* mysql.h */,
-				84E422831C5677BC0073A0C9 /* libmysqlclient.a */,
 				84E298AD1C4CF4A000DF48B2 /* DayByDay */,
 				84E298AC1C4CF4A000DF48B2 /* Products */,
 			);
@@ -75,8 +81,8 @@
 				84E298BF1C4CF4A000DF48B2 /* LaunchScreen.storyboard */,
 				84E298C21C4CF4A000DF48B2 /* Info.plist */,
 				84E298BA1C4CF4A000DF48B2 /* DayByDay.xcdatamodeld */,
-				84E2E5571C554F80006834A0 /* Mysql */,
 				84E298AE1C4CF4A000DF48B2 /* Supporting Files */,
+				843223091C5D21DA009D21D2 /* Classes */,
 			);
 			path = DayByDay;
 			sourceTree = "<group>";
@@ -87,13 +93,6 @@
 				84E298AF1C4CF4A000DF48B2 /* main.m */,
 			);
 			name = "Supporting Files";
-			sourceTree = "<group>";
-		};
-		84E2E5571C554F80006834A0 /* Mysql */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			name = Mysql;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -167,6 +166,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				84E458E41C5D183400779E3F /* Constants.m in Sources */,
 				84E298BC1C4CF4A000DF48B2 /* DayByDay.xcdatamodeld in Sources */,
 				84E298B61C4CF4A000DF48B2 /* ViewController.m in Sources */,
 				84E298B31C4CF4A000DF48B2 /* AppDelegate.m in Sources */,
@@ -285,6 +285,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_OBJC_ARC = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				INFOPLIST_FILE = DayByDay/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
@@ -302,6 +303,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_OBJC_ARC = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				INFOPLIST_FILE = DayByDay/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;

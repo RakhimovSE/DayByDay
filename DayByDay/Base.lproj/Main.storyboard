@@ -3,6 +3,8 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="8154"/>
+        <capability name="Alignment constraints with different attributes" minToolsVersion="5.1"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
         <!--View Controller-->
@@ -16,11 +18,100 @@
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Имя пользователя" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="q10-F6-UZB">
+                                <rect key="frame" x="-25" y="-30" width="97" height="30"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="KGG-iK-gMw">
+                                <rect key="frame" x="-23" y="-15" width="46" height="30"/>
+                                <color key="backgroundColor" red="0.0" green="0.50196081399917603" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="50" id="Ltw-ZY-F0m"/>
+                                </constraints>
+                                <state key="normal" title="Войти">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <variation key="default">
+                                    <mask key="constraints">
+                                        <exclude reference="Ltw-ZY-F0m"/>
+                                    </mask>
+                                </variation>
+                                <variation key="widthClass=compact">
+                                    <mask key="constraints">
+                                        <include reference="Ltw-ZY-F0m"/>
+                                    </mask>
+                                </variation>
+                                <connections>
+                                    <action selector="loginButton:" destination="BYZ-38-t0r" eventType="touchUpInside" id="sGN-BH-zBJ"/>
+                                </connections>
+                            </button>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Пароль" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="rPf-yf-z3q">
+                                <rect key="frame" x="-25" y="-30" width="97" height="30"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" secureTextEntry="YES"/>
+                            </textField>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="KGG-iK-gMw" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" constant="-20" id="1f2-qo-3N5"/>
+                            <constraint firstItem="q10-F6-UZB" firstAttribute="trailing" secondItem="8bC-Xf-vdC" secondAttribute="trailingMargin" id="EDG-Lx-nPV"/>
+                            <constraint firstItem="rPf-yf-z3q" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" id="F3E-CI-G2K"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="KGG-iK-gMw" secondAttribute="trailing" constant="-20" id="Rgz-Kb-JJG"/>
+                            <constraint firstItem="rPf-yf-z3q" firstAttribute="top" secondItem="q10-F6-UZB" secondAttribute="bottom" constant="13" id="YUA-Er-ExL"/>
+                            <constraint firstItem="KGG-iK-gMw" firstAttribute="top" secondItem="rPf-yf-z3q" secondAttribute="bottom" constant="15" id="fAK-aa-Y6p"/>
+                            <constraint firstItem="q10-F6-UZB" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="50" id="qSx-Bm-E40">
+                                <variation key="widthClass=compact" constant="20"/>
+                            </constraint>
+                            <constraint firstItem="q10-F6-UZB" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" id="wuh-da-NBq"/>
+                            <constraint firstItem="rPf-yf-z3q" firstAttribute="trailing" secondItem="8bC-Xf-vdC" secondAttribute="trailingMargin" id="zrL-CZ-emR"/>
+                        </constraints>
+                        <variation key="default">
+                            <mask key="subviews">
+                                <exclude reference="q10-F6-UZB"/>
+                                <exclude reference="KGG-iK-gMw"/>
+                                <exclude reference="rPf-yf-z3q"/>
+                            </mask>
+                            <mask key="constraints">
+                                <exclude reference="EDG-Lx-nPV"/>
+                                <exclude reference="qSx-Bm-E40"/>
+                                <exclude reference="wuh-da-NBq"/>
+                                <exclude reference="F3E-CI-G2K"/>
+                                <exclude reference="YUA-Er-ExL"/>
+                                <exclude reference="zrL-CZ-emR"/>
+                                <exclude reference="1f2-qo-3N5"/>
+                                <exclude reference="Rgz-Kb-JJG"/>
+                                <exclude reference="fAK-aa-Y6p"/>
+                            </mask>
+                        </variation>
+                        <variation key="widthClass=compact">
+                            <mask key="subviews">
+                                <include reference="q10-F6-UZB"/>
+                                <include reference="KGG-iK-gMw"/>
+                                <include reference="rPf-yf-z3q"/>
+                            </mask>
+                            <mask key="constraints">
+                                <include reference="EDG-Lx-nPV"/>
+                                <include reference="qSx-Bm-E40"/>
+                                <include reference="wuh-da-NBq"/>
+                                <include reference="F3E-CI-G2K"/>
+                                <include reference="YUA-Er-ExL"/>
+                                <include reference="zrL-CZ-emR"/>
+                                <include reference="1f2-qo-3N5"/>
+                                <include reference="Rgz-Kb-JJG"/>
+                                <include reference="fAK-aa-Y6p"/>
+                            </mask>
+                        </variation>
                     </view>
+                    <connections>
+                        <outlet property="user_nameTextField" destination="q10-F6-UZB" id="eFA-CR-hk7"/>
+                        <outlet property="user_passwordTextField" destination="rPf-yf-z3q" id="uCZ-Vt-E28"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
+            <point key="canvasLocation" x="573" y="289"/>
         </scene>
     </scenes>
 </document>
