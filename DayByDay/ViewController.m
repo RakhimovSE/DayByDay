@@ -19,6 +19,7 @@
 @implementation ViewController
 @synthesize user_nameTextField;
 @synthesize user_passwordTextField;
+@synthesize outputTextField;
 API *api;
 
 - (void)viewDidLoad
@@ -28,14 +29,12 @@ API *api;
 }
 
 - (IBAction)loginButton:(id)sender {
-    [sender resignFirstResponder];
-    NSMutableDictionary *dict = [[NSMutableDictionary alloc] initWithObjectsAndKeys:user_nameTextField.text, @"user_name", [Constants md5:user_passwordTextField.text], @"user_password", nil];
+    [self.view endEditing:YES];
+    NSMutableDictionary *dictionary = [[NSMutableDictionary alloc] initWithObjectsAndKeys:
+                                    user_nameTextField.text, @"user_name",
+                [Constants md5:user_passwordTextField.text], @"user_password", nil];
     //NSLog(@"result: ", [api getRequestResult:dict]);
-    [api test:dict];
-}
-
-- (IBAction) textFieldFinishedWithKeyBoard:(id)sender {
-    [sender resignFirstResponder];
+    [api showRequestResult:dictionary];
 }
 
 - (void)didReceiveMemoryWarning {

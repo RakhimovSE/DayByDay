@@ -6,11 +6,11 @@
 //  Copyright © 2016 Sevastyan Rakhimov. All rights reserved.
 //
 
+#import <UIKit/UIKit.h>
 #import <Foundation/Foundation.h>
 
 @interface API : NSObject
 
-- (NSMutableDictionary *)getRequestResult:(NSMutableDictionary *)params;
-- (void)test:(NSMutableDictionary *)params;
+- (void)showRequestResult:(NSMutableDictionary *)params;
 
 @end
