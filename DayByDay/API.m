@@ -11,9 +11,29 @@
 
 @implementation API
 
-- (void)showRequestResult:(NSMutableDictionary *)params
++ (NSMutableDictionary *)performRequestAndGetResultAndResponseCode:(NSMutableDictionary *)params
 {
-    __block NSMutableDictionary *result = [[NSMutableDictionary alloc] init];
+    NSMutableDictionary *result;
+    NSURLResponse *response;
+    //Capturing server response
+    NSData *data = [self getResponseData:params Response:&response];
+    NSInteger *responseCode = [(NSHTTPURLResponse *)response statusCode];
+    if (responseCode != 200) return nil;
+    NSError *e;
+    result = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingMutableContainers error:&e];
+    [result setValue:[NSNumber numberWithLong:responseCode] forKey:@"responseCode"];
+    return result;
+}
+
++ (long)performRequestAndGetResponseCode:(NSMutableDictionary *)params
+{
+    NSMutableDictionary *result;
+    result = [self performRequestAndGetResultAndResponseCode:params];
+    return [[result valueForKey:@"responseCode"][0] longValue];
+}
+
++ (NSData *)getResponseData:(NSMutableDictionary *)params Response:(NSURLResponse **)response
+{
     //    We begin by creating our POST's body (ergo. what we'd like to send) as an NSString, and converting it to NSData.
     NSString *post = [self convertPostToString:params];
     NSData *postData = [post dataUsingEncoding:NSUTF8StringEncoding allowLossyConversion:YES];
@@ -25,23 +45,15 @@
     [request setHTTPMethod:@"POST"];
     [request setValue:postLength forHTTPHeaderField:@"Content-Length"];
     [request setHTTPBody:postData];
-    //    And finally, we can send our request, and read the reply by creating a new NSURLSession:
-    NSURLSession *session = [NSURLSession sessionWithConfiguration:[NSURLSessionConfiguration defaultSessionConfiguration]];
-    [[session dataTaskWithRequest:request completionHandler:^(NSData *data, NSURLResponse *response, NSError *error) {
-        //NSString *requestReply = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
-        NSInteger statusCode = [(NSHTTPURLResponse *)response statusCode];
-        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"" message:@"" delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil];
-        if (statusCode == 200)
-            dispatch_async(dispatch_get_main_queue(), ^{
-                NSError *e;
-                result = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingMutableContainers error:&e];
-                alert.message = [NSString stringWithFormat:@"%@", result];
-                [alert show];
-            });
-    }] resume];
+    // синхронный запрос
+    NSError *error = nil;
+    
+    //Capturing server response
+    NSData *data = [NSURLConnection sendSynchronousRequest:request  returningResponse:response error:&error];
+    return data;
 }
 
-- (NSString *)convertPostToString:(NSMutableDictionary *)dictionary
++ (NSString *)convertPostToString:(NSMutableDictionary *)dictionary
 {
     NSMutableString *result = [[NSMutableString alloc] init];
     for (NSString *key in dictionary) {

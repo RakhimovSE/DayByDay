@@ -6,17 +6,38 @@
 //  Copyright © 2016 Sevastyan Rakhimov. All rights reserved.
 //
 
-#import "AppDelegate.h"
+#import "DayByDayAppDelegate.h"
+#import "LoginViewController.h"
 
-@interface AppDelegate ()
+@interface DayByDayAppDelegate ()
 
 @end
 
-@implementation AppDelegate
+@implementation DayByDayAppDelegate
 
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     // Override point for customization after application launch.
+    
+    NSFetchRequest *request = [[NSFetchRequest alloc] init];
+    [request setEntity:[NSEntityDescription entityForName:@"Variables" inManagedObjectContext:self.managedObjectContext]];
+    
+    NSError *error = nil;
+    NSArray *results = [self.managedObjectContext executeFetchRequest:request error:&error];
+    if (results.count == 0) {
+        NSManagedObject *user_id = [NSEntityDescription insertNewObjectForEntityForName:@"Variables" inManagedObjectContext:self.managedObjectContext];
+        [user_id setValue:@"user_id" forKey:@"key"];
+        [user_id setValue:@0 forKey:@"value"];
+        
+        if (![self.managedObjectContext save:&error]) {
+            NSLog(@"Unresolved error %@, %@", error, [error userInfo]);
+            abort();
+        }
+    }
+    
+    UINavigationController *navigationController = (UINavigationController *)self.window.rootViewController;
+    LoginViewController *loginViewController = (LoginViewController *)navigationController.topViewController;
+    loginViewController.dataController = [[UserDataController alloc] initWithManagedObjectContext:self.managedObjectContext];
     return YES;
 }
 

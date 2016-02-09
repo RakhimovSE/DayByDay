@@ -11,6 +11,7 @@
 
 @interface API : NSObject
 
-- (void)showRequestResult:(NSMutableDictionary *)params;
++ (NSMutableDictionary *)performRequestAndGetResultAndResponseCode:(NSMutableDictionary *)params;
++ (long)performRequestAndGetResponseCode:(NSMutableDictionary *)params;
 
 @end

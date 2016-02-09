@@ -7,9 +7,11 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "UserDataController.h"
 
-@interface ViewController : UIViewController
-@property (weak, nonatomic) IBOutlet UITextView *outputTextField;
+@interface LoginViewController : UIViewController
+
+@property (strong, nonatomic) UserDataController *dataController;
 
 @end
 

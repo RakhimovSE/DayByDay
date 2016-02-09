@@ -8,9 +8,14 @@
 
 /* Begin PBXBuildFile section */
 		8432230C1C5D269D009D21D2 /* API.m in Sources */ = {isa = PBXBuildFile; fileRef = 8432230B1C5D269D009D21D2 /* API.m */; settings = {ASSET_TAGS = (); }; };
+		84DBEBCE1C62162700D42B7E /* UserDataController.m in Sources */ = {isa = PBXBuildFile; fileRef = 84DBEBCD1C62162700D42B7E /* UserDataController.m */; settings = {ASSET_TAGS = (); }; };
+		84E01AA21C67E01100B502F8 /* ResultDataController.m in Sources */ = {isa = PBXBuildFile; fileRef = 84E01AA11C67E01100B502F8 /* ResultDataController.m */; settings = {ASSET_TAGS = (); }; };
+		84E01AA51C67E04B00B502F8 /* DataController.m in Sources */ = {isa = PBXBuildFile; fileRef = 84E01AA41C67E04B00B502F8 /* DataController.m */; settings = {ASSET_TAGS = (); }; };
+		84E1B3081C5F9F780041EA86 /* ResultTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 84E1B3071C5F9F780041EA86 /* ResultTableViewController.m */; settings = {ASSET_TAGS = (); }; };
+		84E1B30B1C5FA6620041EA86 /* SignupViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 84E1B30A1C5FA6620041EA86 /* SignupViewController.m */; settings = {ASSET_TAGS = (); }; };
 		84E298B01C4CF4A000DF48B2 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 84E298AF1C4CF4A000DF48B2 /* main.m */; };
-		84E298B31C4CF4A000DF48B2 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 84E298B21C4CF4A000DF48B2 /* AppDelegate.m */; };
-		84E298B61C4CF4A000DF48B2 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 84E298B51C4CF4A000DF48B2 /* ViewController.m */; };
+		84E298B31C4CF4A000DF48B2 /* DayByDayAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 84E298B21C4CF4A000DF48B2 /* DayByDayAppDelegate.m */; };
+		84E298B61C4CF4A000DF48B2 /* LoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 84E298B51C4CF4A000DF48B2 /* LoginViewController.m */; };
 		84E298B91C4CF4A000DF48B2 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 84E298B71C4CF4A000DF48B2 /* Main.storyboard */; };
 		84E298BC1C4CF4A000DF48B2 /* DayByDay.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 84E298BA1C4CF4A000DF48B2 /* DayByDay.xcdatamodeld */; };
 		84E298BE1C4CF4A000DF48B2 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 84E298BD1C4CF4A000DF48B2 /* Assets.xcassets */; };
@@ -21,12 +26,22 @@
 /* Begin PBXFileReference section */
 		8432230A1C5D269D009D21D2 /* API.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = API.h; sourceTree = "<group>"; };
 		8432230B1C5D269D009D21D2 /* API.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = API.m; sourceTree = "<group>"; };
+		84DBEBCC1C62162700D42B7E /* UserDataController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserDataController.h; sourceTree = "<group>"; };
+		84DBEBCD1C62162700D42B7E /* UserDataController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserDataController.m; sourceTree = "<group>"; };
+		84E01AA01C67E01100B502F8 /* ResultDataController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ResultDataController.h; sourceTree = "<group>"; };
+		84E01AA11C67E01100B502F8 /* ResultDataController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ResultDataController.m; sourceTree = "<group>"; };
+		84E01AA31C67E04B00B502F8 /* DataController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DataController.h; sourceTree = "<group>"; };
+		84E01AA41C67E04B00B502F8 /* DataController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DataController.m; sourceTree = "<group>"; };
+		84E1B3061C5F9F780041EA86 /* ResultTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ResultTableViewController.h; sourceTree = "<group>"; };
+		84E1B3071C5F9F780041EA86 /* ResultTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ResultTableViewController.m; sourceTree = "<group>"; };
+		84E1B3091C5FA6620041EA86 /* SignupViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SignupViewController.h; sourceTree = "<group>"; };
+		84E1B30A1C5FA6620041EA86 /* SignupViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SignupViewController.m; sourceTree = "<group>"; };
 		84E298AB1C4CF4A000DF48B2 /* DayByDay.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DayByDay.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		84E298AF1C4CF4A000DF48B2 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
-		84E298B11C4CF4A000DF48B2 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
-		84E298B21C4CF4A000DF48B2 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
-		84E298B41C4CF4A000DF48B2 /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
-		84E298B51C4CF4A000DF48B2 /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
+		84E298B11C4CF4A000DF48B2 /* DayByDayAppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DayByDayAppDelegate.h; sourceTree = "<group>"; };
+		84E298B21C4CF4A000DF48B2 /* DayByDayAppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DayByDayAppDelegate.m; sourceTree = "<group>"; };
+		84E298B41C4CF4A000DF48B2 /* LoginViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LoginViewController.h; sourceTree = "<group>"; };
+		84E298B51C4CF4A000DF48B2 /* LoginViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LoginViewController.m; sourceTree = "<group>"; };
 		84E298B81C4CF4A000DF48B2 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		84E298BB1C4CF4A000DF48B2 /* DayByDay.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = DayByDay.xcdatamodel; sourceTree = "<group>"; };
 		84E298BD1C4CF4A000DF48B2 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -47,13 +62,26 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		843223091C5D21DA009D21D2 /* Classes */ = {
+		843223091C5D21DA009D21D2 /* API */ = {
 			isa = PBXGroup;
 			children = (
 				84E458E21C5D183400779E3F /* Constants.h */,
 				84E458E31C5D183400779E3F /* Constants.m */,
 				8432230A1C5D269D009D21D2 /* API.h */,
 				8432230B1C5D269D009D21D2 /* API.m */,
+			);
+			name = API;
+			sourceTree = "<group>";
+		};
+		84DBEBCF1C62163300D42B7E /* Classes */ = {
+			isa = PBXGroup;
+			children = (
+				84E01AA31C67E04B00B502F8 /* DataController.h */,
+				84E01AA41C67E04B00B502F8 /* DataController.m */,
+				84DBEBCC1C62162700D42B7E /* UserDataController.h */,
+				84DBEBCD1C62162700D42B7E /* UserDataController.m */,
+				84E01AA01C67E01100B502F8 /* ResultDataController.h */,
+				84E01AA11C67E01100B502F8 /* ResultDataController.m */,
 			);
 			name = Classes;
 			sourceTree = "<group>";
@@ -77,17 +105,22 @@
 		84E298AD1C4CF4A000DF48B2 /* DayByDay */ = {
 			isa = PBXGroup;
 			children = (
-				84E298B11C4CF4A000DF48B2 /* AppDelegate.h */,
-				84E298B21C4CF4A000DF48B2 /* AppDelegate.m */,
-				84E298B41C4CF4A000DF48B2 /* ViewController.h */,
-				84E298B51C4CF4A000DF48B2 /* ViewController.m */,
+				84E298B11C4CF4A000DF48B2 /* DayByDayAppDelegate.h */,
+				84E298B21C4CF4A000DF48B2 /* DayByDayAppDelegate.m */,
+				84E298B41C4CF4A000DF48B2 /* LoginViewController.h */,
+				84E298B51C4CF4A000DF48B2 /* LoginViewController.m */,
+				84E1B3061C5F9F780041EA86 /* ResultTableViewController.h */,
+				84E1B3071C5F9F780041EA86 /* ResultTableViewController.m */,
+				84E1B3091C5FA6620041EA86 /* SignupViewController.h */,
+				84E1B30A1C5FA6620041EA86 /* SignupViewController.m */,
 				84E298B71C4CF4A000DF48B2 /* Main.storyboard */,
 				84E298BD1C4CF4A000DF48B2 /* Assets.xcassets */,
 				84E298BF1C4CF4A000DF48B2 /* LaunchScreen.storyboard */,
 				84E298C21C4CF4A000DF48B2 /* Info.plist */,
 				84E298BA1C4CF4A000DF48B2 /* DayByDay.xcdatamodeld */,
 				84E298AE1C4CF4A000DF48B2 /* Supporting Files */,
-				843223091C5D21DA009D21D2 /* Classes */,
+				843223091C5D21DA009D21D2 /* API */,
+				84DBEBCF1C62163300D42B7E /* Classes */,
 			);
 			path = DayByDay;
 			sourceTree = "<group>";
@@ -174,8 +207,13 @@
 				8432230C1C5D269D009D21D2 /* API.m in Sources */,
 				84E458E41C5D183400779E3F /* Constants.m in Sources */,
 				84E298BC1C4CF4A000DF48B2 /* DayByDay.xcdatamodeld in Sources */,
-				84E298B61C4CF4A000DF48B2 /* ViewController.m in Sources */,
-				84E298B31C4CF4A000DF48B2 /* AppDelegate.m in Sources */,
+				84E1B3081C5F9F780041EA86 /* ResultTableViewController.m in Sources */,
+				84E298B61C4CF4A000DF48B2 /* LoginViewController.m in Sources */,
+				84E298B31C4CF4A000DF48B2 /* DayByDayAppDelegate.m in Sources */,
+				84E01AA51C67E04B00B502F8 /* DataController.m in Sources */,
+				84E01AA21C67E01100B502F8 /* ResultDataController.m in Sources */,
+				84DBEBCE1C62162700D42B7E /* UserDataController.m in Sources */,
+				84E1B30B1C5FA6620041EA86 /* SignupViewController.m in Sources */,
 				84E298B01C4CF4A000DF48B2 /* main.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -302,6 +340,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = SevastyanRakhimov.DayByDay;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
 		};
@@ -320,6 +359,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = SevastyanRakhimov.DayByDay;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Release;
 		};

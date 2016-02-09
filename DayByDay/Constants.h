@@ -13,5 +13,7 @@
 extern NSString *const apiURL;
 
 + (NSString *)md5:(NSString *)input;
++ (void)showAlertMessage:(NSString *)message;
++ (void)showAlertMessage:(NSString *)message Title:(NSString *)title;
 
 @end
