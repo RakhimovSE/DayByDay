@@ -7,15 +7,16 @@
 //
 
 #import "ResultTableViewController.h"
-#import "ResultDataController.h"
+#import "NewResultViewController.h"
 
-@interface ResultTableViewController ()
+@interface ResultTableViewController () {
+    ResultDataController *resultDataController;
+}
+@property (weak, nonatomic) IBOutlet UIBarButtonItem *createResultButton;
 
 @end
 
 @implementation ResultTableViewController
-
-@synthesize dataController;
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -24,15 +25,24 @@
     
     // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
     // self.navigationItem.rightBarButtonItem = self.editButtonItem;
+    resultDataController = [[ResultDataController alloc] initWithDataController:_dataController];
 }
 
 - (IBAction)showMenu:(id)sender {
-    [Constants showAlertMessage:[NSString stringWithFormat:@"%@", [dataController getUserResults]]];
+    [Constants showAlertMessage:[NSString stringWithFormat:@"%@", [resultDataController getUserHotSpots]]];
 }
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+    if ([sender isEqual:_createResultButton]) {
+        NewResultViewController *newResultViewController = (NewResultViewController *)[segue destinationViewController];
+        newResultViewController.dataController = _dataController;
+        return;
+    }
 }
 
 #pragma mark - Table view data source

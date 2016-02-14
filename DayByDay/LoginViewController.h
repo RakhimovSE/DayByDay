@@ -11,7 +11,7 @@
 
 @interface LoginViewController : UIViewController
 
-@property (strong, nonatomic) UserDataController *dataController;
+@property (strong, nonatomic) DataController *dataController;
 
 @end
 

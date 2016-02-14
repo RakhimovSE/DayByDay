@@ -16,8 +16,12 @@
 @interface DataController : NSObject
 
 - (id)initWithManagedObjectContext:(NSManagedObjectContext *)managedObjectContext;
+- (id)initWithDataController:(DataController *)dataController;
+- (long)getUserId;
 
 @property (strong, nonatomic) NSFetchedResultsController *fetchedResultsController;
 @property (strong, nonatomic) NSManagedObjectContext *managedObjectContext;
+@property (strong, nonatomic) NSManagedObjectModel *managedObjectModel;
+@property (strong, nonatomic) NSPersistentStoreCoordinator *persistentStoreCoordinator;
 
 @end

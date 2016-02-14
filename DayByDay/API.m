@@ -11,25 +11,26 @@
 
 @implementation API
 
-+ (NSMutableDictionary *)performRequestAndGetResultAndResponseCode:(NSMutableDictionary *)params
++ (NSMutableDictionary *)performRequestAndGetResultAndResponseCode:(NSMutableDictionary *)params ResponseCode:(NSNumber **)responseCode
 {
     NSMutableDictionary *result;
     NSURLResponse *response;
     //Capturing server response
     NSData *data = [self getResponseData:params Response:&response];
-    NSInteger *responseCode = [(NSHTTPURLResponse *)response statusCode];
-    if (responseCode != 200) return nil;
+    NSInteger responseInteger = [(NSHTTPURLResponse *)response statusCode];
+    *responseCode = [NSNumber numberWithInteger:responseInteger];
+    if (responseInteger != 200) return nil;
     NSError *e;
     result = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingMutableContainers error:&e];
-    [result setValue:[NSNumber numberWithLong:responseCode] forKey:@"responseCode"];
     return result;
 }
 
 + (long)performRequestAndGetResponseCode:(NSMutableDictionary *)params
 {
     NSMutableDictionary *result;
-    result = [self performRequestAndGetResultAndResponseCode:params];
-    return [[result valueForKey:@"responseCode"][0] longValue];
+    NSNumber *number = [[NSNumber alloc] init];
+    result = [self performRequestAndGetResultAndResponseCode:params ResponseCode:&number];
+    return [number longValue];
 }
 
 + (NSData *)getResponseData:(NSMutableDictionary *)params Response:(NSURLResponse **)response

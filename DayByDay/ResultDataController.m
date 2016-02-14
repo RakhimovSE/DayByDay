@@ -10,21 +10,38 @@
 
 @implementation ResultDataController
 
+- (void)initNewResultViewController:(UIPickerView **)hotSpotsPickerView {
+    [*hotSpotsPickerView setValue:@"TestValue" forKey:@"TestKey"];
+    [*hotSpotsPickerView reloadAllComponents];
+}
+
 - (NSMutableDictionary *)getUserResults
 {
-    NSFetchRequest *request = [[NSFetchRequest alloc] init];
-    [request setEntity:[NSEntityDescription entityForName:@"Variables" inManagedObjectContext:self.managedObjectContext]];
-    
-    NSError *error = nil;
-    NSArray *results = [self.managedObjectContext executeFetchRequest:request error:&error];
-    
-    NSManagedObject *user_id = [results objectAtIndex:0];
-    
     NSMutableDictionary *params = [[NSMutableDictionary alloc] initWithObjectsAndKeys:
-                                        @"ResultAPI", @"className",
-                                   @"getUserResults", @"methodName",
-        [[user_id valueForKey:@"value"] description], @"user_id", nil];
-    NSMutableDictionary *result = [API performRequestAndGetResultAndResponseCode:params];
+                                                        @"ResultAPI", @"className",
+                                                   @"getUserResults", @"methodName",
+                [NSString stringWithFormat:@"%ld", [self getUserId]], @"user_id", nil];
+    NSNumber *responseNumber = [[NSNumber alloc] init];
+    NSMutableDictionary *result = [API performRequestAndGetResultAndResponseCode:params ResponseCode:&responseNumber];
+    if ([responseNumber longValue] != 200) {
+        [Constants showAlertMessage:[NSString stringWithFormat:@"Error %@", responseNumber]];
+        return nil;
+    }
+    return result;
+}
+
+- (NSMutableDictionary *)getUserHotSpots
+{
+    NSMutableDictionary *params = [[NSMutableDictionary alloc] initWithObjectsAndKeys:
+                                                        @"ResultAPI", @"className",
+                                                  @"getUserHotSpots", @"methodName",
+                                   [NSString stringWithFormat:@"%ld", [self getUserId]], @"user_id", nil];
+    NSNumber *responseNumber = [[NSNumber alloc] init];
+    NSMutableDictionary *result = [API performRequestAndGetResultAndResponseCode:params ResponseCode:&responseNumber];
+    if ([responseNumber longValue] != 200) {
+        [Constants showAlertMessage:[NSString stringWithFormat:@"Error %@", responseNumber]];
+        return nil;
+    }
     return result;
 }
 

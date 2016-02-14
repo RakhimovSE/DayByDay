@@ -11,7 +11,6 @@
 
 @interface SignupViewController : UIViewController
 
-@property (strong, nonatomic) NSManagedObjectContext *managedObjectContext;
-@property (strong, nonatomic) UserDataController *dataController;
+@property (strong, nonatomic) DataController *dataController;
 
 @end

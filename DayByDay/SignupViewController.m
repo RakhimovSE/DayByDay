@@ -7,9 +7,11 @@
 //
 
 #import "SignupViewController.h"
-#import "UserDataController.h"
 
-@interface SignupViewController ()
+@interface SignupViewController () {
+    UserDataController *userDataController;
+}
+
 @property (weak, nonatomic) IBOutlet UITextField *emailTextField;
 @property (weak, nonatomic) IBOutlet UITextField *passwordTextField;
 @property (weak, nonatomic) IBOutlet UITextField *repeatPasswordTextField;
@@ -24,11 +26,10 @@
 @synthesize passwordTextField;
 @synthesize repeatPasswordTextField;
 @synthesize nameTextField;
-@synthesize dataController;
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    dataController = [[UserDataController alloc] initWithManagedObjectContext:self.managedObjectContext];
+    userDataController = [[UserDataController alloc] initWithDataController:_dataController];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -39,7 +40,7 @@
 - (BOOL)shouldPerformSegueWithIdentifier:(NSString *)identifier sender:(id)sender {
     BOOL signedUp = NO;
     if ([sender isEqual:_signupButton]) {
-        signedUp = [dataController signup:emailTextField.text
+        signedUp = [userDataController signup:emailTextField.text
                                      Password:passwordTextField.text
                                RepeatPassword:repeatPasswordTextField.text
                                          Name:nameTextField.text];

@@ -21,6 +21,7 @@
 		84E298BE1C4CF4A000DF48B2 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 84E298BD1C4CF4A000DF48B2 /* Assets.xcassets */; };
 		84E298C11C4CF4A000DF48B2 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 84E298BF1C4CF4A000DF48B2 /* LaunchScreen.storyboard */; };
 		84E458E41C5D183400779E3F /* Constants.m in Sources */ = {isa = PBXBuildFile; fileRef = 84E458E31C5D183400779E3F /* Constants.m */; settings = {ASSET_TAGS = (); }; };
+		84EACB541C6A6FE5006F3E2A /* NewResultViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 84EACB531C6A6FE5006F3E2A /* NewResultViewController.m */; settings = {ASSET_TAGS = (); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -49,6 +50,8 @@
 		84E298C21C4CF4A000DF48B2 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		84E458E21C5D183400779E3F /* Constants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Constants.h; sourceTree = "<group>"; };
 		84E458E31C5D183400779E3F /* Constants.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Constants.m; sourceTree = "<group>"; };
+		84EACB521C6A6FE5006F3E2A /* NewResultViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NewResultViewController.h; sourceTree = "<group>"; };
+		84EACB531C6A6FE5006F3E2A /* NewResultViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NewResultViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -107,12 +110,7 @@
 			children = (
 				84E298B11C4CF4A000DF48B2 /* DayByDayAppDelegate.h */,
 				84E298B21C4CF4A000DF48B2 /* DayByDayAppDelegate.m */,
-				84E298B41C4CF4A000DF48B2 /* LoginViewController.h */,
-				84E298B51C4CF4A000DF48B2 /* LoginViewController.m */,
-				84E1B3061C5F9F780041EA86 /* ResultTableViewController.h */,
-				84E1B3071C5F9F780041EA86 /* ResultTableViewController.m */,
-				84E1B3091C5FA6620041EA86 /* SignupViewController.h */,
-				84E1B30A1C5FA6620041EA86 /* SignupViewController.m */,
+				84EACB551C6A6FF0006F3E2A /* ViewControllers */,
 				84E298B71C4CF4A000DF48B2 /* Main.storyboard */,
 				84E298BD1C4CF4A000DF48B2 /* Assets.xcassets */,
 				84E298BF1C4CF4A000DF48B2 /* LaunchScreen.storyboard */,
@@ -131,6 +129,21 @@
 				84E298AF1C4CF4A000DF48B2 /* main.m */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		84EACB551C6A6FF0006F3E2A /* ViewControllers */ = {
+			isa = PBXGroup;
+			children = (
+				84E298B41C4CF4A000DF48B2 /* LoginViewController.h */,
+				84E298B51C4CF4A000DF48B2 /* LoginViewController.m */,
+				84EACB521C6A6FE5006F3E2A /* NewResultViewController.h */,
+				84EACB531C6A6FE5006F3E2A /* NewResultViewController.m */,
+				84E1B3061C5F9F780041EA86 /* ResultTableViewController.h */,
+				84E1B3071C5F9F780041EA86 /* ResultTableViewController.m */,
+				84E1B3091C5FA6620041EA86 /* SignupViewController.h */,
+				84E1B30A1C5FA6620041EA86 /* SignupViewController.m */,
+			);
+			name = ViewControllers;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -204,6 +217,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				84EACB541C6A6FE5006F3E2A /* NewResultViewController.m in Sources */,
 				8432230C1C5D269D009D21D2 /* API.m in Sources */,
 				84E458E41C5D183400779E3F /* Constants.m in Sources */,
 				84E298BC1C4CF4A000DF48B2 /* DayByDay.xcdatamodeld in Sources */,

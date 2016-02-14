@@ -10,6 +10,9 @@
 
 @interface ResultDataController : DataController
 
+- (void)initNewResultViewController:(UIPickerView **)hotSpotsPickerView;
+
 - (NSMutableDictionary *)getUserResults;
+- (NSMutableDictionary *)getUserHotSpots;
 
 @end

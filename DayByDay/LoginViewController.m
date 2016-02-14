@@ -10,9 +10,11 @@
 #import "ResultTableViewController.h"
 #import "SignupViewController.h"
 
-@interface LoginViewController ()
-@property (weak, nonatomic) IBOutlet UITextField *user_nameTextField;
-@property (weak, nonatomic) IBOutlet UITextField *user_passwordTextField;
+@interface LoginViewController () {
+    UserDataController *userDataController;
+}
+@property (weak, nonatomic) IBOutlet UITextField *userEmailTextField;
+@property (weak, nonatomic) IBOutlet UITextField *userPasswordTextField;
 @property (weak, nonatomic) IBOutlet UIBarButtonItem *signupButton;
 @property (weak, nonatomic) IBOutlet UIButton *loginButton;
 
@@ -20,19 +22,19 @@
 
 @implementation LoginViewController
 
-@synthesize user_nameTextField;
-@synthesize user_passwordTextField;
-@synthesize dataController;
+@synthesize userEmailTextField;
+@synthesize userPasswordTextField;
 BOOL loggedIn;
 
 - (void)viewDidLoad {
     [super viewDidLoad];
     loggedIn = NO;
+    userDataController = [[UserDataController alloc] initWithDataController:_dataController];
 }
 
 - (IBAction)login:(id)sender {
     [self.view endEditing:YES];
-    loggedIn = [dataController login:user_nameTextField.text Password:user_passwordTextField.text];
+    loggedIn = [userDataController login:userEmailTextField.text Password:userPasswordTextField.text];
 }
 
 - (BOOL)shouldPerformSegueWithIdentifier:(NSString *)identifier sender:(id)sender {
@@ -43,12 +45,12 @@ BOOL loggedIn;
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     if ([sender isEqual:_loginButton]) {
         ResultTableViewController *resultViewController = (ResultTableViewController *)[segue destinationViewController];
-        resultViewController.dataController = [[ResultDataController alloc] initWithManagedObjectContext:dataController.managedObjectContext];
+        resultViewController.dataController = _dataController;
         return;
     }
     if ([sender isEqual:_signupButton]) {
         SignupViewController *signupViewController = (SignupViewController *)[segue destinationViewController];
-        signupViewController.dataController = [[UserDataController alloc] initWithManagedObjectContext:dataController.managedObjectContext];
+        signupViewController.dataController = _dataController;
         return;
     }
 }

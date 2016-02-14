@@ -17,14 +17,9 @@
                         <viewControllerLayoutGuide type="bottom" id="wfy-db-euE"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="556"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="623"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Имя пользователя" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="q10-F6-UZB">
-                                <rect key="frame" x="-25" y="-30" width="97" height="30"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits"/>
-                            </textField>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="KGG-iK-gMw">
                                 <rect key="frame" x="-23" y="-15" width="46" height="30"/>
                                 <color key="backgroundColor" red="0.0" green="0.50196081399917603" blue="1" alpha="1" colorSpace="calibratedRGB"/>
@@ -54,6 +49,11 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" secureTextEntry="YES"/>
                             </textField>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Электронная почта" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="q10-F6-UZB">
+                                <rect key="frame" x="-25" y="-30" width="97" height="30"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
@@ -71,9 +71,9 @@
                         </constraints>
                         <variation key="default">
                             <mask key="subviews">
-                                <exclude reference="q10-F6-UZB"/>
                                 <exclude reference="KGG-iK-gMw"/>
                                 <exclude reference="rPf-yf-z3q"/>
+                                <exclude reference="q10-F6-UZB"/>
                             </mask>
                             <mask key="constraints">
                                 <exclude reference="EDG-Lx-nPV"/>
@@ -89,9 +89,9 @@
                         </variation>
                         <variation key="widthClass=compact">
                             <mask key="subviews">
-                                <include reference="q10-F6-UZB"/>
                                 <include reference="KGG-iK-gMw"/>
                                 <include reference="rPf-yf-z3q"/>
+                                <include reference="q10-F6-UZB"/>
                             </mask>
                             <mask key="constraints">
                                 <include reference="EDG-Lx-nPV"/>
@@ -116,13 +116,13 @@
                     <connections>
                         <outlet property="loginButton" destination="KGG-iK-gMw" id="5BF-Sp-b31"/>
                         <outlet property="signupButton" destination="2YX-g6-knJ" id="5QT-hG-mR2"/>
-                        <outlet property="user_nameTextField" destination="q10-F6-UZB" id="eFA-CR-hk7"/>
-                        <outlet property="user_passwordTextField" destination="rPf-yf-z3q" id="uCZ-Vt-E28"/>
+                        <outlet property="userEmailTextField" destination="q10-F6-UZB" id="Pm4-90-KL4"/>
+                        <outlet property="userPasswordTextField" destination="rPf-yf-z3q" id="Y0B-wW-41V"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1491" y="289"/>
+            <point key="canvasLocation" x="1490.25" y="172.5"/>
         </scene>
         <!--Signup View Controller-->
         <scene sceneID="4k7-3A-Gex">
@@ -133,7 +133,7 @@
                         <viewControllerLayoutGuide type="bottom" id="KgP-pc-7y2"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="UxQ-fq-eAD">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="556"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="623"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Пароль" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="foT-le-o9s">
@@ -262,44 +262,118 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="aKs-fQ-wMs" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2227.5" y="289"/>
+            <point key="canvasLocation" x="2226.75" y="172.5"/>
         </scene>
         <!--Новая цель-->
         <scene sceneID="tLa-Yx-Ehk">
             <objects>
-                <viewController id="v8t-bw-ra0" sceneMemberID="viewController">
+                <viewController id="v8t-bw-ra0" customClass="NewResultViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="h9H-OF-cer"/>
                         <viewControllerLayoutGuide type="bottom" id="wcC-nA-Jo8"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="r9x-1x-Uuy">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="cEA-X4-sMn">
+                                <rect key="frame" x="-60" y="-14" width="121" height="29"/>
+                                <segments>
+                                    <segment title="День"/>
+                                    <segment title="Неделя"/>
+                                    <segment title="Месяц"/>
+                                    <segment title="Четверть"/>
+                                    <segment title="Год"/>
+                                </segments>
+                            </segmentedControl>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Название цели" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="1Ru-Do-Xx3">
+                                <rect key="frame" x="-25" y="-30" width="97" height="30"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <pickerView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="j2M-5r-Ff2">
+                                <rect key="frame" x="0.0" y="-216" width="320" height="216"/>
+                            </pickerView>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="j2M-5r-Ff2" firstAttribute="leading" secondItem="r9x-1x-Uuy" secondAttribute="leadingMargin" id="4a3-wF-rcL"/>
+                            <constraint firstItem="j2M-5r-Ff2" firstAttribute="top" secondItem="1Ru-Do-Xx3" secondAttribute="bottom" constant="8" id="5P9-y6-pwB"/>
+                            <constraint firstItem="1Ru-Do-Xx3" firstAttribute="top" secondItem="cEA-X4-sMn" secondAttribute="bottom" constant="8" id="BkF-Ir-ViE"/>
+                            <constraint firstItem="cEA-X4-sMn" firstAttribute="leading" secondItem="r9x-1x-Uuy" secondAttribute="leadingMargin" id="O3j-td-CT4"/>
+                            <constraint firstItem="cEA-X4-sMn" firstAttribute="trailing" secondItem="r9x-1x-Uuy" secondAttribute="trailingMargin" id="Wea-Tx-SUb"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="1Ru-Do-Xx3" secondAttribute="trailing" id="am8-Ob-2De"/>
+                            <constraint firstItem="cEA-X4-sMn" firstAttribute="top" secondItem="h9H-OF-cer" secondAttribute="bottom" constant="8" id="fgd-Vl-7uC"/>
+                            <constraint firstItem="1Ru-Do-Xx3" firstAttribute="leading" secondItem="r9x-1x-Uuy" secondAttribute="leadingMargin" id="mOn-Ev-og6"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="j2M-5r-Ff2" secondAttribute="trailing" id="vXK-iI-olB"/>
+                        </constraints>
+                        <variation key="default">
+                            <mask key="subviews">
+                                <exclude reference="cEA-X4-sMn"/>
+                                <exclude reference="1Ru-Do-Xx3"/>
+                                <exclude reference="j2M-5r-Ff2"/>
+                            </mask>
+                            <mask key="constraints">
+                                <exclude reference="4a3-wF-rcL"/>
+                                <exclude reference="5P9-y6-pwB"/>
+                                <exclude reference="vXK-iI-olB"/>
+                                <exclude reference="BkF-Ir-ViE"/>
+                                <exclude reference="am8-Ob-2De"/>
+                                <exclude reference="mOn-Ev-og6"/>
+                                <exclude reference="O3j-td-CT4"/>
+                                <exclude reference="Wea-Tx-SUb"/>
+                                <exclude reference="fgd-Vl-7uC"/>
+                            </mask>
+                        </variation>
+                        <variation key="widthClass=compact">
+                            <mask key="subviews">
+                                <include reference="cEA-X4-sMn"/>
+                                <include reference="1Ru-Do-Xx3"/>
+                                <include reference="j2M-5r-Ff2"/>
+                            </mask>
+                            <mask key="constraints">
+                                <include reference="4a3-wF-rcL"/>
+                                <include reference="5P9-y6-pwB"/>
+                                <include reference="vXK-iI-olB"/>
+                                <include reference="BkF-Ir-ViE"/>
+                                <include reference="am8-Ob-2De"/>
+                                <include reference="mOn-Ev-og6"/>
+                                <include reference="O3j-td-CT4"/>
+                                <include reference="Wea-Tx-SUb"/>
+                                <include reference="fgd-Vl-7uC"/>
+                            </mask>
+                        </variation>
                     </view>
                     <navigationItem key="navigationItem" title="Новая цель" id="z46-vO-do1">
-                        <barButtonItem key="rightBarButtonItem" title="Создать" style="done" id="iSe-Sf-8Dy"/>
+                        <barButtonItem key="rightBarButtonItem" title="Создать" style="done" id="iSe-Sf-8Dy">
+                            <connections>
+                                <action selector="createResultButton:" destination="v8t-bw-ra0" id="ogg-6A-ccp"/>
+                            </connections>
+                        </barButtonItem>
                     </navigationItem>
                     <nil key="simulatedBottomBarMetrics"/>
+                    <connections>
+                        <outlet property="hotSpotsPicker" destination="j2M-5r-Ff2" id="IUd-uf-nei"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="6jL-bm-jQ6" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2227.5" y="990"/>
+            <point key="canvasLocation" x="2226.75" y="989.5"/>
         </scene>
         <!--Result Table View Controller-->
         <scene sceneID="rlU-Sn-ivK">
             <objects>
                 <tableViewController id="PlV-8D-anX" customClass="ResultTableViewController" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="oMx-Rl-Dcg">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="556"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="623"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="cjc-lP-RKQ">
-                                <rect key="frame" x="0.0" y="92" width="600" height="44"/>
+                                <rect key="frame" x="0.0" y="92" width="375" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="cjc-lP-RKQ" id="VJG-9t-1KT">
-                                    <rect key="frame" x="0.0" y="0.0" width="600" height="43"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="43"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                 </tableViewCellContentView>
                             </tableViewCell>
@@ -324,6 +398,9 @@
                             <barButtonItem systemItem="search" id="8PL-fo-CCC"/>
                         </rightBarButtonItems>
                     </navigationItem>
+                    <connections>
+                        <outlet property="createResultButton" destination="kih-0e-9hy" id="xxu-R5-QRd"/>
+                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="5r2-Mq-wva" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -334,6 +411,7 @@
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" toolbarHidden="NO" id="CL2-ES-wcC" sceneMemberID="viewController">
                     <toolbarItems/>
+                    <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="9fk-tA-nRf">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -345,10 +423,10 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="PTY-B2-wnw" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="573" y="289"/>
+            <point key="canvasLocation" x="737.25" y="172.5"/>
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="gEY-6Z-CEp"/>
+        <segue reference="8UL-qj-Si0"/>
     </inferredMetricsTieBreakers>
 </document>
