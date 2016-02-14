@@ -66,4 +66,11 @@
     return [result stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
 }
 
++ (NSMutableDictionary *)allValuesFromMutableDictionary:(NSMutableDictionary *)dictionary ForKey:(NSString *)keyKey Value:(NSString *)valueKey {
+    NSArray *values = [dictionary valueForKey:valueKey];
+    NSArray *keys = [dictionary valueForKey:keyKey];
+    NSMutableDictionary *result = [[NSMutableDictionary alloc] initWithObjects:values forKeys:keys];
+    return result;
+}
+
 @end

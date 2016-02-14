@@ -286,14 +286,21 @@
                                     <segment title="Год"/>
                                 </segments>
                             </segmentedControl>
+                            <pickerView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="j2M-5r-Ff2">
+                                <rect key="frame" x="0.0" y="-216" width="320" height="216"/>
+                                <connections>
+                                    <outlet property="dataSource" destination="v8t-bw-ra0" id="RG9-QZ-q3r"/>
+                                    <outlet property="delegate" destination="v8t-bw-ra0" id="Hv2-r3-1QG"/>
+                                </connections>
+                            </pickerView>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Название цели" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="1Ru-Do-Xx3">
                                 <rect key="frame" x="-25" y="-30" width="97" height="30"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
+                                <connections>
+                                    <action selector="resultTextFieldTouchUpOutside:" destination="v8t-bw-ra0" eventType="touchUpOutside" id="GTb-ae-9T3"/>
+                                </connections>
                             </textField>
-                            <pickerView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="j2M-5r-Ff2">
-                                <rect key="frame" x="0.0" y="-216" width="320" height="216"/>
-                            </pickerView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
@@ -310,8 +317,8 @@
                         <variation key="default">
                             <mask key="subviews">
                                 <exclude reference="cEA-X4-sMn"/>
-                                <exclude reference="1Ru-Do-Xx3"/>
                                 <exclude reference="j2M-5r-Ff2"/>
+                                <exclude reference="1Ru-Do-Xx3"/>
                             </mask>
                             <mask key="constraints">
                                 <exclude reference="4a3-wF-rcL"/>
@@ -328,8 +335,8 @@
                         <variation key="widthClass=compact">
                             <mask key="subviews">
                                 <include reference="cEA-X4-sMn"/>
-                                <include reference="1Ru-Do-Xx3"/>
                                 <include reference="j2M-5r-Ff2"/>
+                                <include reference="1Ru-Do-Xx3"/>
                             </mask>
                             <mask key="constraints">
                                 <include reference="4a3-wF-rcL"/>
@@ -354,6 +361,8 @@
                     <nil key="simulatedBottomBarMetrics"/>
                     <connections>
                         <outlet property="hotSpotsPicker" destination="j2M-5r-Ff2" id="IUd-uf-nei"/>
+                        <outlet property="periodTypesSegmented" destination="cEA-X4-sMn" id="zKc-mE-MFQ"/>
+                        <outlet property="resultNameTextField" destination="1Ru-Do-Xx3" id="TC7-zj-Wn0"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="6jL-bm-jQ6" userLabel="First Responder" sceneMemberID="firstResponder"/>

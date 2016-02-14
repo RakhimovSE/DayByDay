@@ -14,5 +14,6 @@
 
 - (NSMutableDictionary *)getUserResults;
 - (NSMutableDictionary *)getUserHotSpots;
+- (NSInteger)getUserHotSpotId:(NSMutableDictionary *)userHotSpots CategoryId:(NSInteger)hotSpotCategoryId ActivityId:(NSInteger)hotSpotActivityId;
 
 @end

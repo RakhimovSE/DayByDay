@@ -14,4 +14,6 @@
 + (NSMutableDictionary *)performRequestAndGetResultAndResponseCode:(NSMutableDictionary *)params ResponseCode:(NSNumber **)responseCode;
 + (long)performRequestAndGetResponseCode:(NSMutableDictionary *)params;
 
++ (NSMutableDictionary *)allValuesFromMutableDictionary:(NSMutableDictionary *)dictionary ForKey:(NSString *)keyKey Value:(NSString *)valueKey;
+
 @end

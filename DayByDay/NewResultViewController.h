@@ -9,7 +9,7 @@
 #import <UIKit/UIKit.h>
 #import "ResultDataController.h"
 
-@interface NewResultViewController : UIViewController// <UIPickerViewDataSource, UIPickerViewDelegate>
+@interface NewResultViewController : UIViewController <UIPickerViewDataSource, UIPickerViewDelegate>
 
 @property (strong, nonatomic) DataController *dataController;
 

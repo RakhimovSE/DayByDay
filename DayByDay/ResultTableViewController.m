@@ -29,7 +29,7 @@
 }
 
 - (IBAction)showMenu:(id)sender {
-    [Constants showAlertMessage:[NSString stringWithFormat:@"%@", [resultDataController getUserHotSpots]]];
+    [Constants showAlertMessage:[NSString stringWithFormat:@"%@", [resultDataController getUserResults]]];
 }
 
 - (void)didReceiveMemoryWarning {

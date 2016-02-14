@@ -15,8 +15,7 @@
     [*hotSpotsPickerView reloadAllComponents];
 }
 
-- (NSMutableDictionary *)getUserResults
-{
+- (NSMutableDictionary *)getUserResults {
     NSMutableDictionary *params = [[NSMutableDictionary alloc] initWithObjectsAndKeys:
                                                         @"ResultAPI", @"className",
                                                    @"getUserResults", @"methodName",
@@ -30,8 +29,7 @@
     return result;
 }
 
-- (NSMutableDictionary *)getUserHotSpots
-{
+- (NSMutableDictionary *)getUserHotSpots {
     NSMutableDictionary *params = [[NSMutableDictionary alloc] initWithObjectsAndKeys:
                                                         @"ResultAPI", @"className",
                                                   @"getUserHotSpots", @"methodName",
@@ -41,6 +39,17 @@
     if ([responseNumber longValue] != 200) {
         [Constants showAlertMessage:[NSString stringWithFormat:@"Error %@", responseNumber]];
         return nil;
+    }
+    return result;
+}
+
+- (NSInteger)getUserHotSpotId:(NSMutableDictionary *)userHotSpots CategoryId:(NSInteger)hotSpotCategoryId ActivityId:(NSInteger)hotSpotActivityId {
+    NSInteger result = -1;
+    for (id userHotSpot in userHotSpots) {
+        if ([[userHotSpot valueForKey:@"hotSpotCategory_id"] integerValue] == hotSpotCategoryId && [[userHotSpot valueForKey:@"hotSpotActivity_id"] integerValue] == hotSpotActivityId) {
+            result = [[userHotSpot valueForKey:@"userHotSpot_id"] integerValue];
+            break;
+        }
     }
     return result;
 }
