@@ -11,6 +11,9 @@
 
 @interface ResultTableViewController () {
     ResultDataController *resultDataController;
+    NSMutableDictionary *userResults;
+    NSArray *resultNameArray;
+    NSArray *periodTypeLengthArray;
 }
 @property (weak, nonatomic) IBOutlet UIBarButtonItem *createResultButton;
 
@@ -26,6 +29,9 @@
     // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
     // self.navigationItem.rightBarButtonItem = self.editButtonItem;
     resultDataController = [[ResultDataController alloc] initWithDataController:_dataController];
+    userResults = [resultDataController getUserResults];
+    resultNameArray = [userResults valueForKey:@"result_name"];
+    periodTypeLengthArray = [userResults valueForKey:@"fk_periodType_length"];
 }
 
 - (IBAction)showMenu:(id)sender {
@@ -47,25 +53,38 @@
 
 #pragma mark - Table view data source
 
-- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-#warning Incomplete implementation, return the number of sections
-    return 0;
-}
+//- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
+//#warning Incomplete implementation, return the number of sections
+//    return 0;
+//}
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-#warning Incomplete implementation, return the number of rows
-    return 0;
+    return resultNameArray.count;
 }
 
-/*
+
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:<#@"reuseIdentifier"#> forIndexPath:indexPath];
-    
-    // Configure the cell...
-    
+    NSString *identifier = @"resultTableItem";
+    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:identifier forIndexPath:indexPath];
+    if (!cell)
+        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:identifier];
+    cell.textLabel.text = [resultNameArray objectAtIndex:indexPath.row];
+    NSString *length = [periodTypeLengthArray objectAtIndex:indexPath.row];
+    NSString *detailText = @"";
+    if ([length isEqualToString:@"0000-00-01"])
+        detailText = @"Цель дня";
+    if ([length isEqualToString:@"0000-00-07"])
+        detailText = @"Цель недели";
+    if ([length isEqualToString:@"0000-01-00"])
+        detailText = @"Цель месяца";
+    if ([length isEqualToString:@"0000-03-00"])
+        detailText = @"Цель четверти";
+    if ([length isEqualToString:@"0001-00-00"])
+        detailText = @"Цель года";
+    cell.detailTextLabel.text = detailText;
     return cell;
 }
-*/
+
 
 /*
 // Override to support conditional editing of the table view.

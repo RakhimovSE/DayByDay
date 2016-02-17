@@ -9,7 +9,7 @@
 #import <UIKit/UIKit.h>
 #import "ResultDataController.h"
 
-@interface ResultTableViewController : UITableViewController
+@interface ResultTableViewController : UITableViewController <UITableViewDelegate, UITableViewDataSource>
 
 @property (strong, nonatomic) DataController *dataController;
 
