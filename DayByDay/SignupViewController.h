@@ -7,10 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "UserDataController.h"
 
 @interface SignupViewController : UIViewController
-
-@property (strong, nonatomic) DataController *dataController;
 
 @end

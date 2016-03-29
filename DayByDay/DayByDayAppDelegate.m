@@ -34,9 +34,6 @@
         }
     }
     
-    UINavigationController *navigationController = (UINavigationController *)self.window.rootViewController;
-    LoginViewController *loginViewController = (LoginViewController *)navigationController.topViewController;
-    loginViewController.dataController = [[DataController alloc] initWithManagedObjectContext:self.managedObjectContext];
     return YES;
 }
 

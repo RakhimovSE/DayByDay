@@ -6,6 +6,8 @@
 //  Copyright © 2016 Sevastyan Rakhimov. All rights reserved.
 //
 
+#import "DayByDayAppDelegate.h"
+#import "UserDataController.h"
 #import "SignupViewController.h"
 
 @interface SignupViewController () {
@@ -29,7 +31,9 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    userDataController = [[UserDataController alloc] initWithDataController:_dataController];
+    
+    DayByDayAppDelegate *app = (DayByDayAppDelegate*)[[UIApplication sharedApplication] delegate];
+    userDataController = [[UserDataController alloc] initWithManagedObjectContext: app.managedObjectContext];
 }
 
 - (void)didReceiveMemoryWarning {

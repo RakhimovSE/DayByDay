@@ -8,7 +8,6 @@
 
 #import <UIKit/UIKit.h>
 #import <CoreData/CoreData.h>
-#import "SWRevealViewController.h"
 
 @interface DayByDayAppDelegate : UIResponder <UIApplicationDelegate>
 

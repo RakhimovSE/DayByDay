@@ -6,6 +6,9 @@
 //  Copyright © 2016 Sevastyan Rakhimov. All rights reserved.
 //
 
+#import "DayByDayAppDelegate.h"
+#import "SWRevealViewController.h"
+#import "ResultDataController.h"
 #import "ResultTableViewController.h"
 #import "NewResultViewController.h"
 
@@ -29,13 +32,18 @@
     
     // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
     // self.navigationItem.rightBarButtonItem = self.editButtonItem;
+    
+    self.navigationItem.hidesBackButton = YES;
+    
     if (self.revealViewController) {
         [self.menuButton setTarget: self.revealViewController];
         [self.menuButton setAction: @selector( revealToggle: )];
         [self.view addGestureRecognizer:self.revealViewController.panGestureRecognizer];
     }
     
-    resultDataController = [[ResultDataController alloc] initWithDataController:_dataController];
+    DayByDayAppDelegate *app = (DayByDayAppDelegate*)[[UIApplication sharedApplication] delegate];
+    resultDataController = [[ResultDataController alloc] initWithManagedObjectContext: app.managedObjectContext];
+    
     userResults = [resultDataController getUserResults];
     resultNameArray = [userResults valueForKey:@"result_name"];
     periodTypeLengthArray = [userResults valueForKey:@"fk_periodType_length"];
@@ -51,11 +59,7 @@
 }
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    if ([sender isEqual:_createResultButton]) {
-        NewResultViewController *newResultViewController = (NewResultViewController *)[segue destinationViewController];
-        newResultViewController.dataController = _dataController;
-        return;
-    }
+
 }
 
 #pragma mark - Table view data source

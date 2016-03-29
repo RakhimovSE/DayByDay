@@ -7,8 +7,6 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "SWRevealViewController.h"
-#import "ResultDataController.h"
 
 @interface ResultTableViewController : UITableViewController <UITableViewDelegate, UITableViewDataSource>
 

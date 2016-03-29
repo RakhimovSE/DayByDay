@@ -6,6 +6,8 @@
 //  Copyright © 2016 Sevastyan Rakhimov. All rights reserved.
 //
 
+#import "DayByDayAppDelegate.h"
+#import "ResultDataController.h"
 #import "NewResultViewController.h"
 #import "API.h"
 
@@ -32,7 +34,10 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
-    resultDataController = [[ResultDataController alloc] initWithDataController:_dataController];
+    
+    DayByDayAppDelegate *app = (DayByDayAppDelegate*)[[UIApplication sharedApplication] delegate];
+    resultDataController = [[ResultDataController alloc] initWithManagedObjectContext: app.managedObjectContext];
+    
     userHotSpots = [resultDataController getUserHotSpots];
     hotSpotActivities = [API allValuesFromMutableDictionary:userHotSpots ForKey:@"hotSpotActivity_id" Value:@"hotSpotActivity_name"];
     hotSpotCategories = [API allValuesFromMutableDictionary:userHotSpots ForKey:@"hotSpotCategory_id" Value:@"hotSpotCategory_name"];

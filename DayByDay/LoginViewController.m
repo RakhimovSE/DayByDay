@@ -6,6 +6,8 @@
 //  Copyright © 2016 Sevastyan Rakhimov. All rights reserved.
 //
 
+#import "DayByDayAppDelegate.h"
+#import "UserDataController.h"
 #import "LoginViewController.h"
 #import "ResultTableViewController.h"
 #import "SignupViewController.h"
@@ -29,7 +31,9 @@ BOOL loggedIn;
 - (void)viewDidLoad {
     [super viewDidLoad];
     loggedIn = NO;
-    userDataController = [[UserDataController alloc] initWithDataController:_dataController];
+    
+    DayByDayAppDelegate *app = (DayByDayAppDelegate*)[[UIApplication sharedApplication] delegate];
+    userDataController = [[UserDataController alloc] initWithManagedObjectContext: app.managedObjectContext];
 }
 
 - (IBAction)login:(id)sender {
@@ -43,16 +47,7 @@ BOOL loggedIn;
 }
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    if ([sender isEqual:_loginButton]) {
-        ResultTableViewController *resultViewController = (ResultTableViewController *)[segue destinationViewController];
-        resultViewController.dataController = _dataController;
-        return;
-    }
-    if ([sender isEqual:_signupButton]) {
-        SignupViewController *signupViewController = (SignupViewController *)[segue destinationViewController];
-        signupViewController.dataController = _dataController;
-        return;
-    }
+
 }
 
 - (void)didReceiveMemoryWarning {

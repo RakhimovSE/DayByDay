@@ -7,11 +7,8 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "UserDataController.h"
 
 @interface LoginViewController : UIViewController
-
-@property (strong, nonatomic) DataController *dataController;
 
 @end
 
