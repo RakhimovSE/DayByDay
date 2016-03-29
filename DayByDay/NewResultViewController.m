@@ -109,9 +109,10 @@
     NSMutableDictionary *params = [[NSMutableDictionary alloc] initWithObjectsAndKeys:
                                                            @"ResultAPI", @"className",
                                                         @"createResult", @"methodName",
+   [NSString stringWithFormat:@"%li", [resultDataController getUserId]], @"fk_user_id",
                                                        periodTypeLength, @"fk_periodType_length",
                                                resultNameTextField.text, @"result_name",
-                [NSString stringWithFormat:@"%li", (long)userHotSpotId], @"fk_userHotSpot_id", nil];
+                [NSString stringWithFormat:@"%li", (long)userHotSpotId], @"fk_hotSpot_id", nil];
     long responseCode = [API performRequestAndGetResponseCode:params];
     if (responseCode != 200) [Constants showAlertMessage:[NSString stringWithFormat:@"Не удалось добавить результат. Ошибка %lu", responseCode]];
     else

@@ -31,13 +31,13 @@
 
 - (long)getUserId {
     NSFetchRequest *request = [[NSFetchRequest alloc] init];
-    [request setEntity:[NSEntityDescription entityForName:@"Variables" inManagedObjectContext:self.managedObjectContext]];
+    [request setEntity:[NSEntityDescription entityForName:@"Users" inManagedObjectContext:self.managedObjectContext]];
     
     NSError *error = nil;
     NSArray *results = [self.managedObjectContext executeFetchRequest:request error:&error];
     
     NSManagedObject *user_id = [results objectAtIndex:0];
-    return [[[user_id valueForKey:@"value"] description] longLongValue];
+    return [[[user_id valueForKey:@"user_id"] description] longLongValue];
 }
 
 @end

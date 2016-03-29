@@ -16,6 +16,7 @@
     NSArray *periodTypeLengthArray;
 }
 @property (weak, nonatomic) IBOutlet UIBarButtonItem *createResultButton;
+@property (weak, nonatomic) IBOutlet UIBarButtonItem *menuButton;
 
 @end
 
@@ -28,6 +29,12 @@
     
     // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
     // self.navigationItem.rightBarButtonItem = self.editButtonItem;
+    if (self.revealViewController) {
+        [self.menuButton setTarget: self.revealViewController];
+        [self.menuButton setAction: @selector( revealToggle: )];
+        [self.view addGestureRecognizer:self.revealViewController.panGestureRecognizer];
+    }
+    
     resultDataController = [[ResultDataController alloc] initWithDataController:_dataController];
     userResults = [resultDataController getUserResults];
     resultNameArray = [userResults valueForKey:@"result_name"];

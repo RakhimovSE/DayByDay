@@ -47,7 +47,7 @@
     NSInteger result = -1;
     for (id userHotSpot in userHotSpots) {
         if ([[userHotSpot valueForKey:@"hotSpotCategory_id"] integerValue] == hotSpotCategoryId && [[userHotSpot valueForKey:@"hotSpotActivity_id"] integerValue] == hotSpotActivityId) {
-            result = [[userHotSpot valueForKey:@"userHotSpot_id"] integerValue];
+            result = [[userHotSpot valueForKey:@"hotSpot_id"] integerValue];
             break;
         }
     }

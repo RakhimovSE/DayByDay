@@ -20,14 +20,13 @@
     // Override point for customization after application launch.
     
     NSFetchRequest *request = [[NSFetchRequest alloc] init];
-    [request setEntity:[NSEntityDescription entityForName:@"Variables" inManagedObjectContext:self.managedObjectContext]];
+    [request setEntity:[NSEntityDescription entityForName:@"Users" inManagedObjectContext:self.managedObjectContext]];
     
     NSError *error = nil;
     NSArray *results = [self.managedObjectContext executeFetchRequest:request error:&error];
     if (results.count == 0) {
-        NSManagedObject *user_id = [NSEntityDescription insertNewObjectForEntityForName:@"Variables" inManagedObjectContext:self.managedObjectContext];
-        [user_id setValue:@"user_id" forKey:@"key"];
-        [user_id setValue:@0 forKey:@"value"];
+        NSManagedObject *user_id = [NSEntityDescription insertNewObjectForEntityForName:@"Users" inManagedObjectContext:self.managedObjectContext];
+        [user_id setValue:@0 forKey:@"user_id"];
         
         if (![self.managedObjectContext save:&error]) {
             NSLog(@"Unresolved error %@, %@", error, [error userInfo]);

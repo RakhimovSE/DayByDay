@@ -12,7 +12,7 @@
 
 @implementation Constants
 
-NSString *const apiURL = @"http://ec2-52-88-246-244.us-west-2.compute.amazonaws.com/daybyday/index.php";
+NSString *const apiURL = @"http://52.88.246.244/daybyday/index.php";
 
 + (void)showAlertMessage:(NSString *)message {
     [self showAlertMessage:message Title:@""];

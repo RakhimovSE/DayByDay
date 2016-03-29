@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		8422378F1CAAF57E00745C3B /* MenuTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8422378E1CAAF57E00745C3B /* MenuTableViewController.m */; settings = {ASSET_TAGS = (); }; };
+		842237931CAAF5B300745C3B /* SWRevealViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 842237921CAAF5B300745C3B /* SWRevealViewController.m */; settings = {ASSET_TAGS = (); }; };
 		8432230C1C5D269D009D21D2 /* API.m in Sources */ = {isa = PBXBuildFile; fileRef = 8432230B1C5D269D009D21D2 /* API.m */; settings = {ASSET_TAGS = (); }; };
 		84DBEBCE1C62162700D42B7E /* UserDataController.m in Sources */ = {isa = PBXBuildFile; fileRef = 84DBEBCD1C62162700D42B7E /* UserDataController.m */; settings = {ASSET_TAGS = (); }; };
 		84E01AA21C67E01100B502F8 /* ResultDataController.m in Sources */ = {isa = PBXBuildFile; fileRef = 84E01AA11C67E01100B502F8 /* ResultDataController.m */; settings = {ASSET_TAGS = (); }; };
@@ -22,9 +24,16 @@
 		84E298C11C4CF4A000DF48B2 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 84E298BF1C4CF4A000DF48B2 /* LaunchScreen.storyboard */; };
 		84E458E41C5D183400779E3F /* Constants.m in Sources */ = {isa = PBXBuildFile; fileRef = 84E458E31C5D183400779E3F /* Constants.m */; settings = {ASSET_TAGS = (); }; };
 		84EACB541C6A6FE5006F3E2A /* NewResultViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 84EACB531C6A6FE5006F3E2A /* NewResultViewController.m */; settings = {ASSET_TAGS = (); }; };
+		91D7AB0D1F0C13D00EE6D5FD /* libPods-DayByDay.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 142E5BEFE0FA1508F43EB9A2 /* libPods-DayByDay.a */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		142E5BEFE0FA1508F43EB9A2 /* libPods-DayByDay.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-DayByDay.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		4FC01156A13C2B148A912DDF /* Pods-DayByDay.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DayByDay.debug.xcconfig"; path = "Pods/Target Support Files/Pods-DayByDay/Pods-DayByDay.debug.xcconfig"; sourceTree = "<group>"; };
+		8422378D1CAAF57E00745C3B /* MenuTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MenuTableViewController.h; sourceTree = "<group>"; };
+		8422378E1CAAF57E00745C3B /* MenuTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MenuTableViewController.m; sourceTree = "<group>"; };
+		842237911CAAF5B300745C3B /* SWRevealViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SWRevealViewController.h; sourceTree = "<group>"; };
+		842237921CAAF5B300745C3B /* SWRevealViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SWRevealViewController.m; sourceTree = "<group>"; };
 		8432230A1C5D269D009D21D2 /* API.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = API.h; sourceTree = "<group>"; };
 		8432230B1C5D269D009D21D2 /* API.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = API.m; sourceTree = "<group>"; };
 		84DBEBCC1C62162700D42B7E /* UserDataController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserDataController.h; sourceTree = "<group>"; };
@@ -52,6 +61,7 @@
 		84E458E31C5D183400779E3F /* Constants.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Constants.m; sourceTree = "<group>"; };
 		84EACB521C6A6FE5006F3E2A /* NewResultViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NewResultViewController.h; sourceTree = "<group>"; };
 		84EACB531C6A6FE5006F3E2A /* NewResultViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NewResultViewController.m; sourceTree = "<group>"; };
+		F921925BE7F2ABC2F97737D3 /* Pods-DayByDay.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DayByDay.release.xcconfig"; path = "Pods/Target Support Files/Pods-DayByDay/Pods-DayByDay.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -59,12 +69,22 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				91D7AB0D1F0C13D00EE6D5FD /* libPods-DayByDay.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		842237901CAAF5A300745C3B /* SWRevealViewController */ = {
+			isa = PBXGroup;
+			children = (
+				842237911CAAF5B300745C3B /* SWRevealViewController.h */,
+				842237921CAAF5B300745C3B /* SWRevealViewController.m */,
+			);
+			name = SWRevealViewController;
+			sourceTree = "<group>";
+		};
 		843223091C5D21DA009D21D2 /* API */ = {
 			isa = PBXGroup;
 			children = (
@@ -79,12 +99,13 @@
 		84DBEBCF1C62163300D42B7E /* Classes */ = {
 			isa = PBXGroup;
 			children = (
+				842237901CAAF5A300745C3B /* SWRevealViewController */,
 				84E01AA31C67E04B00B502F8 /* DataController.h */,
 				84E01AA41C67E04B00B502F8 /* DataController.m */,
-				84DBEBCC1C62162700D42B7E /* UserDataController.h */,
-				84DBEBCD1C62162700D42B7E /* UserDataController.m */,
 				84E01AA01C67E01100B502F8 /* ResultDataController.h */,
 				84E01AA11C67E01100B502F8 /* ResultDataController.m */,
+				84DBEBCC1C62162700D42B7E /* UserDataController.h */,
+				84DBEBCD1C62162700D42B7E /* UserDataController.m */,
 			);
 			name = Classes;
 			sourceTree = "<group>";
@@ -94,6 +115,8 @@
 			children = (
 				84E298AD1C4CF4A000DF48B2 /* DayByDay */,
 				84E298AC1C4CF4A000DF48B2 /* Products */,
+				A19DBD20C886B6B23E50052F /* Pods */,
+				C3BAD6DD5D7CC08592B7FA25 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -136,6 +159,8 @@
 			children = (
 				84E298B41C4CF4A000DF48B2 /* LoginViewController.h */,
 				84E298B51C4CF4A000DF48B2 /* LoginViewController.m */,
+				8422378D1CAAF57E00745C3B /* MenuTableViewController.h */,
+				8422378E1CAAF57E00745C3B /* MenuTableViewController.m */,
 				84EACB521C6A6FE5006F3E2A /* NewResultViewController.h */,
 				84EACB531C6A6FE5006F3E2A /* NewResultViewController.m */,
 				84E1B3061C5F9F780041EA86 /* ResultTableViewController.h */,
@@ -146,6 +171,23 @@
 			name = ViewControllers;
 			sourceTree = "<group>";
 		};
+		A19DBD20C886B6B23E50052F /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				4FC01156A13C2B148A912DDF /* Pods-DayByDay.debug.xcconfig */,
+				F921925BE7F2ABC2F97737D3 /* Pods-DayByDay.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
+		C3BAD6DD5D7CC08592B7FA25 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				142E5BEFE0FA1508F43EB9A2 /* libPods-DayByDay.a */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -153,9 +195,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 84E298C51C4CF4A000DF48B2 /* Build configuration list for PBXNativeTarget "DayByDay" */;
 			buildPhases = (
+				AF30474242EEC591CC00E355 /* Check Pods Manifest.lock */,
 				84E298A71C4CF4A000DF48B2 /* Sources */,
 				84E298A81C4CF4A000DF48B2 /* Frameworks */,
 				84E298A91C4CF4A000DF48B2 /* Resources */,
+				EE78962F1E7724019708F52C /* Embed Pods Frameworks */,
+				8C86D17E4668C28B093F56BF /* Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -212,6 +257,54 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		8C86D17E4668C28B093F56BF /* Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-DayByDay/Pods-DayByDay-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		AF30474242EEC591CC00E355 /* Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		EE78962F1E7724019708F52C /* Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-DayByDay/Pods-DayByDay-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		84E298A71C4CF4A000DF48B2 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
@@ -224,7 +317,9 @@
 				84E1B3081C5F9F780041EA86 /* ResultTableViewController.m in Sources */,
 				84E298B61C4CF4A000DF48B2 /* LoginViewController.m in Sources */,
 				84E298B31C4CF4A000DF48B2 /* DayByDayAppDelegate.m in Sources */,
+				842237931CAAF5B300745C3B /* SWRevealViewController.m in Sources */,
 				84E01AA51C67E04B00B502F8 /* DataController.m in Sources */,
+				8422378F1CAAF57E00745C3B /* MenuTableViewController.m in Sources */,
 				84E01AA21C67E01100B502F8 /* ResultDataController.m in Sources */,
 				84DBEBCE1C62162700D42B7E /* UserDataController.m in Sources */,
 				84E1B30B1C5FA6620041EA86 /* SignupViewController.m in Sources */,
@@ -341,6 +436,7 @@
 		};
 		84E298C61C4CF4A000DF48B2 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 4FC01156A13C2B148A912DDF /* Pods-DayByDay.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_OBJC_ARC = YES;
@@ -360,6 +456,7 @@
 		};
 		84E298C71C4CF4A000DF48B2 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = F921925BE7F2ABC2F97737D3 /* Pods-DayByDay.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_OBJC_ARC = YES;

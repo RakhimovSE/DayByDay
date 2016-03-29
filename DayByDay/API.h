@@ -7,6 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
+#import <AFNetworking.h>
 #import <Foundation/Foundation.h>
 
 @interface API : NSObject

@@ -68,14 +68,13 @@ NSString *const className = @"UserAPI";
 - (void)updateUserData:(NSMutableDictionary *)dictionary
 {
     NSFetchRequest *request = [[NSFetchRequest alloc] init];
-    [request setEntity:[NSEntityDescription entityForName:@"Variables" inManagedObjectContext:self.managedObjectContext]];
+    [request setEntity:[NSEntityDescription entityForName:@"Users" inManagedObjectContext:self.managedObjectContext]];
     
     NSError *error = nil;
     NSArray *results = [self.managedObjectContext executeFetchRequest:request error:&error];
 
     NSManagedObject *user_id = [results objectAtIndex:0];
-    [user_id setValue:@"user_id" forKey:@"key"];
-    [user_id setValue:[dictionary valueForKey:@"user_id"][0] forKey:@"value"];
+    [user_id setValue:[dictionary valueForKey:@"user_id"][0] forKey:@"user_id"];
     
     if (![self.managedObjectContext save:&error]) {
         NSLog(@"Unresolved error %@, %@", error, [error userInfo]);
