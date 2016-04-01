@@ -16,6 +16,9 @@
 		84E01AA51C67E04B00B502F8 /* DataController.m in Sources */ = {isa = PBXBuildFile; fileRef = 84E01AA41C67E04B00B502F8 /* DataController.m */; settings = {ASSET_TAGS = (); }; };
 		84E1B3081C5F9F780041EA86 /* ResultTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 84E1B3071C5F9F780041EA86 /* ResultTableViewController.m */; settings = {ASSET_TAGS = (); }; };
 		84E1B30B1C5FA6620041EA86 /* SignupViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 84E1B30A1C5FA6620041EA86 /* SignupViewController.m */; settings = {ASSET_TAGS = (); }; };
+		84E24CBA1CAE7A6D00090044 /* Sync.m in Sources */ = {isa = PBXBuildFile; fileRef = 84E24CB91CAE7A6D00090044 /* Sync.m */; settings = {ASSET_TAGS = (); }; };
+		84E24CC41CAE7D1800090044 /* SyncDownload.m in Sources */ = {isa = PBXBuildFile; fileRef = 84E24CC31CAE7D1800090044 /* SyncDownload.m */; settings = {ASSET_TAGS = (); }; };
+		84E24CC71CAE7D2400090044 /* SyncUpload.m in Sources */ = {isa = PBXBuildFile; fileRef = 84E24CC61CAE7D2400090044 /* SyncUpload.m */; settings = {ASSET_TAGS = (); }; };
 		84E298B01C4CF4A000DF48B2 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 84E298AF1C4CF4A000DF48B2 /* main.m */; };
 		84E298B31C4CF4A000DF48B2 /* DayByDayAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 84E298B21C4CF4A000DF48B2 /* DayByDayAppDelegate.m */; };
 		84E298B61C4CF4A000DF48B2 /* LoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 84E298B51C4CF4A000DF48B2 /* LoginViewController.m */; };
@@ -47,6 +50,12 @@
 		84E1B3071C5F9F780041EA86 /* ResultTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ResultTableViewController.m; sourceTree = "<group>"; };
 		84E1B3091C5FA6620041EA86 /* SignupViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SignupViewController.h; sourceTree = "<group>"; };
 		84E1B30A1C5FA6620041EA86 /* SignupViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SignupViewController.m; sourceTree = "<group>"; };
+		84E24CB81CAE7A6D00090044 /* Sync.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Sync.h; sourceTree = "<group>"; };
+		84E24CB91CAE7A6D00090044 /* Sync.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Sync.m; sourceTree = "<group>"; };
+		84E24CC21CAE7D1800090044 /* SyncDownload.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SyncDownload.h; sourceTree = "<group>"; };
+		84E24CC31CAE7D1800090044 /* SyncDownload.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SyncDownload.m; sourceTree = "<group>"; };
+		84E24CC51CAE7D2400090044 /* SyncUpload.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SyncUpload.h; sourceTree = "<group>"; };
+		84E24CC61CAE7D2400090044 /* SyncUpload.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SyncUpload.m; sourceTree = "<group>"; };
 		84E298AB1C4CF4A000DF48B2 /* DayByDay.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DayByDay.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		84E298AF1C4CF4A000DF48B2 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		84E298B11C4CF4A000DF48B2 /* DayByDayAppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DayByDayAppDelegate.h; sourceTree = "<group>"; };
@@ -106,8 +115,22 @@
 				84E01AA11C67E01100B502F8 /* ResultDataController.m */,
 				84DBEBCC1C62162700D42B7E /* UserDataController.h */,
 				84DBEBCD1C62162700D42B7E /* UserDataController.m */,
+				84E24CBB1CAE7CB200090044 /* Sync */,
 			);
 			name = Classes;
+			sourceTree = "<group>";
+		};
+		84E24CBB1CAE7CB200090044 /* Sync */ = {
+			isa = PBXGroup;
+			children = (
+				84E24CB81CAE7A6D00090044 /* Sync.h */,
+				84E24CB91CAE7A6D00090044 /* Sync.m */,
+				84E24CC21CAE7D1800090044 /* SyncDownload.h */,
+				84E24CC31CAE7D1800090044 /* SyncDownload.m */,
+				84E24CC51CAE7D2400090044 /* SyncUpload.h */,
+				84E24CC61CAE7D2400090044 /* SyncUpload.m */,
+			);
+			name = Sync;
 			sourceTree = "<group>";
 		};
 		84E298A21C4CF4A000DF48B2 = {
@@ -310,6 +333,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				84E24CBA1CAE7A6D00090044 /* Sync.m in Sources */,
 				84EACB541C6A6FE5006F3E2A /* NewResultViewController.m in Sources */,
 				8432230C1C5D269D009D21D2 /* API.m in Sources */,
 				84E458E41C5D183400779E3F /* Constants.m in Sources */,
@@ -323,6 +347,8 @@
 				84E01AA21C67E01100B502F8 /* ResultDataController.m in Sources */,
 				84DBEBCE1C62162700D42B7E /* UserDataController.m in Sources */,
 				84E1B30B1C5FA6620041EA86 /* SignupViewController.m in Sources */,
+				84E24CC41CAE7D1800090044 /* SyncDownload.m in Sources */,
+				84E24CC71CAE7D2400090044 /* SyncUpload.m in Sources */,
 				84E298B01C4CF4A000DF48B2 /* main.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

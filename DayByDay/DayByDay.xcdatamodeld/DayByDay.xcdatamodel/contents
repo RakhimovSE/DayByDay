@@ -1,88 +1,130 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <model userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="8195" systemVersion="14F27" minimumToolsVersion="Automatic">
     <entity name="Difficulties" syncable="YES">
-        <attribute name="difficulty_name" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="difficulty_deleted" attributeType="Boolean" defaultValueString="NO" syncable="YES"/>
+        <attribute name="difficulty_level" attributeType="Integer 32" syncable="YES"/>
+        <attribute name="difficulty_name" attributeType="String" syncable="YES"/>
+        <attribute name="difficulty_updated" attributeType="Date" syncable="YES"/>
         <relationship name="results" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Results" inverseName="difficulty" inverseEntity="Results" syncable="YES"/>
     </entity>
     <entity name="Energies" syncable="YES">
-        <attribute name="energy_name" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="energy_deleted" attributeType="Boolean" defaultValueString="NO" syncable="YES"/>
+        <attribute name="energy_level" attributeType="Integer 32" syncable="YES"/>
+        <attribute name="energy_name" attributeType="String" syncable="YES"/>
+        <attribute name="energy_updated" attributeType="Date" syncable="YES"/>
         <relationship name="results" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Results" inverseName="energy" inverseEntity="Results" syncable="YES"/>
     </entity>
     <entity name="HotSpotActivities" syncable="YES">
+        <attribute name="hotSpotActivity_deleted" attributeType="Boolean" defaultValueString="NO" syncable="YES"/>
         <attribute name="hotSpotActivity_description" optional="YES" attributeType="String" syncable="YES"/>
-        <attribute name="hotSpotActivity_name" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="hotSpotActivity_id" attributeType="Integer 32" syncable="YES"/>
+        <attribute name="hotSpotActivity_name" attributeType="String" syncable="YES"/>
+        <attribute name="hotSpotActivity_updated" attributeType="Date" syncable="YES"/>
         <relationship name="hotSpotActivityDefault" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="HotSpotActivitiesDefault" inverseName="hotSpotActivities" inverseEntity="HotSpotActivitiesDefault" syncable="YES"/>
         <relationship name="hotSpots" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="HotSpots" inverseName="hotSpotActivity" inverseEntity="HotSpots" syncable="YES"/>
         <relationship name="user" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Users" inverseName="hotSpotActivities" inverseEntity="Users" syncable="YES"/>
     </entity>
     <entity name="HotSpotActivitiesDefault" syncable="YES">
+        <attribute name="hotSpotActivityDefault_deleted" attributeType="Boolean" defaultValueString="NO" syncable="YES"/>
         <attribute name="hotSpotActivityDefault_description" optional="YES" attributeType="String" syncable="YES"/>
-        <attribute name="hotSpotActivityDefault_name" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="hotSpotActivityDefault_id" attributeType="Integer 32" syncable="YES"/>
+        <attribute name="hotSpotActivityDefault_name" attributeType="String" syncable="YES"/>
+        <attribute name="hotSpotActivityDefault_updated" attributeType="Date" syncable="YES"/>
         <relationship name="hotSpotActivities" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="HotSpotActivities" inverseName="hotSpotActivityDefault" inverseEntity="HotSpotActivities" syncable="YES"/>
         <relationship name="hotSpotCategoriesDefault" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="HotSpotCategoriesDefault" inverseName="hotSpotActivitiesDefault" inverseEntity="HotSpotCategoriesDefault" syncable="YES"/>
     </entity>
     <entity name="HotSpotCategories" syncable="YES">
+        <attribute name="hotSpotCategory_deleted" attributeType="Boolean" defaultValueString="NO" syncable="YES"/>
         <attribute name="hotSpotCategory_description" optional="YES" attributeType="String" syncable="YES"/>
-        <attribute name="hotSpotCategory_name" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="hotSpotCategory_id" attributeType="Integer 32" syncable="YES"/>
+        <attribute name="hotSpotCategory_name" attributeType="String" syncable="YES"/>
+        <attribute name="hotSpotCategory_updated" attributeType="Date" syncable="YES"/>
         <relationship name="hotSpotCategoryDefault" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="HotSpotCategoriesDefault" inverseName="hotSpotCategories" inverseEntity="HotSpotCategoriesDefault" syncable="YES"/>
         <relationship name="hotSpots" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="HotSpots" inverseName="hotSpotCategory" inverseEntity="HotSpots" syncable="YES"/>
         <relationship name="user" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Users" inverseName="hotSpotCategories" inverseEntity="Users" syncable="YES"/>
     </entity>
     <entity name="HotSpotCategoriesDefault" syncable="YES">
+        <attribute name="hotSpotCategoryDefault_deleted" attributeType="Boolean" defaultValueString="NO" syncable="YES"/>
         <attribute name="hotSpotCategoryDefault_description" optional="YES" attributeType="String" syncable="YES"/>
-        <attribute name="hotSpotCategoryDefault_name" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="hotSpotCategoryDefault_id" attributeType="Integer 32" syncable="YES"/>
+        <attribute name="hotSpotCategoryDefault_name" attributeType="String" syncable="YES"/>
+        <attribute name="hotSpotCategoryDefault_updated" attributeType="Date" syncable="YES"/>
         <relationship name="hotSpotActivitiesDefault" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="HotSpotActivitiesDefault" inverseName="hotSpotCategoriesDefault" inverseEntity="HotSpotActivitiesDefault" syncable="YES"/>
         <relationship name="hotSpotCategories" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="HotSpotCategories" inverseName="hotSpotCategoryDefault" inverseEntity="HotSpotCategories" syncable="YES"/>
     </entity>
     <entity name="HotSpots" syncable="YES">
-        <attribute name="hotSpotPercent" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
+        <attribute name="hotSpot_deleted" attributeType="Boolean" defaultValueString="NO" syncable="YES"/>
+        <attribute name="hotSpot_id" attributeType="Integer 32" syncable="YES"/>
+        <attribute name="hotSpot_percent" attributeType="Double" defaultValueString="50" syncable="YES"/>
+        <attribute name="hotSpot_updated" attributeType="Date" syncable="YES"/>
         <relationship name="hotSpotActivity" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="HotSpotActivities" inverseName="hotSpots" inverseEntity="HotSpotActivities" syncable="YES"/>
         <relationship name="hotSpotCategory" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="HotSpotCategories" inverseName="hotSpots" inverseEntity="HotSpotCategories" syncable="YES"/>
         <relationship name="results" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Results" inverseName="hotSpot" inverseEntity="Results" syncable="YES"/>
     </entity>
     <entity name="Locations" syncable="YES">
         <attribute name="location_address" optional="YES" attributeType="String" syncable="YES"/>
-        <attribute name="location_latitude" optional="YES" attributeType="Double" defaultValueString="0.0" syncable="YES"/>
-        <attribute name="location_longitude" optional="YES" attributeType="Double" defaultValueString="0.0" syncable="YES"/>
-        <attribute name="location_name" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="location_deleted" attributeType="Boolean" defaultValueString="NO" syncable="YES"/>
+        <attribute name="location_id" attributeType="Integer 32" syncable="YES"/>
+        <attribute name="location_latitude" attributeType="Double" syncable="YES"/>
+        <attribute name="location_longitude" attributeType="Double" syncable="YES"/>
+        <attribute name="location_name" attributeType="String" syncable="YES"/>
+        <attribute name="location_updated" attributeType="Date" syncable="YES"/>
         <relationship name="results" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Results" inverseName="location" inverseEntity="Results" syncable="YES"/>
         <relationship name="user" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Users" inverseName="locations" inverseEntity="Users" syncable="YES"/>
     </entity>
     <entity name="PeriodTypes" syncable="YES">
+        <attribute name="periodType_deleted" attributeType="Boolean" defaultValueString="NO" syncable="YES"/>
+        <attribute name="periodType_length" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
         <attribute name="periodType_name" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="periodType_updated" attributeType="Date" syncable="YES"/>
         <relationship name="results" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Results" inverseName="periodType" inverseEntity="Results" syncable="YES"/>
     </entity>
     <entity name="Priorities" syncable="YES">
-        <attribute name="priority_name" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="priority_deleted" attributeType="Boolean" defaultValueString="NO" syncable="YES"/>
+        <attribute name="priority_level" attributeType="Integer 32" syncable="YES"/>
+        <attribute name="priority_name" attributeType="String" syncable="YES"/>
+        <attribute name="priority_updated" attributeType="Date" syncable="YES"/>
         <relationship name="results" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Results" inverseName="priority" inverseEntity="Results" syncable="YES"/>
     </entity>
     <entity name="Qualities" syncable="YES">
-        <attribute name="quality_name" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="quality_deleted" attributeType="Boolean" defaultValueString="NO" syncable="YES"/>
+        <attribute name="quality_level" attributeType="Integer 32" syncable="YES"/>
+        <attribute name="quality_name" attributeType="String" syncable="YES"/>
+        <attribute name="quality_updated" attributeType="Date" syncable="YES"/>
         <relationship name="results" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Results" inverseName="quality" inverseEntity="Results" syncable="YES"/>
     </entity>
     <entity name="Rates" syncable="YES">
-        <attribute name="rate_minScore" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
-        <attribute name="rate_name" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="rate_deleted" attributeType="Boolean" defaultValueString="NO" syncable="YES"/>
+        <attribute name="rate_level" attributeType="Integer 32" syncable="YES"/>
+        <attribute name="rate_minScore" attributeType="Integer 32" syncable="YES"/>
+        <attribute name="rate_name" attributeType="String" syncable="YES"/>
+        <attribute name="rate_updated" attributeType="Date" syncable="YES"/>
     </entity>
     <entity name="References" syncable="YES">
-        <attribute name="reference_name" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="reference_deleted" attributeType="Boolean" defaultValueString="NO" syncable="YES"/>
+        <attribute name="reference_id" attributeType="Integer 32" syncable="YES"/>
+        <attribute name="reference_name" attributeType="String" syncable="YES"/>
         <attribute name="reference_text" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="reference_updated" attributeType="Date" syncable="YES"/>
         <relationship name="results" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Results" inverseName="references" inverseEntity="Results" syncable="YES"/>
         <relationship name="user" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Users" inverseName="references" inverseEntity="Users" syncable="YES"/>
     </entity>
     <entity name="Results" syncable="YES">
+        <attribute name="result_deleted" attributeType="Boolean" defaultValueString="NO" syncable="YES"/>
         <attribute name="result_description" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="result_finishDate" optional="YES" attributeType="Date" syncable="YES"/>
-        <attribute name="result_main" optional="YES" attributeType="Boolean" syncable="YES"/>
-        <attribute name="result_name" optional="YES" attributeType="String" syncable="YES"/>
-        <attribute name="result_startDateTime" optional="YES" attributeType="Date" syncable="YES"/>
-        <attribute name="resut_timeAmount" optional="YES" attributeType="Date" syncable="YES"/>
-        <relationship name="childrenResult" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Results" inverseName="parentResult" inverseEntity="Results" syncable="YES"/>
+        <attribute name="result_id" attributeType="Integer 32" syncable="YES"/>
+        <attribute name="result_main" attributeType="Boolean" syncable="YES"/>
+        <attribute name="result_name" attributeType="String" syncable="YES"/>
+        <attribute name="result_startDateTime" attributeType="Date" syncable="YES"/>
+        <attribute name="result_updated" attributeType="Date" syncable="YES"/>
+        <attribute name="resut_timeAmount" attributeType="Date" syncable="YES"/>
+        <relationship name="childrenResults" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Results" inverseName="parentResult" inverseEntity="Results" syncable="YES"/>
         <relationship name="difficulty" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Difficulties" inverseName="results" inverseEntity="Difficulties" syncable="YES"/>
         <relationship name="energy" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Energies" inverseName="results" inverseEntity="Energies" syncable="YES"/>
         <relationship name="hotSpot" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="HotSpots" inverseName="results" inverseEntity="HotSpots" syncable="YES"/>
         <relationship name="location" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Locations" inverseName="results" inverseEntity="Locations" syncable="YES"/>
-        <relationship name="parentResult" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Results" inverseName="childrenResult" inverseEntity="Results" syncable="YES"/>
+        <relationship name="parentResult" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Results" inverseName="childrenResults" inverseEntity="Results" syncable="YES"/>
         <relationship name="periodType" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="PeriodTypes" inverseName="results" inverseEntity="PeriodTypes" syncable="YES"/>
         <relationship name="priority" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Priorities" inverseName="results" inverseEntity="Priorities" syncable="YES"/>
         <relationship name="quality" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Qualities" inverseName="results" inverseEntity="Qualities" syncable="YES"/>
@@ -91,65 +133,75 @@
         <relationship name="user" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Users" inverseName="results" inverseEntity="Users" syncable="YES"/>
     </entity>
     <entity name="SocialNetworks" syncable="YES">
-        <attribute name="socialNetwork_id" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
-        <attribute name="socialNetwork_link" optional="YES" attributeType="String" syncable="YES"/>
-        <attribute name="socialNetwork_name" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="socialNetwork_deleted" attributeType="Boolean" defaultValueString="NO" syncable="YES"/>
+        <attribute name="socialNetwork_id" attributeType="Integer 32" syncable="YES"/>
+        <attribute name="socialNetwork_link" attributeType="String" syncable="YES"/>
+        <attribute name="socialNetwork_name" attributeType="String" syncable="YES"/>
+        <attribute name="socialNetwork_updated" attributeType="Date" syncable="YES"/>
         <relationship name="users" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Users_SocialNetworks" inverseName="socialNetwork" inverseEntity="Users_SocialNetworks" syncable="YES"/>
     </entity>
     <entity name="Tags" syncable="YES">
-        <attribute name="tag_id" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
-        <attribute name="tag_name" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="tag_deleted" attributeType="Boolean" defaultValueString="NO" syncable="YES"/>
+        <attribute name="tag_id" attributeType="Integer 32" syncable="YES"/>
+        <attribute name="tag_name" attributeType="String" syncable="YES"/>
+        <attribute name="tag_updated" attributeType="Date" syncable="YES"/>
         <relationship name="results" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Results" inverseName="tags" inverseEntity="Results" syncable="YES"/>
-        <relationship name="user" maxCount="1" deletionRule="Nullify" destinationEntity="Users" inverseName="tags" inverseEntity="Users" syncable="YES"/>
+        <relationship name="user" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Users" inverseName="tags" inverseEntity="Users" syncable="YES"/>
     </entity>
     <entity name="Users" syncable="YES">
         <attribute name="user_avatar" optional="YES" attributeType="Binary" syncable="YES"/>
+        <attribute name="user_deleted" attributeType="Boolean" defaultValueString="NO" syncable="YES"/>
         <attribute name="user_email" optional="YES" attributeType="String" syncable="YES"/>
-        <attribute name="user_energy" optional="YES" attributeType="Double" defaultValueString="0.0" syncable="YES"/>
-        <attribute name="user_id" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
-        <attribute name="user_lastActivity" optional="YES" attributeType="Date" syncable="YES"/>
-        <attribute name="user_name" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="user_energy" attributeType="Double" defaultValueString="0.0" syncable="YES"/>
+        <attribute name="user_id" attributeType="Integer 32" defaultValueString="-1" syncable="YES"/>
+        <attribute name="user_name" attributeType="String" defaultValueString="username" syncable="YES"/>
         <attribute name="user_password" optional="YES" attributeType="String" syncable="YES"/>
-        <attribute name="user_registry" optional="YES" attributeType="Date" syncable="YES"/>
-        <attribute name="user_score" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
+        <attribute name="user_registry" attributeType="Date" syncable="YES"/>
+        <attribute name="user_score" attributeType="Integer 32" defaultValueString="100" syncable="YES"/>
+        <attribute name="user_updated" attributeType="Date" syncable="YES"/>
         <relationship name="hotSpotActivities" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="HotSpotActivities" inverseName="user" inverseEntity="HotSpotActivities" syncable="YES"/>
         <relationship name="hotSpotCategories" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="HotSpotCategories" inverseName="user" inverseEntity="HotSpotCategories" syncable="YES"/>
         <relationship name="locations" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Locations" inverseName="user" inverseEntity="Locations" syncable="YES"/>
         <relationship name="references" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="References" inverseName="user" inverseEntity="References" syncable="YES"/>
         <relationship name="results" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Results" inverseName="user" inverseEntity="Results" syncable="YES"/>
         <relationship name="socialNetworks" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Users_SocialNetworks" inverseName="user" inverseEntity="Users_SocialNetworks" syncable="YES"/>
-        <relationship name="tags" toMany="YES" deletionRule="Nullify" destinationEntity="Tags" inverseName="user" inverseEntity="Tags" syncable="YES"/>
+        <relationship name="tags" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Tags" inverseName="user" inverseEntity="Tags" syncable="YES"/>
         <relationship name="weekLimits" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="WeekLimits" inverseName="user" inverseEntity="WeekLimits" syncable="YES"/>
     </entity>
     <entity name="Users_SocialNetworks" syncable="YES">
-        <attribute name="socialNetwork_main" optional="YES" attributeType="Boolean" syncable="YES"/>
+        <attribute name="socialNetwork_main" attributeType="Boolean" defaultValueString="NO" syncable="YES"/>
+        <attribute name="user_socialNetwork_deleted" attributeType="Boolean" defaultValueString="NO" syncable="YES"/>
+        <attribute name="user_socialNetwork_updated" attributeType="Date" syncable="YES"/>
         <relationship name="socialNetwork" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="SocialNetworks" inverseName="users" inverseEntity="SocialNetworks" syncable="YES"/>
         <relationship name="user" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Users" inverseName="socialNetworks" inverseEntity="Users" syncable="YES"/>
     </entity>
     <entity name="WeekLimits" syncable="YES">
-        <attribute name="weekLimit_activity" optional="YES" attributeType="String" syncable="YES"/>
-        <attribute name="weekLimit_weekday" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
+        <attribute name="weekLimit_activity" attributeType="String" syncable="YES"/>
+        <attribute name="weekLimit_deleted" attributeType="Boolean" defaultValueString="NO" syncable="YES"/>
+        <attribute name="weekLimit_id" attributeType="Integer 32" syncable="YES"/>
+        <attribute name="weekLimit_updated" attributeType="Date" syncable="YES"/>
+        <attribute name="weekLimit_weekday" attributeType="Integer 32" minValueString="0" maxValueString="6" defaultValueString="0" syncable="YES"/>
         <relationship name="user" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Users" inverseName="weekLimits" inverseEntity="Users" syncable="YES"/>
     </entity>
     <elements>
-        <element name="Difficulties" positionX="99" positionY="8" width="128" height="73"/>
-        <element name="Energies" positionX="99" positionY="89" width="128" height="73"/>
-        <element name="HotSpotActivities" positionX="-450" positionY="324" width="162" height="118"/>
-        <element name="HotSpotActivitiesDefault" positionX="-459" positionY="500" width="191" height="103"/>
-        <element name="HotSpotCategories" positionX="-909" positionY="324" width="162" height="118"/>
-        <element name="HotSpotCategoriesDefault" positionX="-909" positionY="504" width="198" height="103"/>
-        <element name="HotSpots" positionX="-659" positionY="347" width="128" height="103"/>
-        <element name="Locations" positionX="-315" positionY="-90" width="128" height="133"/>
-        <element name="PeriodTypes" positionX="-146" positionY="351" width="128" height="73"/>
-        <element name="Priorities" positionX="99" positionY="170" width="128" height="73"/>
-        <element name="Qualities" positionX="99" positionY="251" width="128" height="73"/>
-        <element name="Rates" positionX="-585" positionY="251" width="128" height="73"/>
-        <element name="References" positionX="-704" positionY="18" width="128" height="103"/>
-        <element name="Results" positionX="-155" positionY="-36" width="128" height="313"/>
-        <element name="SocialNetworks" positionX="-1082" positionY="-178" width="128" height="103"/>
-        <element name="Tags" positionX="-893" positionY="-189" width="128" height="103"/>
-        <element name="Users" positionX="-900" positionY="-40" width="128" height="298"/>
-        <element name="Users_SocialNetworks" positionX="-1091" positionY="-18" width="128" height="88"/>
-        <element name="WeekLimits" positionX="-740" positionY="227" width="128" height="88"/>
+        <element name="Difficulties" positionX="99" positionY="-63" width="128" height="118"/>
+        <element name="Energies" positionX="99" positionY="63" width="128" height="118"/>
+        <element name="HotSpotActivities" positionX="-450" positionY="324" width="162" height="163"/>
+        <element name="HotSpotActivitiesDefault" positionX="-468" positionY="539" width="191" height="148"/>
+        <element name="HotSpotCategories" positionX="-954" positionY="324" width="162" height="163"/>
+        <element name="HotSpotCategoriesDefault" positionX="-972" positionY="536" width="198" height="148"/>
+        <element name="HotSpots" positionX="-677" positionY="360" width="128" height="148"/>
+        <element name="Locations" positionX="-315" positionY="-90" width="128" height="178"/>
+        <element name="PeriodTypes" positionX="-146" positionY="351" width="128" height="118"/>
+        <element name="Priorities" positionX="99" positionY="188" width="128" height="118"/>
+        <element name="Qualities" positionX="99" positionY="315" width="128" height="118"/>
+        <element name="Rates" positionX="-569" positionY="180" width="128" height="118"/>
+        <element name="References" positionX="-711" positionY="-36" width="128" height="148"/>
+        <element name="Results" positionX="-155" positionY="-36" width="128" height="358"/>
+        <element name="SocialNetworks" positionX="-1082" positionY="-178" width="128" height="133"/>
+        <element name="Tags" positionX="-911" positionY="-207" width="128" height="133"/>
+        <element name="Users" positionX="-909" positionY="-46" width="128" height="313"/>
+        <element name="Users_SocialNetworks" positionX="-1109" positionY="-4" width="155" height="118"/>
+        <element name="WeekLimits" positionX="-738" positionY="198" width="128" height="133"/>
     </elements>
 </model>

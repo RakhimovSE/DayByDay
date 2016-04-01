@@ -58,7 +58,7 @@ NSString *const className = @"UserAPI";
                                     [email lowercaseString], @"user_email",
                                    [Constants md5:password], @"user_password",
                                                        name, @"user_name", nil];
-    NSInteger *responseCode;
+    long responseCode;
     responseCode = [API performRequestAndGetResponseCode:params];
     if (responseCode != 200)
         [Constants showAlertMessage:@"Пользователь уже существует"];
