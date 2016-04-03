@@ -7,6 +7,7 @@
 //
 
 #import "UserDataController.h"
+#import "Users.h"
 
 @interface UserDataController ()
 
@@ -65,16 +66,23 @@ NSString *const className = @"UserAPI";
     return responseCode == 200;
 }
 
-- (void)updateUserData:(NSMutableDictionary *)dictionary
+- (void)updateUserData:(NSMutableDictionary *)userDictionary
 {
-    NSFetchRequest *request = [[NSFetchRequest alloc] init];
-    [request setEntity:[NSEntityDescription entityForName:@"Users" inManagedObjectContext:self.managedObjectContext]];
-    
     NSError *error = nil;
-    NSArray *results = [self.managedObjectContext executeFetchRequest:request error:&error];
-
-    NSManagedObject *user_id = [results objectAtIndex:0];
-    [user_id setValue:[dictionary valueForKey:@"user_id"][0] forKey:@"user_id"];
+    Users *user = [NSEntityDescription insertNewObjectForEntityForName:@"Users" inManagedObjectContext:self.managedObjectContext];
+    
+    user.user_id = (int)[[userDictionary valueForKey:@"user_id"][0] longValue];
+    user.user_email = [userDictionary valueForKey:@"user_email"][0];
+    user.user_password = [userDictionary valueForKey:@"user_password"][0];
+    user.user_name = [userDictionary valueForKey:@"user_name"][0];
+    //user.user_avatar = [users valueForKey:@"user_avatarPath"][0];
+    user.user_energy = [[userDictionary valueForKey:@"user_energy"][0] doubleValue];
+    user.user_score = (int)[[userDictionary valueForKey:@"user_score"][0] longValue];
+    NSDate *user_registry = [API dateWithJSONString:[userDictionary valueForKey:@"user_registry"][0]];
+    user.user_registry = [user_registry timeIntervalSinceReferenceDate];
+    NSDate *user_updated = [API dateWithJSONString:[userDictionary valueForKey:@"user_updated"][0]];
+    user.user_updated = [user_updated timeIntervalSinceReferenceDate];
+    user.user_deleted = [[userDictionary valueForKey:@"user_deleted"][0] boolValue];
     
     if (![self.managedObjectContext save:&error]) {
         NSLog(@"Unresolved error %@, %@", error, [error userInfo]);

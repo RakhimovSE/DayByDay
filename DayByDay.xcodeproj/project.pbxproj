@@ -26,6 +26,44 @@
 		84E298BE1C4CF4A000DF48B2 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 84E298BD1C4CF4A000DF48B2 /* Assets.xcassets */; };
 		84E298C11C4CF4A000DF48B2 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 84E298BF1C4CF4A000DF48B2 /* LaunchScreen.storyboard */; };
 		84E458E41C5D183400779E3F /* Constants.m in Sources */ = {isa = PBXBuildFile; fileRef = 84E458E31C5D183400779E3F /* Constants.m */; settings = {ASSET_TAGS = (); }; };
+		84E594C61CB12ACE00D586AC /* Users+CoreDataProperties.m in Sources */ = {isa = PBXBuildFile; fileRef = 84E594C31CB12ACE00D586AC /* Users+CoreDataProperties.m */; settings = {ASSET_TAGS = (); }; };
+		84E594C71CB12ACE00D586AC /* Users.m in Sources */ = {isa = PBXBuildFile; fileRef = 84E594C51CB12ACE00D586AC /* Users.m */; settings = {ASSET_TAGS = (); }; };
+		84E595101CB19B0900D586AC /* HotSpotActivities+CoreDataProperties.m in Sources */ = {isa = PBXBuildFile; fileRef = 84E594C91CB19B0800D586AC /* HotSpotActivities+CoreDataProperties.m */; settings = {ASSET_TAGS = (); }; };
+		84E595111CB19B0900D586AC /* HotSpotActivities.m in Sources */ = {isa = PBXBuildFile; fileRef = 84E594CB1CB19B0800D586AC /* HotSpotActivities.m */; settings = {ASSET_TAGS = (); }; };
+		84E595121CB19B0900D586AC /* HotSpotCategoriesDefault+CoreDataProperties.m in Sources */ = {isa = PBXBuildFile; fileRef = 84E594CD1CB19B0800D586AC /* HotSpotCategoriesDefault+CoreDataProperties.m */; settings = {ASSET_TAGS = (); }; };
+		84E595131CB19B0900D586AC /* HotSpotCategoriesDefault.m in Sources */ = {isa = PBXBuildFile; fileRef = 84E594CF1CB19B0800D586AC /* HotSpotCategoriesDefault.m */; settings = {ASSET_TAGS = (); }; };
+		84E595141CB19B0900D586AC /* Tags+CoreDataProperties.m in Sources */ = {isa = PBXBuildFile; fileRef = 84E594D11CB19B0800D586AC /* Tags+CoreDataProperties.m */; settings = {ASSET_TAGS = (); }; };
+		84E595151CB19B0900D586AC /* Tags.m in Sources */ = {isa = PBXBuildFile; fileRef = 84E594D31CB19B0800D586AC /* Tags.m */; settings = {ASSET_TAGS = (); }; };
+		84E595161CB19B0900D586AC /* Locations+CoreDataProperties.m in Sources */ = {isa = PBXBuildFile; fileRef = 84E594D51CB19B0800D586AC /* Locations+CoreDataProperties.m */; settings = {ASSET_TAGS = (); }; };
+		84E595171CB19B0900D586AC /* Locations.m in Sources */ = {isa = PBXBuildFile; fileRef = 84E594D71CB19B0800D586AC /* Locations.m */; settings = {ASSET_TAGS = (); }; };
+		84E595181CB19B0900D586AC /* Users_SocialNetworks+CoreDataProperties.m in Sources */ = {isa = PBXBuildFile; fileRef = 84E594D91CB19B0800D586AC /* Users_SocialNetworks+CoreDataProperties.m */; settings = {ASSET_TAGS = (); }; };
+		84E595191CB19B0900D586AC /* Users_SocialNetworks.m in Sources */ = {isa = PBXBuildFile; fileRef = 84E594DB1CB19B0800D586AC /* Users_SocialNetworks.m */; settings = {ASSET_TAGS = (); }; };
+		84E5951A1CB19B0900D586AC /* Priorities+CoreDataProperties.m in Sources */ = {isa = PBXBuildFile; fileRef = 84E594DD1CB19B0800D586AC /* Priorities+CoreDataProperties.m */; settings = {ASSET_TAGS = (); }; };
+		84E5951B1CB19B0900D586AC /* Priorities.m in Sources */ = {isa = PBXBuildFile; fileRef = 84E594DF1CB19B0800D586AC /* Priorities.m */; settings = {ASSET_TAGS = (); }; };
+		84E5951C1CB19B0900D586AC /* HotSpotCategories+CoreDataProperties.m in Sources */ = {isa = PBXBuildFile; fileRef = 84E594E11CB19B0800D586AC /* HotSpotCategories+CoreDataProperties.m */; settings = {ASSET_TAGS = (); }; };
+		84E5951D1CB19B0900D586AC /* HotSpotCategories.m in Sources */ = {isa = PBXBuildFile; fileRef = 84E594E31CB19B0800D586AC /* HotSpotCategories.m */; settings = {ASSET_TAGS = (); }; };
+		84E5951E1CB19B0900D586AC /* Qualities+CoreDataProperties.m in Sources */ = {isa = PBXBuildFile; fileRef = 84E594E51CB19B0800D586AC /* Qualities+CoreDataProperties.m */; settings = {ASSET_TAGS = (); }; };
+		84E5951F1CB19B0900D586AC /* Qualities.m in Sources */ = {isa = PBXBuildFile; fileRef = 84E594E71CB19B0800D586AC /* Qualities.m */; settings = {ASSET_TAGS = (); }; };
+		84E595201CB19B0900D586AC /* Energies+CoreDataProperties.m in Sources */ = {isa = PBXBuildFile; fileRef = 84E594E91CB19B0800D586AC /* Energies+CoreDataProperties.m */; settings = {ASSET_TAGS = (); }; };
+		84E595211CB19B0900D586AC /* Energies.m in Sources */ = {isa = PBXBuildFile; fileRef = 84E594EB1CB19B0800D586AC /* Energies.m */; settings = {ASSET_TAGS = (); }; };
+		84E595221CB19B0900D586AC /* HotSpots+CoreDataProperties.m in Sources */ = {isa = PBXBuildFile; fileRef = 84E594ED1CB19B0800D586AC /* HotSpots+CoreDataProperties.m */; settings = {ASSET_TAGS = (); }; };
+		84E595231CB19B0900D586AC /* HotSpots.m in Sources */ = {isa = PBXBuildFile; fileRef = 84E594EF1CB19B0800D586AC /* HotSpots.m */; settings = {ASSET_TAGS = (); }; };
+		84E595241CB19B0900D586AC /* PeriodTypes+CoreDataProperties.m in Sources */ = {isa = PBXBuildFile; fileRef = 84E594F11CB19B0800D586AC /* PeriodTypes+CoreDataProperties.m */; settings = {ASSET_TAGS = (); }; };
+		84E595251CB19B0900D586AC /* PeriodTypes.m in Sources */ = {isa = PBXBuildFile; fileRef = 84E594F31CB19B0800D586AC /* PeriodTypes.m */; settings = {ASSET_TAGS = (); }; };
+		84E595261CB19B0900D586AC /* Rates+CoreDataProperties.m in Sources */ = {isa = PBXBuildFile; fileRef = 84E594F51CB19B0800D586AC /* Rates+CoreDataProperties.m */; settings = {ASSET_TAGS = (); }; };
+		84E595271CB19B0900D586AC /* Rates.m in Sources */ = {isa = PBXBuildFile; fileRef = 84E594F71CB19B0800D586AC /* Rates.m */; settings = {ASSET_TAGS = (); }; };
+		84E595281CB19B0900D586AC /* References+CoreDataProperties.m in Sources */ = {isa = PBXBuildFile; fileRef = 84E594F91CB19B0800D586AC /* References+CoreDataProperties.m */; settings = {ASSET_TAGS = (); }; };
+		84E595291CB19B0900D586AC /* References.m in Sources */ = {isa = PBXBuildFile; fileRef = 84E594FB1CB19B0800D586AC /* References.m */; settings = {ASSET_TAGS = (); }; };
+		84E5952A1CB19B0900D586AC /* SocialNetworks+CoreDataProperties.m in Sources */ = {isa = PBXBuildFile; fileRef = 84E594FD1CB19B0800D586AC /* SocialNetworks+CoreDataProperties.m */; settings = {ASSET_TAGS = (); }; };
+		84E5952B1CB19B0900D586AC /* SocialNetworks.m in Sources */ = {isa = PBXBuildFile; fileRef = 84E594FF1CB19B0800D586AC /* SocialNetworks.m */; settings = {ASSET_TAGS = (); }; };
+		84E5952C1CB19B0900D586AC /* WeekLimits+CoreDataProperties.m in Sources */ = {isa = PBXBuildFile; fileRef = 84E595011CB19B0800D586AC /* WeekLimits+CoreDataProperties.m */; settings = {ASSET_TAGS = (); }; };
+		84E5952D1CB19B0900D586AC /* WeekLimits.m in Sources */ = {isa = PBXBuildFile; fileRef = 84E595031CB19B0800D586AC /* WeekLimits.m */; settings = {ASSET_TAGS = (); }; };
+		84E5952E1CB19B0900D586AC /* Difficulties+CoreDataProperties.m in Sources */ = {isa = PBXBuildFile; fileRef = 84E595051CB19B0800D586AC /* Difficulties+CoreDataProperties.m */; settings = {ASSET_TAGS = (); }; };
+		84E5952F1CB19B0900D586AC /* Difficulties.m in Sources */ = {isa = PBXBuildFile; fileRef = 84E595071CB19B0800D586AC /* Difficulties.m */; settings = {ASSET_TAGS = (); }; };
+		84E595301CB19B0900D586AC /* Results+CoreDataProperties.m in Sources */ = {isa = PBXBuildFile; fileRef = 84E595091CB19B0800D586AC /* Results+CoreDataProperties.m */; settings = {ASSET_TAGS = (); }; };
+		84E595311CB19B0900D586AC /* Results.m in Sources */ = {isa = PBXBuildFile; fileRef = 84E5950B1CB19B0800D586AC /* Results.m */; settings = {ASSET_TAGS = (); }; };
+		84E595321CB19B0900D586AC /* HotSpotActivitiesDefault+CoreDataProperties.m in Sources */ = {isa = PBXBuildFile; fileRef = 84E5950D1CB19B0800D586AC /* HotSpotActivitiesDefault+CoreDataProperties.m */; settings = {ASSET_TAGS = (); }; };
+		84E595331CB19B0900D586AC /* HotSpotActivitiesDefault.m in Sources */ = {isa = PBXBuildFile; fileRef = 84E5950F1CB19B0800D586AC /* HotSpotActivitiesDefault.m */; settings = {ASSET_TAGS = (); }; };
 		84EACB541C6A6FE5006F3E2A /* NewResultViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 84EACB531C6A6FE5006F3E2A /* NewResultViewController.m */; settings = {ASSET_TAGS = (); }; };
 		91D7AB0D1F0C13D00EE6D5FD /* libPods-DayByDay.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 142E5BEFE0FA1508F43EB9A2 /* libPods-DayByDay.a */; };
 /* End PBXBuildFile section */
@@ -68,6 +106,82 @@
 		84E298C21C4CF4A000DF48B2 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		84E458E21C5D183400779E3F /* Constants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Constants.h; sourceTree = "<group>"; };
 		84E458E31C5D183400779E3F /* Constants.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Constants.m; sourceTree = "<group>"; };
+		84E594C21CB12ACE00D586AC /* Users+CoreDataProperties.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Users+CoreDataProperties.h"; sourceTree = "<group>"; };
+		84E594C31CB12ACE00D586AC /* Users+CoreDataProperties.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "Users+CoreDataProperties.m"; sourceTree = "<group>"; };
+		84E594C41CB12ACE00D586AC /* Users.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Users.h; sourceTree = "<group>"; };
+		84E594C51CB12ACE00D586AC /* Users.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Users.m; sourceTree = "<group>"; };
+		84E594C81CB19B0800D586AC /* HotSpotActivities+CoreDataProperties.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "HotSpotActivities+CoreDataProperties.h"; sourceTree = "<group>"; };
+		84E594C91CB19B0800D586AC /* HotSpotActivities+CoreDataProperties.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "HotSpotActivities+CoreDataProperties.m"; sourceTree = "<group>"; };
+		84E594CA1CB19B0800D586AC /* HotSpotActivities.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HotSpotActivities.h; sourceTree = "<group>"; };
+		84E594CB1CB19B0800D586AC /* HotSpotActivities.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HotSpotActivities.m; sourceTree = "<group>"; };
+		84E594CC1CB19B0800D586AC /* HotSpotCategoriesDefault+CoreDataProperties.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "HotSpotCategoriesDefault+CoreDataProperties.h"; sourceTree = "<group>"; };
+		84E594CD1CB19B0800D586AC /* HotSpotCategoriesDefault+CoreDataProperties.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "HotSpotCategoriesDefault+CoreDataProperties.m"; sourceTree = "<group>"; };
+		84E594CE1CB19B0800D586AC /* HotSpotCategoriesDefault.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HotSpotCategoriesDefault.h; sourceTree = "<group>"; };
+		84E594CF1CB19B0800D586AC /* HotSpotCategoriesDefault.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HotSpotCategoriesDefault.m; sourceTree = "<group>"; };
+		84E594D01CB19B0800D586AC /* Tags+CoreDataProperties.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Tags+CoreDataProperties.h"; sourceTree = "<group>"; };
+		84E594D11CB19B0800D586AC /* Tags+CoreDataProperties.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "Tags+CoreDataProperties.m"; sourceTree = "<group>"; };
+		84E594D21CB19B0800D586AC /* Tags.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Tags.h; sourceTree = "<group>"; };
+		84E594D31CB19B0800D586AC /* Tags.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Tags.m; sourceTree = "<group>"; };
+		84E594D41CB19B0800D586AC /* Locations+CoreDataProperties.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Locations+CoreDataProperties.h"; sourceTree = "<group>"; };
+		84E594D51CB19B0800D586AC /* Locations+CoreDataProperties.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "Locations+CoreDataProperties.m"; sourceTree = "<group>"; };
+		84E594D61CB19B0800D586AC /* Locations.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Locations.h; sourceTree = "<group>"; };
+		84E594D71CB19B0800D586AC /* Locations.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Locations.m; sourceTree = "<group>"; };
+		84E594D81CB19B0800D586AC /* Users_SocialNetworks+CoreDataProperties.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Users_SocialNetworks+CoreDataProperties.h"; sourceTree = "<group>"; };
+		84E594D91CB19B0800D586AC /* Users_SocialNetworks+CoreDataProperties.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "Users_SocialNetworks+CoreDataProperties.m"; sourceTree = "<group>"; };
+		84E594DA1CB19B0800D586AC /* Users_SocialNetworks.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Users_SocialNetworks.h; sourceTree = "<group>"; };
+		84E594DB1CB19B0800D586AC /* Users_SocialNetworks.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Users_SocialNetworks.m; sourceTree = "<group>"; };
+		84E594DC1CB19B0800D586AC /* Priorities+CoreDataProperties.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Priorities+CoreDataProperties.h"; sourceTree = "<group>"; };
+		84E594DD1CB19B0800D586AC /* Priorities+CoreDataProperties.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "Priorities+CoreDataProperties.m"; sourceTree = "<group>"; };
+		84E594DE1CB19B0800D586AC /* Priorities.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Priorities.h; sourceTree = "<group>"; };
+		84E594DF1CB19B0800D586AC /* Priorities.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Priorities.m; sourceTree = "<group>"; };
+		84E594E01CB19B0800D586AC /* HotSpotCategories+CoreDataProperties.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "HotSpotCategories+CoreDataProperties.h"; sourceTree = "<group>"; };
+		84E594E11CB19B0800D586AC /* HotSpotCategories+CoreDataProperties.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "HotSpotCategories+CoreDataProperties.m"; sourceTree = "<group>"; };
+		84E594E21CB19B0800D586AC /* HotSpotCategories.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HotSpotCategories.h; sourceTree = "<group>"; };
+		84E594E31CB19B0800D586AC /* HotSpotCategories.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HotSpotCategories.m; sourceTree = "<group>"; };
+		84E594E41CB19B0800D586AC /* Qualities+CoreDataProperties.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Qualities+CoreDataProperties.h"; sourceTree = "<group>"; };
+		84E594E51CB19B0800D586AC /* Qualities+CoreDataProperties.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "Qualities+CoreDataProperties.m"; sourceTree = "<group>"; };
+		84E594E61CB19B0800D586AC /* Qualities.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Qualities.h; sourceTree = "<group>"; };
+		84E594E71CB19B0800D586AC /* Qualities.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Qualities.m; sourceTree = "<group>"; };
+		84E594E81CB19B0800D586AC /* Energies+CoreDataProperties.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Energies+CoreDataProperties.h"; sourceTree = "<group>"; };
+		84E594E91CB19B0800D586AC /* Energies+CoreDataProperties.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "Energies+CoreDataProperties.m"; sourceTree = "<group>"; };
+		84E594EA1CB19B0800D586AC /* Energies.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Energies.h; sourceTree = "<group>"; };
+		84E594EB1CB19B0800D586AC /* Energies.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Energies.m; sourceTree = "<group>"; };
+		84E594EC1CB19B0800D586AC /* HotSpots+CoreDataProperties.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "HotSpots+CoreDataProperties.h"; sourceTree = "<group>"; };
+		84E594ED1CB19B0800D586AC /* HotSpots+CoreDataProperties.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "HotSpots+CoreDataProperties.m"; sourceTree = "<group>"; };
+		84E594EE1CB19B0800D586AC /* HotSpots.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HotSpots.h; sourceTree = "<group>"; };
+		84E594EF1CB19B0800D586AC /* HotSpots.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HotSpots.m; sourceTree = "<group>"; };
+		84E594F01CB19B0800D586AC /* PeriodTypes+CoreDataProperties.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "PeriodTypes+CoreDataProperties.h"; sourceTree = "<group>"; };
+		84E594F11CB19B0800D586AC /* PeriodTypes+CoreDataProperties.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "PeriodTypes+CoreDataProperties.m"; sourceTree = "<group>"; };
+		84E594F21CB19B0800D586AC /* PeriodTypes.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PeriodTypes.h; sourceTree = "<group>"; };
+		84E594F31CB19B0800D586AC /* PeriodTypes.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PeriodTypes.m; sourceTree = "<group>"; };
+		84E594F41CB19B0800D586AC /* Rates+CoreDataProperties.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Rates+CoreDataProperties.h"; sourceTree = "<group>"; };
+		84E594F51CB19B0800D586AC /* Rates+CoreDataProperties.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "Rates+CoreDataProperties.m"; sourceTree = "<group>"; };
+		84E594F61CB19B0800D586AC /* Rates.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Rates.h; sourceTree = "<group>"; };
+		84E594F71CB19B0800D586AC /* Rates.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Rates.m; sourceTree = "<group>"; };
+		84E594F81CB19B0800D586AC /* References+CoreDataProperties.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "References+CoreDataProperties.h"; sourceTree = "<group>"; };
+		84E594F91CB19B0800D586AC /* References+CoreDataProperties.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "References+CoreDataProperties.m"; sourceTree = "<group>"; };
+		84E594FA1CB19B0800D586AC /* References.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = References.h; sourceTree = "<group>"; };
+		84E594FB1CB19B0800D586AC /* References.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = References.m; sourceTree = "<group>"; };
+		84E594FC1CB19B0800D586AC /* SocialNetworks+CoreDataProperties.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "SocialNetworks+CoreDataProperties.h"; sourceTree = "<group>"; };
+		84E594FD1CB19B0800D586AC /* SocialNetworks+CoreDataProperties.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "SocialNetworks+CoreDataProperties.m"; sourceTree = "<group>"; };
+		84E594FE1CB19B0800D586AC /* SocialNetworks.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SocialNetworks.h; sourceTree = "<group>"; };
+		84E594FF1CB19B0800D586AC /* SocialNetworks.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SocialNetworks.m; sourceTree = "<group>"; };
+		84E595001CB19B0800D586AC /* WeekLimits+CoreDataProperties.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "WeekLimits+CoreDataProperties.h"; sourceTree = "<group>"; };
+		84E595011CB19B0800D586AC /* WeekLimits+CoreDataProperties.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "WeekLimits+CoreDataProperties.m"; sourceTree = "<group>"; };
+		84E595021CB19B0800D586AC /* WeekLimits.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WeekLimits.h; sourceTree = "<group>"; };
+		84E595031CB19B0800D586AC /* WeekLimits.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WeekLimits.m; sourceTree = "<group>"; };
+		84E595041CB19B0800D586AC /* Difficulties+CoreDataProperties.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Difficulties+CoreDataProperties.h"; sourceTree = "<group>"; };
+		84E595051CB19B0800D586AC /* Difficulties+CoreDataProperties.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "Difficulties+CoreDataProperties.m"; sourceTree = "<group>"; };
+		84E595061CB19B0800D586AC /* Difficulties.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Difficulties.h; sourceTree = "<group>"; };
+		84E595071CB19B0800D586AC /* Difficulties.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Difficulties.m; sourceTree = "<group>"; };
+		84E595081CB19B0800D586AC /* Results+CoreDataProperties.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Results+CoreDataProperties.h"; sourceTree = "<group>"; };
+		84E595091CB19B0800D586AC /* Results+CoreDataProperties.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "Results+CoreDataProperties.m"; sourceTree = "<group>"; };
+		84E5950A1CB19B0800D586AC /* Results.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Results.h; sourceTree = "<group>"; };
+		84E5950B1CB19B0800D586AC /* Results.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Results.m; sourceTree = "<group>"; };
+		84E5950C1CB19B0800D586AC /* HotSpotActivitiesDefault+CoreDataProperties.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "HotSpotActivitiesDefault+CoreDataProperties.h"; sourceTree = "<group>"; };
+		84E5950D1CB19B0800D586AC /* HotSpotActivitiesDefault+CoreDataProperties.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "HotSpotActivitiesDefault+CoreDataProperties.m"; sourceTree = "<group>"; };
+		84E5950E1CB19B0800D586AC /* HotSpotActivitiesDefault.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HotSpotActivitiesDefault.h; sourceTree = "<group>"; };
+		84E5950F1CB19B0800D586AC /* HotSpotActivitiesDefault.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HotSpotActivitiesDefault.m; sourceTree = "<group>"; };
 		84EACB521C6A6FE5006F3E2A /* NewResultViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NewResultViewController.h; sourceTree = "<group>"; };
 		84EACB531C6A6FE5006F3E2A /* NewResultViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NewResultViewController.m; sourceTree = "<group>"; };
 		F921925BE7F2ABC2F97737D3 /* Pods-DayByDay.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DayByDay.release.xcconfig"; path = "Pods/Target Support Files/Pods-DayByDay/Pods-DayByDay.release.xcconfig"; sourceTree = "<group>"; };
@@ -165,6 +279,7 @@
 				84E298AE1C4CF4A000DF48B2 /* Supporting Files */,
 				843223091C5D21DA009D21D2 /* API */,
 				84DBEBCF1C62163300D42B7E /* Classes */,
+				84E594C11CB12AAF00D586AC /* Core Data Classes */,
 			);
 			path = DayByDay;
 			sourceTree = "<group>";
@@ -175,6 +290,89 @@
 				84E298AF1C4CF4A000DF48B2 /* main.m */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		84E594C11CB12AAF00D586AC /* Core Data Classes */ = {
+			isa = PBXGroup;
+			children = (
+				84E594C21CB12ACE00D586AC /* Users+CoreDataProperties.h */,
+				84E594C31CB12ACE00D586AC /* Users+CoreDataProperties.m */,
+				84E594C41CB12ACE00D586AC /* Users.h */,
+				84E594C51CB12ACE00D586AC /* Users.m */,
+				84E594C81CB19B0800D586AC /* HotSpotActivities+CoreDataProperties.h */,
+				84E594C91CB19B0800D586AC /* HotSpotActivities+CoreDataProperties.m */,
+				84E594CA1CB19B0800D586AC /* HotSpotActivities.h */,
+				84E594CB1CB19B0800D586AC /* HotSpotActivities.m */,
+				84E594CC1CB19B0800D586AC /* HotSpotCategoriesDefault+CoreDataProperties.h */,
+				84E594CD1CB19B0800D586AC /* HotSpotCategoriesDefault+CoreDataProperties.m */,
+				84E594CE1CB19B0800D586AC /* HotSpotCategoriesDefault.h */,
+				84E594CF1CB19B0800D586AC /* HotSpotCategoriesDefault.m */,
+				84E594D01CB19B0800D586AC /* Tags+CoreDataProperties.h */,
+				84E594D11CB19B0800D586AC /* Tags+CoreDataProperties.m */,
+				84E594D21CB19B0800D586AC /* Tags.h */,
+				84E594D31CB19B0800D586AC /* Tags.m */,
+				84E594D41CB19B0800D586AC /* Locations+CoreDataProperties.h */,
+				84E594D51CB19B0800D586AC /* Locations+CoreDataProperties.m */,
+				84E594D61CB19B0800D586AC /* Locations.h */,
+				84E594D71CB19B0800D586AC /* Locations.m */,
+				84E594D81CB19B0800D586AC /* Users_SocialNetworks+CoreDataProperties.h */,
+				84E594D91CB19B0800D586AC /* Users_SocialNetworks+CoreDataProperties.m */,
+				84E594DA1CB19B0800D586AC /* Users_SocialNetworks.h */,
+				84E594DB1CB19B0800D586AC /* Users_SocialNetworks.m */,
+				84E594DC1CB19B0800D586AC /* Priorities+CoreDataProperties.h */,
+				84E594DD1CB19B0800D586AC /* Priorities+CoreDataProperties.m */,
+				84E594DE1CB19B0800D586AC /* Priorities.h */,
+				84E594DF1CB19B0800D586AC /* Priorities.m */,
+				84E594E01CB19B0800D586AC /* HotSpotCategories+CoreDataProperties.h */,
+				84E594E11CB19B0800D586AC /* HotSpotCategories+CoreDataProperties.m */,
+				84E594E21CB19B0800D586AC /* HotSpotCategories.h */,
+				84E594E31CB19B0800D586AC /* HotSpotCategories.m */,
+				84E594E41CB19B0800D586AC /* Qualities+CoreDataProperties.h */,
+				84E594E51CB19B0800D586AC /* Qualities+CoreDataProperties.m */,
+				84E594E61CB19B0800D586AC /* Qualities.h */,
+				84E594E71CB19B0800D586AC /* Qualities.m */,
+				84E594E81CB19B0800D586AC /* Energies+CoreDataProperties.h */,
+				84E594E91CB19B0800D586AC /* Energies+CoreDataProperties.m */,
+				84E594EA1CB19B0800D586AC /* Energies.h */,
+				84E594EB1CB19B0800D586AC /* Energies.m */,
+				84E594EC1CB19B0800D586AC /* HotSpots+CoreDataProperties.h */,
+				84E594ED1CB19B0800D586AC /* HotSpots+CoreDataProperties.m */,
+				84E594EE1CB19B0800D586AC /* HotSpots.h */,
+				84E594EF1CB19B0800D586AC /* HotSpots.m */,
+				84E594F01CB19B0800D586AC /* PeriodTypes+CoreDataProperties.h */,
+				84E594F11CB19B0800D586AC /* PeriodTypes+CoreDataProperties.m */,
+				84E594F21CB19B0800D586AC /* PeriodTypes.h */,
+				84E594F31CB19B0800D586AC /* PeriodTypes.m */,
+				84E594F41CB19B0800D586AC /* Rates+CoreDataProperties.h */,
+				84E594F51CB19B0800D586AC /* Rates+CoreDataProperties.m */,
+				84E594F61CB19B0800D586AC /* Rates.h */,
+				84E594F71CB19B0800D586AC /* Rates.m */,
+				84E594F81CB19B0800D586AC /* References+CoreDataProperties.h */,
+				84E594F91CB19B0800D586AC /* References+CoreDataProperties.m */,
+				84E594FA1CB19B0800D586AC /* References.h */,
+				84E594FB1CB19B0800D586AC /* References.m */,
+				84E594FC1CB19B0800D586AC /* SocialNetworks+CoreDataProperties.h */,
+				84E594FD1CB19B0800D586AC /* SocialNetworks+CoreDataProperties.m */,
+				84E594FE1CB19B0800D586AC /* SocialNetworks.h */,
+				84E594FF1CB19B0800D586AC /* SocialNetworks.m */,
+				84E595001CB19B0800D586AC /* WeekLimits+CoreDataProperties.h */,
+				84E595011CB19B0800D586AC /* WeekLimits+CoreDataProperties.m */,
+				84E595021CB19B0800D586AC /* WeekLimits.h */,
+				84E595031CB19B0800D586AC /* WeekLimits.m */,
+				84E595041CB19B0800D586AC /* Difficulties+CoreDataProperties.h */,
+				84E595051CB19B0800D586AC /* Difficulties+CoreDataProperties.m */,
+				84E595061CB19B0800D586AC /* Difficulties.h */,
+				84E595071CB19B0800D586AC /* Difficulties.m */,
+				84E595081CB19B0800D586AC /* Results+CoreDataProperties.h */,
+				84E595091CB19B0800D586AC /* Results+CoreDataProperties.m */,
+				84E5950A1CB19B0800D586AC /* Results.h */,
+				84E5950B1CB19B0800D586AC /* Results.m */,
+				84E5950C1CB19B0800D586AC /* HotSpotActivitiesDefault+CoreDataProperties.h */,
+				84E5950D1CB19B0800D586AC /* HotSpotActivitiesDefault+CoreDataProperties.m */,
+				84E5950E1CB19B0800D586AC /* HotSpotActivitiesDefault.h */,
+				84E5950F1CB19B0800D586AC /* HotSpotActivitiesDefault.m */,
+			);
+			name = "Core Data Classes";
 			sourceTree = "<group>";
 		};
 		84EACB551C6A6FF0006F3E2A /* ViewControllers */ = {
@@ -333,23 +531,61 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				84E595271CB19B0900D586AC /* Rates.m in Sources */,
+				84E595291CB19B0900D586AC /* References.m in Sources */,
+				84E595331CB19B0900D586AC /* HotSpotActivitiesDefault.m in Sources */,
+				84E595151CB19B0900D586AC /* Tags.m in Sources */,
 				84E24CBA1CAE7A6D00090044 /* Sync.m in Sources */,
 				84EACB541C6A6FE5006F3E2A /* NewResultViewController.m in Sources */,
+				84E595211CB19B0900D586AC /* Energies.m in Sources */,
+				84E594C71CB12ACE00D586AC /* Users.m in Sources */,
+				84E595231CB19B0900D586AC /* HotSpots.m in Sources */,
+				84E595311CB19B0900D586AC /* Results.m in Sources */,
 				8432230C1C5D269D009D21D2 /* API.m in Sources */,
+				84E595111CB19B0900D586AC /* HotSpotActivities.m in Sources */,
+				84E5952F1CB19B0900D586AC /* Difficulties.m in Sources */,
+				84E595191CB19B0900D586AC /* Users_SocialNetworks.m in Sources */,
+				84E5951D1CB19B0900D586AC /* HotSpotCategories.m in Sources */,
+				84E595221CB19B0900D586AC /* HotSpots+CoreDataProperties.m in Sources */,
+				84E5952A1CB19B0900D586AC /* SocialNetworks+CoreDataProperties.m in Sources */,
 				84E458E41C5D183400779E3F /* Constants.m in Sources */,
+				84E595251CB19B0900D586AC /* PeriodTypes.m in Sources */,
 				84E298BC1C4CF4A000DF48B2 /* DayByDay.xcdatamodeld in Sources */,
+				84E595281CB19B0900D586AC /* References+CoreDataProperties.m in Sources */,
 				84E1B3081C5F9F780041EA86 /* ResultTableViewController.m in Sources */,
+				84E5952C1CB19B0900D586AC /* WeekLimits+CoreDataProperties.m in Sources */,
 				84E298B61C4CF4A000DF48B2 /* LoginViewController.m in Sources */,
+				84E5951A1CB19B0900D586AC /* Priorities+CoreDataProperties.m in Sources */,
+				84E595321CB19B0900D586AC /* HotSpotActivitiesDefault+CoreDataProperties.m in Sources */,
 				84E298B31C4CF4A000DF48B2 /* DayByDayAppDelegate.m in Sources */,
 				842237931CAAF5B300745C3B /* SWRevealViewController.m in Sources */,
+				84E595131CB19B0900D586AC /* HotSpotCategoriesDefault.m in Sources */,
 				84E01AA51C67E04B00B502F8 /* DataController.m in Sources */,
+				84E5951E1CB19B0900D586AC /* Qualities+CoreDataProperties.m in Sources */,
 				8422378F1CAAF57E00745C3B /* MenuTableViewController.m in Sources */,
+				84E595121CB19B0900D586AC /* HotSpotCategoriesDefault+CoreDataProperties.m in Sources */,
+				84E5951B1CB19B0900D586AC /* Priorities.m in Sources */,
+				84E5951C1CB19B0900D586AC /* HotSpotCategories+CoreDataProperties.m in Sources */,
+				84E595181CB19B0900D586AC /* Users_SocialNetworks+CoreDataProperties.m in Sources */,
 				84E01AA21C67E01100B502F8 /* ResultDataController.m in Sources */,
+				84E5951F1CB19B0900D586AC /* Qualities.m in Sources */,
+				84E594C61CB12ACE00D586AC /* Users+CoreDataProperties.m in Sources */,
+				84E5952B1CB19B0900D586AC /* SocialNetworks.m in Sources */,
+				84E595161CB19B0900D586AC /* Locations+CoreDataProperties.m in Sources */,
+				84E595101CB19B0900D586AC /* HotSpotActivities+CoreDataProperties.m in Sources */,
 				84DBEBCE1C62162700D42B7E /* UserDataController.m in Sources */,
 				84E1B30B1C5FA6620041EA86 /* SignupViewController.m in Sources */,
 				84E24CC41CAE7D1800090044 /* SyncDownload.m in Sources */,
+				84E5952D1CB19B0900D586AC /* WeekLimits.m in Sources */,
+				84E5952E1CB19B0900D586AC /* Difficulties+CoreDataProperties.m in Sources */,
 				84E24CC71CAE7D2400090044 /* SyncUpload.m in Sources */,
+				84E595171CB19B0900D586AC /* Locations.m in Sources */,
+				84E595241CB19B0900D586AC /* PeriodTypes+CoreDataProperties.m in Sources */,
+				84E595201CB19B0900D586AC /* Energies+CoreDataProperties.m in Sources */,
+				84E595301CB19B0900D586AC /* Results+CoreDataProperties.m in Sources */,
+				84E595141CB19B0900D586AC /* Tags+CoreDataProperties.m in Sources */,
 				84E298B01C4CF4A000DF48B2 /* main.m in Sources */,
+				84E595261CB19B0900D586AC /* Rates+CoreDataProperties.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -33,8 +33,6 @@
     // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
     // self.navigationItem.rightBarButtonItem = self.editButtonItem;
     
-    self.navigationItem.hidesBackButton = YES;
-    
     if (self.revealViewController) {
         [self.menuButton setTarget: self.revealViewController];
         [self.menuButton setAction: @selector( revealToggle: )];

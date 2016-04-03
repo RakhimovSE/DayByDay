@@ -7,6 +7,7 @@
 //
 
 #import "ResultDataController.h"
+#import "Users.h"
 
 @implementation ResultDataController
 

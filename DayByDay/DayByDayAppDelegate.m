@@ -8,6 +8,7 @@
 
 #import "DayByDayAppDelegate.h"
 #import "LoginViewController.h"
+#import "Users.h"
 
 @interface DayByDayAppDelegate ()
 
@@ -18,21 +19,23 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     // Override point for customization after application launch.
-    
+    /*
     NSFetchRequest *request = [[NSFetchRequest alloc] init];
     [request setEntity:[NSEntityDescription entityForName:@"Users" inManagedObjectContext:self.managedObjectContext]];
     
     NSError *error = nil;
     NSArray *results = [self.managedObjectContext executeFetchRequest:request error:&error];
     if (results.count == 0) {
-        NSManagedObject *user_id = [NSEntityDescription insertNewObjectForEntityForName:@"Users" inManagedObjectContext:self.managedObjectContext];
-        [user_id setValue:@0 forKey:@"user_id"];
+        Users *user = [NSEntityDescription insertNewObjectForEntityForName:@"Users" inManagedObjectContext:self.managedObjectContext];
+        //[[Users alloc] insertNewUser];
+        NSTimeInterval time = [NSDate timeIntervalSinceReferenceDate];
+        user.user_registry = user.user_updated = time;
         
         if (![self.managedObjectContext save:&error]) {
             NSLog(@"Unresolved error %@, %@", error, [error userInfo]);
             abort();
         }
-    }
+    }*/
     
     return YES;
 }

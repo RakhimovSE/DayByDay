@@ -17,4 +17,6 @@
 
 + (NSMutableDictionary *)allValuesFromMutableDictionary:(NSMutableDictionary *)dictionary ForKey:(NSString *)keyKey Value:(NSString *)valueKey;
 
++ (NSDate*)dateWithJSONString:(NSString*)dateStr;
+
 @end
