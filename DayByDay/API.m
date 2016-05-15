@@ -8,6 +8,7 @@
 
 #import "API.h"
 #import "Constants.h"
+#import <AFNetworking.h>
 
 @implementation API
 

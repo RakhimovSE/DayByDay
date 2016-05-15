@@ -9,6 +9,7 @@
 #import "DayByDayAppDelegate.h"
 #import "LoginViewController.h"
 #import "Users.h"
+#import "ResultTableViewController.h"
 
 @interface DayByDayAppDelegate ()
 
@@ -19,8 +20,7 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     // Override point for customization after application launch.
-    /*
-    NSFetchRequest *request = [[NSFetchRequest alloc] init];
+    /*NSFetchRequest *request = [[NSFetchRequest alloc] init];
     [request setEntity:[NSEntityDescription entityForName:@"Users" inManagedObjectContext:self.managedObjectContext]];
     
     NSError *error = nil;
@@ -35,8 +35,10 @@
             NSLog(@"Unresolved error %@, %@", error, [error userInfo]);
             abort();
         }
-    }*/
-    
+    }
+    else {
+    }
+    */
     return YES;
 }
 

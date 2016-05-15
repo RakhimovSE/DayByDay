@@ -10,6 +10,4 @@
 
 @interface ResultTableViewController : UITableViewController <UITableViewDelegate, UITableViewDataSource>
 
-@property (strong, nonatomic) DataController *dataController;
-
 @end
