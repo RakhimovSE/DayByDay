@@ -6,8 +6,8 @@
 //  Copyright © 2016 Sevastyan Rakhimov. All rights reserved.
 //
 
-#import "SyncDownload.h"
-#import "SyncUpload.h"
+#import "ServerToDeviceSync.h"
+#import "DeviceToServerSync.h"
 #import "Sync.h"
 
 @implementation Sync
@@ -15,12 +15,16 @@
 #pragma mark - Data downloading
 
 + (void)syncAllData {
-    [SyncDownload AllData];
-    [SyncUpload AllData];
+    ServerToDeviceSync *serverToDeviceSync = [[ServerToDeviceSync alloc] init];
+    [serverToDeviceSync AllData];
+    DeviceToServerSync *deviceToServerSync = [[DeviceToServerSync alloc] init];
+    [deviceToServerSync AllData];
+}
+
++ (void)updateLastSyncDate {
+    
 }
 
 #pragma mark - Data uploading
-
-
 
 @end

@@ -35,8 +35,7 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     
-    DayByDayAppDelegate *app = (DayByDayAppDelegate*)[[UIApplication sharedApplication] delegate];
-    resultDataController = [[ResultDataController alloc] initWithManagedObjectContext: app.managedObjectContext];
+    resultDataController = [[ResultDataController alloc] init];
     
     userHotSpots = [resultDataController getUserHotSpots];
     hotSpotActivities = [API allValuesFromMutableDictionary:userHotSpots ForKey:@"hotSpotActivity_id" Value:@"hotSpotActivity_name"];

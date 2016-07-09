@@ -10,20 +10,12 @@
 
 @implementation DataController
 
-- (id)initWithManagedObjectContext:(NSManagedObjectContext *)managedObjectContext {
+- (id)init {
     if (self = [super init]) {
-        self.managedObjectContext = managedObjectContext;
-        return self;
-    }
-    return nil;
-}
-
-- (id)initWithDataController:(DataController *)dataController {
-    if (self = [super init]) {
-        self.fetchedResultsController = dataController.fetchedResultsController;
-        self.managedObjectContext = dataController.managedObjectContext;
-        self.managedObjectModel = dataController.managedObjectModel;
-        self.persistentStoreCoordinator = dataController.persistentStoreCoordinator;
+        DayByDayAppDelegate *app = (DayByDayAppDelegate*)[[UIApplication sharedApplication] delegate];
+        self.managedObjectContext = app.managedObjectContext;
+        self.managedObjectModel = app.managedObjectModel;
+        self.persistentStoreCoordinator = app.persistentStoreCoordinator;
         return self;
     }
     return nil;

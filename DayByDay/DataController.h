@@ -15,8 +15,6 @@
 
 @interface DataController : NSObject
 
-- (id)initWithManagedObjectContext:(NSManagedObjectContext *)managedObjectContext;
-- (id)initWithDataController:(DataController *)dataController;
 - (long)getUserId;
 
 @property (strong, nonatomic) NSFetchedResultsController *fetchedResultsController;

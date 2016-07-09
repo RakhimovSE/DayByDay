@@ -12,5 +12,6 @@
 
 - (BOOL)login:(NSString *)user_email Password:(NSString *)password;
 - (BOOL)signup:(NSString *)email Password:(NSString *)password RepeatPassword:(NSString *)repeatPassword Name:(NSString *)name;
+- (NSUInteger)getUserCount;
 
 @end

@@ -1,16 +1,27 @@
 //
-//  SyncDownload.m
+//  SyncUpload.m
 //  DayByDay
 //
 //  Created by Admin on 01.04.16.
 //  Copyright © 2016 Sevastyan Rakhimov. All rights reserved.
 //
 
-#import "SyncDownload.h"
+#import "DeviceToServerSync.h"
+#import "DataController.h"
 
-@implementation SyncDownload
+@implementation DeviceToServerSync {
+    DataController *dataController;
+}
 
-+ (void)AllData {
+- (id)init {
+    if (self = [super init]) {
+        dataController = [[DataController alloc] init];
+        return self;
+    }
+    return nil;
+}
+
+- (void)AllData {
     [self difficulties];
     [self energies];
     [self hotSpotActivities];
@@ -33,98 +44,97 @@
     [self tagsResults];
     [self users];
     [self usersSocialNetworks];
-    [self weekLimits];
 }
 
-+ (void)difficulties {
+- (void)difficulties {
     
 }
 
-+ (void)energies {
+- (void)energies {
     
 }
 
-+ (void)hotSpotActivities {
+- (void)hotSpotActivities {
     
 }
 
-+ (void)hotSpotActivitiesDefault {
+- (void)hotSpotActivitiesDefault {
     
 }
 
-+ (void)hotSpotCategories {
+- (void)hotSpotCategories {
     
 }
 
-+ (void)hotSpotCategoriesDefault {
+- (void)hotSpotCategoriesDefault {
     
 }
 
-+ (void)hotSpots {
+- (void)hotSpots {
     
 }
 
-+ (void)hotSpotsDefault {
+- (void)hotSpotsDefault {
     
 }
 
-+ (void)locations {
+- (void)locations {
     
 }
 
-+ (void)periodTypes {
+- (void)periodTypes {
     
 }
 
-+ (void)priorities {
+- (void)priorities {
     
 }
 
-+ (void)qualities {
+- (void)qualities {
     
 }
 
-+ (void)rates {
+- (void)rates {
     
 }
 
-+ (void)references {
+- (void)references {
     
 }
 
-+ (void)results {
+- (void)results {
     
 }
 
-+ (void)resultsLinks {
+- (void)resultsLinks {
     
 }
 
-+ (void)resultsReferences {
+- (void)resultsReferences {
     
 }
 
-+ (void)socialNetworks {
+- (void)socialNetworks {
     
 }
 
-+ (void)tags {
+- (void)tags {
     
 }
 
-+ (void)tagsResults {
+- (void)tagsResults {
     
 }
 
-+ (void)users {
+- (void)users {
     
 }
 
-+ (void)usersSocialNetworks {
+- (void)usersSocialNetworks {
     
 }
 
-+ (void)weekLimits {
+- (void)weekLimits {
     
 }
 

@@ -39,8 +39,7 @@
         [self.view addGestureRecognizer:self.revealViewController.panGestureRecognizer];
     }
     
-    DayByDayAppDelegate *app = (DayByDayAppDelegate*)[[UIApplication sharedApplication] delegate];
-    resultDataController = [[ResultDataController alloc] initWithManagedObjectContext: app.managedObjectContext];
+    resultDataController = [[ResultDataController alloc] init];
     
     userResults = [resultDataController getUserResults];
     resultNameArray = [userResults valueForKey:@"result_name"];

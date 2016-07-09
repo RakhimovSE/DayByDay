@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10116" systemVersion="15E65" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="t2U-e8-QdZ">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10117" systemVersion="15E65" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="t2U-e8-QdZ">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
@@ -51,7 +51,7 @@
                                 </variation>
                                 <connections>
                                     <action selector="login:" destination="BYZ-38-t0r" eventType="touchUpInside" id="CBv-Zl-36Z"/>
-                                    <segue destination="PlV-8D-anX" kind="show" id="XxH-c0-PX1"/>
+                                    <segue destination="PlV-8D-anX" kind="show" identifier="resultSegue" id="XxH-c0-PX1"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -332,10 +332,10 @@
             </objects>
             <point key="canvasLocation" x="737.25" y="172.5"/>
         </scene>
-        <!--Table View Controller-->
+        <!--Menu Table View Controller-->
         <scene sceneID="lvf-L2-I4E">
             <objects>
-                <tableViewController id="CiI-RD-bn2" sceneMemberID="viewController">
+                <tableViewController id="CiI-RD-bn2" customClass="MenuTableViewController" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="bs8-96-yds">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -350,18 +350,18 @@
                                             <rect key="frame" x="0.0" y="0.0" width="600" height="43"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="K5u-Td-1Zo">
-                                                    <rect key="frame" x="8" y="0.0" width="43" height="43"/>
-                                                    <constraints>
-                                                        <constraint firstAttribute="width" secondItem="K5u-Td-1Zo" secondAttribute="height" multiplier="1:1" id="lKO-AI-UTx"/>
-                                                    </constraints>
-                                                </imageView>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Пользователь" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9vX-5I-GIe">
                                                     <rect key="frame" x="61" y="11" width="111" height="21"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="no_avatar.png" translatesAutoresizingMaskIntoConstraints="NO" id="K5u-Td-1Zo">
+                                                    <rect key="frame" x="8" y="0.0" width="43" height="43"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" secondItem="K5u-Td-1Zo" secondAttribute="height" multiplier="1:1" id="lKO-AI-UTx"/>
+                                                    </constraints>
+                                                </imageView>
                                             </subviews>
                                             <constraints>
                                                 <constraint firstItem="K5u-Td-1Zo" firstAttribute="height" secondItem="itB-tw-frA" secondAttribute="height" id="A7K-l7-yJO"/>
@@ -525,8 +525,8 @@
                             </tableViewSection>
                         </sections>
                         <connections>
-                            <outlet property="dataSource" destination="CiI-RD-bn2" id="dKa-CP-MrL"/>
-                            <outlet property="delegate" destination="CiI-RD-bn2" id="Mow-3O-len"/>
+                            <outlet property="dataSource" destination="CiI-RD-bn2" id="N3Z-EB-bO0"/>
+                            <outlet property="delegate" destination="CiI-RD-bn2" id="xZN-ue-z9U"/>
                         </connections>
                     </tableView>
                 </tableViewController>
@@ -558,7 +558,10 @@
             <point key="canvasLocation" x="-39" y="172"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="no_avatar.png" width="50" height="50"/>
+    </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="7Ux-a5-6YU"/>
+        <segue reference="XxH-c0-PX1"/>
     </inferredMetricsTieBreakers>
 </document>

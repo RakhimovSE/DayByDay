@@ -90,4 +90,14 @@ NSString *const className = @"UserAPI";
     }
 }
 
+- (NSUInteger)getUserCount {
+    NSFetchRequest *request = [[NSFetchRequest alloc] init];
+    NSEntityDescription *entity = [NSEntityDescription entityForName:@"Users" inManagedObjectContext:self.managedObjectContext];
+    [request setEntity:entity];
+    
+    NSError *error = nil;
+    NSArray *results = [self.managedObjectContext executeFetchRequest:request error:&error];
+    return results.count;
+}
+
 @end

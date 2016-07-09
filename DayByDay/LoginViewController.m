@@ -11,6 +11,7 @@
 #import "LoginViewController.h"
 #import "ResultTableViewController.h"
 #import "SignupViewController.h"
+#import "Sync.h"
 
 @interface LoginViewController () {
     UserDataController *userDataController;
@@ -32,8 +33,12 @@ BOOL loggedIn;
     [super viewDidLoad];
     loggedIn = NO;
     
-    DayByDayAppDelegate *app = (DayByDayAppDelegate*)[[UIApplication sharedApplication] delegate];
-    userDataController = [[UserDataController alloc] initWithManagedObjectContext: app.managedObjectContext];
+    userDataController = [[UserDataController alloc] init];
+    
+    if ([userDataController getUserCount] > 0) {
+        [Sync syncAllData];
+        [self performSegueWithIdentifier:@"resultSegue" sender:self];
+    }
 }
 
 - (IBAction)login:(id)sender {
@@ -42,7 +47,11 @@ BOOL loggedIn;
 }
 
 - (BOOL)shouldPerformSegueWithIdentifier:(NSString *)identifier sender:(id)sender {
-    if ([sender isEqual:_loginButton] && !loggedIn) return NO;
+    if ([identifier isEqual:@"resultSegue"]) {
+        if (!loggedIn)
+            return NO;
+        [Sync syncAllData];
+    }
     return YES;
 }
 

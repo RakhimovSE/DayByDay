@@ -32,8 +32,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    DayByDayAppDelegate *app = (DayByDayAppDelegate*)[[UIApplication sharedApplication] delegate];
-    userDataController = [[UserDataController alloc] initWithManagedObjectContext: app.managedObjectContext];
+    userDataController = [[UserDataController alloc] init];
 }
 
 - (void)didReceiveMemoryWarning {

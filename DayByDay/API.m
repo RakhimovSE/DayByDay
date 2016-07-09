@@ -9,6 +9,8 @@
 #import "API.h"
 #import "Constants.h"
 #import <AFNetworking.h>
+#import <CoreData/CoreData.h>
+#import "DataController.h"
 
 @implementation API
 
@@ -74,20 +76,42 @@
     return result;
 }
 
-+ (NSDate*)dateWithJSONString:(NSString*)dateStr
++ (NSDate *)dateWithJSONString:(NSString *)dateString
 {
     // Convert string to date object
     NSDateFormatter *dateFormat = [[NSDateFormatter alloc] init];
     [dateFormat setDateFormat:@"yyyy'-'MM'-'dd'T'HH':'mm':'ss'Z'"];
-    NSDate *date = [dateFormat dateFromString:dateStr];
-    
-    // This is for check the output
-    // Convert date object to desired output format
-//    [dateFormat setDateFormat:@"yyyy'-'MM'-'dd'T'HH':'mm':'ss'Z'"]; // Here you can change your require output date format EX. @"EEE, MMM d YYYY"
-//    dateStr = [dateFormat stringFromDate:date];
-//    NSLog(@"Date -- %@",dateStr);
-    
+    NSDate *date = [dateFormat dateFromString:dateString];
     return date;
+}
+
++ (NSDate *)mySqlStringToDate:(NSString *)dateString {
+    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc]init];
+    NSTimeZone *timeZone = [NSTimeZone timeZoneWithName:@"UTC"];
+    [dateFormatter setTimeZone:timeZone];
+    [dateFormatter setDateFormat:@"yyyy'-'MM'-'dd' 'HH':'mm':'ss'"];
+    return [dateFormatter dateFromString:dateString];
+}
+
++ (NSString *)dateToMySqlString:(NSDate *)date {
+    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc]init];
+    NSTimeZone *timeZone = [NSTimeZone timeZoneWithName:@"UTC"];
+    [dateFormatter setTimeZone:timeZone];
+    [dateFormatter setDateFormat:@"yyyy'-'MM'-'dd' 'HH':'mm':'ss'"];
+    return [dateFormatter stringFromDate:date];
+}
+
++ (id)getVariableFromDatabase:(NSString *)key {
+    DataController *dataController = [[DataController alloc] init];
+    NSFetchRequest *request = [[NSFetchRequest alloc] init];
+    NSEntityDescription *entity = [NSEntityDescription entityForName:@"Variables"
+                                              inManagedObjectContext:dataController.managedObjectContext];
+    [request setEntity:entity];
+    NSPredicate *predicate = [NSPredicate predicateWithFormat:@"variable_key = %@", key];
+    [request setPredicate:predicate];
+    NSError *error;
+    NSArray *itemArray = [dataController.managedObjectContext executeFetchRequest:request error:&error];
+    return [itemArray firstObject];
 }
 
 @end
