@@ -1,5 +1,5 @@
 //
-//  SyncUpload.m
+//  DeviceToServerSync.m
 //  DayByDay
 //
 //  Created by Admin on 01.04.16.

@@ -20,6 +20,5 @@
 + (NSDate *)dateWithJSONString:(NSString *)dateString;
 + (NSDate *)mySqlStringToDate:(NSString *)dateString;
 + (NSString *)dateToMySqlString:(NSDate *)date;
-+ (id)getVariableFromDatabase:(NSString *)key;
 
 @end

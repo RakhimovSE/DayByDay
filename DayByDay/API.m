@@ -101,17 +101,4 @@
     return [dateFormatter stringFromDate:date];
 }
 
-+ (id)getVariableFromDatabase:(NSString *)key {
-    DataController *dataController = [[DataController alloc] init];
-    NSFetchRequest *request = [[NSFetchRequest alloc] init];
-    NSEntityDescription *entity = [NSEntityDescription entityForName:@"Variables"
-                                              inManagedObjectContext:dataController.managedObjectContext];
-    [request setEntity:entity];
-    NSPredicate *predicate = [NSPredicate predicateWithFormat:@"variable_key = %@", key];
-    [request setPredicate:predicate];
-    NSError *error;
-    NSArray *itemArray = [dataController.managedObjectContext executeFetchRequest:request error:&error];
-    return [itemArray firstObject];
-}
-
 @end

@@ -15,6 +15,11 @@ NS_ASSUME_NONNULL_BEGIN
 
 // Insert code here to declare functionality of your managed object subclass
 
++ (Variables *)insertVariable:(NSString *)key Value:(id)value;
++ (Variables *)getVariable:(NSString *)key;
++ (void)updateVariable:(NSString *)key Value:(id)value;
++ (void)deleteVariable:(NSString *)key;
+
 @end
 
 NS_ASSUME_NONNULL_END

@@ -1,5 +1,5 @@
 //
-//  SyncUpload.h
+//  DeviceToServerSync.h
 //  DayByDay
 //
 //  Created by Admin on 01.04.16.

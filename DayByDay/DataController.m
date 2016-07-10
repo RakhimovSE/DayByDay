@@ -13,6 +13,7 @@
 - (id)init {
     if (self = [super init]) {
         DayByDayAppDelegate *app = (DayByDayAppDelegate*)[[UIApplication sharedApplication] delegate];
+        self.app = app;
         self.managedObjectContext = app.managedObjectContext;
         self.managedObjectModel = app.managedObjectModel;
         self.persistentStoreCoordinator = app.persistentStoreCoordinator;
