@@ -2,7 +2,7 @@
 //  HotSpotCategories+CoreDataProperties.h
 //  DayByDay
 //
-//  Created by Admin on 03.04.16.
+//  Created by Admin on 11.07.16.
 //  Copyright © 2016 Sevastyan Rakhimov. All rights reserved.
 //
 //  Choose "Create NSManagedObject Subclass…" from the Core Data editor menu
@@ -10,7 +10,6 @@
 //
 
 #import "HotSpotCategories.h"
-#import "HotSpotCategoriesDefault.h"
 #import "HotSpots.h"
 
 NS_ASSUME_NONNULL_BEGIN

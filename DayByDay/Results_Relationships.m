@@ -1,15 +1,15 @@
 //
-//  WeekLimits.m
+//  Results_Relationships.m
 //  DayByDay
 //
-//  Created by Admin on 03.04.16.
+//  Created by Admin on 11.07.16.
 //  Copyright © 2016 Sevastyan Rakhimov. All rights reserved.
 //
 
-#import "WeekLimits.h"
-#import "Users.h"
+#import "Results_Relationships.h"
+#import "Results.h"
 
-@implementation WeekLimits
+@implementation Results_Relationships
 
 // Insert code here to add functionality to your managed object subclass
 

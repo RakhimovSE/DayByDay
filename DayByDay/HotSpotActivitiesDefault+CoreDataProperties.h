@@ -2,7 +2,7 @@
 //  HotSpotActivitiesDefault+CoreDataProperties.h
 //  DayByDay
 //
-//  Created by Admin on 03.04.16.
+//  Created by Admin on 11.07.16.
 //  Copyright © 2016 Sevastyan Rakhimov. All rights reserved.
 //
 //  Choose "Create NSManagedObject Subclass…" from the Core Data editor menu
@@ -10,6 +10,7 @@
 //
 
 #import "HotSpotActivitiesDefault.h"
+#import "HotSpotsDefault.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
@@ -21,7 +22,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nullable, nonatomic, retain) NSString *hotSpotActivityDefault_name;
 @property (nonatomic) NSTimeInterval hotSpotActivityDefault_updated;
 @property (nullable, nonatomic, retain) NSSet<HotSpotActivities *> *hotSpotActivities;
-@property (nullable, nonatomic, retain) NSSet<HotSpotCategoriesDefault *> *hotSpotCategoriesDefault;
+@property (nullable, nonatomic, retain) NSSet<HotSpotsDefault *> *hotSpotsDefault;
 
 @end
 
@@ -32,10 +33,10 @@ NS_ASSUME_NONNULL_BEGIN
 - (void)addHotSpotActivities:(NSSet<HotSpotActivities *> *)values;
 - (void)removeHotSpotActivities:(NSSet<HotSpotActivities *> *)values;
 
-- (void)addHotSpotCategoriesDefaultObject:(HotSpotCategoriesDefault *)value;
-- (void)removeHotSpotCategoriesDefaultObject:(HotSpotCategoriesDefault *)value;
-- (void)addHotSpotCategoriesDefault:(NSSet<HotSpotCategoriesDefault *> *)values;
-- (void)removeHotSpotCategoriesDefault:(NSSet<HotSpotCategoriesDefault *> *)values;
+- (void)addHotSpotsDefaultObject:(HotSpotsDefault *)value;
+- (void)removeHotSpotsDefaultObject:(HotSpotsDefault *)value;
+- (void)addHotSpotsDefault:(NSSet<HotSpotsDefault *> *)values;
+- (void)removeHotSpotsDefault:(NSSet<HotSpotsDefault *> *)values;
 
 @end
 

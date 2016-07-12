@@ -1,5 +1,5 @@
 //
-//  Variables+CoreDataProperties.h
+//  Tags_Results+CoreDataProperties.h
 //  DayByDay
 //
 //  Created by Admin on 11.07.16.
@@ -9,14 +9,16 @@
 //  to delete and recreate this implementation file for your updated model.
 //
 
-#import "Variables.h"
+#import "Tags_Results.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface Variables (CoreDataProperties)
+@interface Tags_Results (CoreDataProperties)
 
-@property (nullable, nonatomic, retain) NSString *variable_key;
-@property (nullable, nonatomic, retain) id variable_value;
+@property (nonatomic) NSTimeInterval tag_result_updated;
+@property (nonatomic) BOOL tag_result_deleted;
+@property (nullable, nonatomic, retain) Tags *tag;
+@property (nullable, nonatomic, retain) Results *result;
 
 @end
 

@@ -1,5 +1,5 @@
 //
-//  PeriodTypes+CoreDataProperties.m
+//  Results_References+CoreDataProperties.m
 //  DayByDay
 //
 //  Created by Admin on 11.07.16.
@@ -9,14 +9,13 @@
 //  to delete and recreate this implementation file for your updated model.
 //
 
-#import "PeriodTypes+CoreDataProperties.h"
+#import "Results_References+CoreDataProperties.h"
 
-@implementation PeriodTypes (CoreDataProperties)
+@implementation Results_References (CoreDataProperties)
 
-@dynamic periodType_deleted;
-@dynamic periodType_length;
-@dynamic periodType_name;
-@dynamic periodType_updated;
-@dynamic results;
+@dynamic result_reference_updated;
+@dynamic result_reference_deleted;
+@dynamic result;
+@dynamic reference;
 
 @end

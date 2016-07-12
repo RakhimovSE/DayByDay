@@ -2,7 +2,7 @@
 //  Users+CoreDataProperties.h
 //  DayByDay
 //
-//  Created by Admin on 03.04.16.
+//  Created by Admin on 11.07.16.
 //  Copyright © 2016 Sevastyan Rakhimov. All rights reserved.
 //
 //  Choose "Create NSManagedObject Subclass…" from the Core Data editor menu
@@ -16,8 +16,6 @@
 #import "References.h"
 #import "Results.h"
 #import "Users_SocialNetworks.h"
-#import "Tags.h"
-#import "WeekLimits.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
@@ -33,14 +31,14 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic) NSTimeInterval user_registry;
 @property (nonatomic) int32_t user_score;
 @property (nonatomic) NSTimeInterval user_updated;
+@property (nonatomic) BOOL user_emailConfirmed;
 @property (nullable, nonatomic, retain) NSSet<HotSpotActivities *> *hotSpotActivities;
 @property (nullable, nonatomic, retain) NSSet<HotSpotCategories *> *hotSpotCategories;
 @property (nullable, nonatomic, retain) NSSet<Locations *> *locations;
 @property (nullable, nonatomic, retain) NSSet<References *> *references;
 @property (nullable, nonatomic, retain) NSSet<Results *> *results;
-@property (nullable, nonatomic, retain) NSSet<Users_SocialNetworks *> *socialNetworks;
+@property (nullable, nonatomic, retain) NSSet<Users_SocialNetworks *> *users_socialNetworks;
 @property (nullable, nonatomic, retain) NSSet<Tags *> *tags;
-@property (nullable, nonatomic, retain) NSSet<WeekLimits *> *weekLimits;
 
 @end
 
@@ -71,20 +69,15 @@ NS_ASSUME_NONNULL_BEGIN
 - (void)addResults:(NSSet<Results *> *)values;
 - (void)removeResults:(NSSet<Results *> *)values;
 
-- (void)addSocialNetworksObject:(Users_SocialNetworks *)value;
-- (void)removeSocialNetworksObject:(Users_SocialNetworks *)value;
-- (void)addSocialNetworks:(NSSet<Users_SocialNetworks *> *)values;
-- (void)removeSocialNetworks:(NSSet<Users_SocialNetworks *> *)values;
+- (void)addUsers_socialNetworksObject:(Users_SocialNetworks *)value;
+- (void)removeUsers_socialNetworksObject:(Users_SocialNetworks *)value;
+- (void)addUsers_socialNetworks:(NSSet<Users_SocialNetworks *> *)values;
+- (void)removeUsers_socialNetworks:(NSSet<Users_SocialNetworks *> *)values;
 
 - (void)addTagsObject:(Tags *)value;
 - (void)removeTagsObject:(Tags *)value;
 - (void)addTags:(NSSet<Tags *> *)values;
 - (void)removeTags:(NSSet<Tags *> *)values;
-
-- (void)addWeekLimitsObject:(WeekLimits *)value;
-- (void)removeWeekLimitsObject:(WeekLimits *)value;
-- (void)addWeekLimits:(NSSet<WeekLimits *> *)values;
-- (void)removeWeekLimits:(NSSet<WeekLimits *> *)values;
 
 @end
 

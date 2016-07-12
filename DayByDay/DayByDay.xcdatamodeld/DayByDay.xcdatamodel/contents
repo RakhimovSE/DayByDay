@@ -63,7 +63,7 @@
         <relationship name="hotSpotCategory" maxCount="1" deletionRule="Nullify" destinationEntity="HotSpotCategories" inverseName="hotSpots" inverseEntity="HotSpotCategories" syncable="YES"/>
         <relationship name="results" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Results" inverseName="hotSpot" inverseEntity="Results" syncable="YES"/>
     </entity>
-    <entity name="HotSpotsDefault" syncable="YES">
+    <entity name="HotSpotsDefault" representedClassName="HotSpotsDefault" syncable="YES">
         <attribute name="hotSpotsDefault_deleted" attributeType="Boolean" defaultValueString="NO" syncable="YES"/>
         <attribute name="hotSpotsDefault_id" attributeType="Integer 32" indexed="YES" syncable="YES"/>
         <attribute name="hotSpotsDefault_updated" attributeType="Date" syncable="YES"/>
@@ -128,12 +128,12 @@
         <attribute name="result_startDateTime" attributeType="Date" syncable="YES"/>
         <attribute name="result_updated" attributeType="Date" syncable="YES"/>
         <attribute name="resut_timeAmount" attributeType="Date" syncable="YES"/>
-        <relationship name="childrenResults_relationship" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Results_Relationships" inverseName="parentResult" inverseEntity="Results_Relationships" syncable="YES"/>
+        <relationship name="childResults_relationships" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Results_Relationships" inverseName="parentResult" inverseEntity="Results_Relationships" syncable="YES"/>
         <relationship name="difficulty" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Difficulties" inverseName="results" inverseEntity="Difficulties" syncable="YES"/>
         <relationship name="energy" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Energies" inverseName="results" inverseEntity="Energies" syncable="YES"/>
         <relationship name="hotSpot" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="HotSpots" inverseName="results" inverseEntity="HotSpots" syncable="YES"/>
         <relationship name="location" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Locations" inverseName="results" inverseEntity="Locations" syncable="YES"/>
-        <relationship name="parentsResults_relationship" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Results_Relationships" inverseName="childResult" inverseEntity="Results_Relationships" syncable="YES"/>
+        <relationship name="parentResults_relationships" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Results_Relationships" inverseName="childResult" inverseEntity="Results_Relationships" syncable="YES"/>
         <relationship name="periodType" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="PeriodTypes" inverseName="results" inverseEntity="PeriodTypes" syncable="YES"/>
         <relationship name="priority" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Priorities" inverseName="results" inverseEntity="Priorities" syncable="YES"/>
         <relationship name="quality" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Qualities" inverseName="results" inverseEntity="Qualities" syncable="YES"/>
@@ -141,17 +141,17 @@
         <relationship name="tags_results" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="Tags_Results" inverseName="result" inverseEntity="Tags_Results" syncable="YES"/>
         <relationship name="user" maxCount="1" deletionRule="Nullify" destinationEntity="Users" inverseName="results" inverseEntity="Users" syncable="YES"/>
     </entity>
-    <entity name="Results_References" syncable="YES">
+    <entity name="Results_References" representedClassName="Results_References" syncable="YES">
         <attribute name="result_reference_deleted" attributeType="Boolean" defaultValueString="NO" syncable="YES"/>
         <attribute name="result_reference_updated" attributeType="Date" syncable="YES"/>
         <relationship name="reference" maxCount="1" deletionRule="Nullify" destinationEntity="References" inverseName="results_references" inverseEntity="References" syncable="YES"/>
         <relationship name="result" maxCount="1" deletionRule="Nullify" destinationEntity="Results" inverseName="results_references" inverseEntity="Results" syncable="YES"/>
     </entity>
-    <entity name="Results_Relationships" syncable="YES">
+    <entity name="Results_Relationships" representedClassName="Results_Relationships" syncable="YES">
         <attribute name="result_relationship_deleted" attributeType="Boolean" defaultValueString="NO" syncable="YES"/>
         <attribute name="result_relationship_updated" attributeType="Date" syncable="YES"/>
-        <relationship name="childResult" maxCount="1" deletionRule="Nullify" destinationEntity="Results" inverseName="parentsResults_relationship" inverseEntity="Results" syncable="YES"/>
-        <relationship name="parentResult" maxCount="1" deletionRule="Nullify" destinationEntity="Results" inverseName="childrenResults_relationship" inverseEntity="Results" syncable="YES"/>
+        <relationship name="childResult" maxCount="1" deletionRule="Nullify" destinationEntity="Results" inverseName="parentResults_relationships" inverseEntity="Results" syncable="YES"/>
+        <relationship name="parentResult" maxCount="1" deletionRule="Nullify" destinationEntity="Results" inverseName="childResults_relationships" inverseEntity="Results" syncable="YES"/>
     </entity>
     <entity name="SocialNetworks" representedClassName="SocialNetworks" syncable="YES">
         <attribute name="socialNetwork_deleted" attributeType="Boolean" defaultValueString="NO" syncable="YES"/>
@@ -169,7 +169,7 @@
         <relationship name="tags_results" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="Tags_Results" inverseName="tag" inverseEntity="Tags_Results" syncable="YES"/>
         <relationship name="user" maxCount="1" deletionRule="Nullify" destinationEntity="Users" inverseName="tags" inverseEntity="Users" syncable="YES"/>
     </entity>
-    <entity name="Tags_Results" syncable="YES">
+    <entity name="Tags_Results" representedClassName="Tags_Results" syncable="YES">
         <attribute name="tag_result_deleted" attributeType="Boolean" defaultValueString="NO" syncable="YES"/>
         <attribute name="tag_result_updated" attributeType="Date" syncable="YES"/>
         <relationship name="result" maxCount="1" deletionRule="Nullify" destinationEntity="Results" inverseName="tags_results" inverseEntity="Results" syncable="YES"/>
@@ -207,28 +207,28 @@
         <attribute name="variable_value" attributeType="Transformable" syncable="YES"/>
     </entity>
     <elements>
-        <element name="Difficulties" positionX="99" positionY="-63" width="128" height="118"/>
-        <element name="Energies" positionX="99" positionY="63" width="128" height="118"/>
-        <element name="HotSpotActivities" positionX="-450" positionY="324" width="162" height="163"/>
-        <element name="HotSpotActivitiesDefault" positionX="-468" positionY="539" width="191" height="148"/>
-        <element name="HotSpotCategories" positionX="-954" positionY="324" width="162" height="163"/>
-        <element name="HotSpotCategoriesDefault" positionX="-972" positionY="536" width="198" height="148"/>
-        <element name="HotSpots" positionX="-720" positionY="287" width="162" height="178"/>
-        <element name="HotSpotsDefault" positionX="-704" positionY="569" width="155" height="118"/>
-        <element name="Locations" positionX="-308" positionY="-97" width="128" height="178"/>
-        <element name="PeriodTypes" positionX="-146" positionY="351" width="128" height="118"/>
-        <element name="Priorities" positionX="99" positionY="188" width="128" height="118"/>
-        <element name="Qualities" positionX="99" positionY="315" width="128" height="118"/>
-        <element name="Rates" positionX="-486" positionY="-82" width="128" height="118"/>
-        <element name="References" positionX="-711" positionY="-36" width="128" height="148"/>
-        <element name="Results" positionX="-119" positionY="-45" width="155" height="358"/>
-        <element name="SocialNetworks" positionX="-1082" positionY="-178" width="128" height="133"/>
-        <element name="Tags" positionX="-911" positionY="-207" width="128" height="133"/>
-        <element name="Users" positionX="-911" positionY="-37" width="128" height="313"/>
-        <element name="Users_SocialNetworks" positionX="-1109" positionY="-4" width="155" height="118"/>
-        <element name="Variables" positionX="-1100" positionY="161" width="128" height="73"/>
-        <element name="Results_References" positionX="-425" positionY="90" width="146" height="103"/>
-        <element name="Results_Relationships" positionX="-126" positionY="-189" width="153" height="103"/>
-        <element name="Tags_Results" positionX="-641" positionY="-198" width="128" height="103"/>
+        <element name="Difficulties" positionX="-137" positionY="-72" width="128" height="118"/>
+        <element name="Energies" positionX="-137" positionY="63" width="128" height="118"/>
+        <element name="HotSpotActivities" positionX="-621" positionY="306" width="162" height="163"/>
+        <element name="HotSpotActivitiesDefault" positionX="-650" positionY="531" width="191" height="148"/>
+        <element name="HotSpotCategories" positionX="-1044" positionY="333" width="162" height="163"/>
+        <element name="HotSpotCategoriesDefault" positionX="-1080" positionY="540" width="198" height="148"/>
+        <element name="HotSpots" positionX="-837" positionY="306" width="162" height="178"/>
+        <element name="HotSpotsDefault" positionX="-846" positionY="540" width="155" height="118"/>
+        <element name="Locations" positionX="-549" positionY="20" width="128" height="178"/>
+        <element name="PeriodTypes" positionX="-414" positionY="359" width="128" height="118"/>
+        <element name="Priorities" positionX="-137" positionY="189" width="128" height="118"/>
+        <element name="Qualities" positionX="-270" positionY="360" width="128" height="118"/>
+        <element name="Rates" positionX="-1107" positionY="189" width="128" height="118"/>
+        <element name="References" positionX="-738" positionY="9" width="128" height="148"/>
+        <element name="Results" positionX="-335" positionY="-70" width="155" height="358"/>
+        <element name="Results_References" positionX="-558" positionY="-94" width="146" height="103"/>
+        <element name="Results_Relationships" positionX="-351" positionY="-207" width="153" height="103"/>
+        <element name="SocialNetworks" positionX="-1107" positionY="-207" width="128" height="133"/>
+        <element name="Tags" positionX="-918" positionY="-205" width="128" height="133"/>
+        <element name="Tags_Results" positionX="-704" positionY="-207" width="128" height="103"/>
+        <element name="Users" positionX="-909" positionY="-36" width="128" height="313"/>
+        <element name="Users_SocialNetworks" positionX="-1109" positionY="-37" width="155" height="118"/>
+        <element name="Variables" positionX="-1107" positionY="99" width="128" height="73"/>
     </elements>
 </model>

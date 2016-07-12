@@ -13,6 +13,34 @@
 
 // Insert code here to add functionality to your managed object subclass
 
++ (NSPredicate *)getPredicate:(NSString *)entityIdKey   EntityIdValue:(NSString *)entityIdValue
+                 EntityId2Key:(NSString *)entityId2Key EntityId2Value:(NSString *)entityId2Value {
+    NSPredicate *result;
+    if ([entityId2Key isEqualToString:@""]) result = [NSPredicate predicateWithFormat:@"%K = %@", entityIdKey, entityIdValue];
+    else result = [NSPredicate predicateWithFormat:@"%K = %@ && %K = %@", entityIdKey, entityIdValue, entityId2Key, entityId2Value];
+    return result;
+}
+
++ (NSManagedObject *)getVariable:(NSString *)entityName EntityIdKey:(NSString *)entityIdKey   EntityIdValue:(NSString *)entityIdValue {
+    return [self getVariable:entityName EntityIdKey:entityIdKey EntityIdValue:entityIdValue EntityId2Key:@"" EntityId2Value:@""];
+}
+
++ (NSManagedObject *)getVariable:(NSString *)entityName EntityIdKey:(NSString *)entityIdKey   EntityIdValue:(NSString *)entityIdValue
+                                                       EntityId2Key:(NSString *)entityId2Key EntityId2Value:(NSString *)entityId2Value {
+    NSManagedObject *result = nil;
+    DataController *dataController = [[DataController alloc] init];
+    NSFetchRequest *request = [[NSFetchRequest alloc] init];
+    NSEntityDescription *entity = [NSEntityDescription entityForName:entityName
+                                              inManagedObjectContext:dataController.managedObjectContext];
+    [request setEntity:entity];
+    NSPredicate *predicate = [self getPredicate:entityIdKey EntityIdValue:entityIdValue EntityId2Key:entityId2Key EntityId2Value:entityId2Value];
+    [request setPredicate:predicate];
+    NSError *error;
+    NSArray *itemArray = [dataController.managedObjectContext executeFetchRequest:request error:&error];
+    if (itemArray.count > 0) result = [itemArray firstObject];
+    return result;
+}
+
 + (Variables *)insertVariable:(NSString *)key Value:(id)value {
     DataController *dataController = [[DataController alloc] init];
     Variables *result = [NSEntityDescription insertNewObjectForEntityForName:@"Variables" inManagedObjectContext:dataController.managedObjectContext];

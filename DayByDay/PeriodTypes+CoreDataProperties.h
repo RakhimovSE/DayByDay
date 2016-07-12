@@ -2,7 +2,7 @@
 //  PeriodTypes+CoreDataProperties.h
 //  DayByDay
 //
-//  Created by Admin on 03.04.16.
+//  Created by Admin on 11.07.16.
 //  Copyright © 2016 Sevastyan Rakhimov. All rights reserved.
 //
 //  Choose "Create NSManagedObject Subclass…" from the Core Data editor menu
@@ -17,7 +17,7 @@ NS_ASSUME_NONNULL_BEGIN
 @interface PeriodTypes (CoreDataProperties)
 
 @property (nonatomic) BOOL periodType_deleted;
-@property (nonatomic) int32_t periodType_length;
+@property (nonatomic) NSTimeInterval periodType_length;
 @property (nullable, nonatomic, retain) NSString *periodType_name;
 @property (nonatomic) NSTimeInterval periodType_updated;
 @property (nullable, nonatomic, retain) NSSet<Results *> *results;

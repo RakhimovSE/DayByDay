@@ -22,24 +22,18 @@
     [serverToDeviceSync syncAllData:lastSyncOld];
     DeviceToServerSync *deviceToServerSync = [[DeviceToServerSync alloc] init];
     [deviceToServerSync AllData];
-    [self updateLastSync];
 }
 
 + (NSDate *)getLastSync {
-    Variables *lastSyncVariableOld = [Variables getVariable:@"lastSync"];
+    Variables *lastSyncVariableOld = [Variables getVariable:@"lastSyncServer"];
     NSDate *result;
     if (lastSyncVariableOld) {
         result = lastSyncVariableOld.variable_value;
     } else {
         result = [API mySqlStringToDate:@"0001-01-01 00:00:00"];
-        [Variables insertVariable:@"lastSync" Value:result];
+        [Variables insertVariable:@"lastSyncServer" Value:result];
     }
     return result;
-}
-
-+ (void)updateLastSync {
-    NSDate *lastSyncNew = [NSDate dateWithTimeIntervalSinceNow:-60*60];
-    [Variables updateVariable:@"lastSync" Value:lastSyncNew];
 }
 
 #pragma mark - Data uploading

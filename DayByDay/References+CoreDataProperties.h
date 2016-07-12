@@ -2,7 +2,7 @@
 //  References+CoreDataProperties.h
 //  DayByDay
 //
-//  Created by Admin on 03.04.16.
+//  Created by Admin on 11.07.16.
 //  Copyright © 2016 Sevastyan Rakhimov. All rights reserved.
 //
 //  Choose "Create NSManagedObject Subclass…" from the Core Data editor menu
@@ -10,7 +10,7 @@
 //
 
 #import "References.h"
-#import "Results.h"
+#import "Results_References.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
@@ -21,17 +21,17 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nullable, nonatomic, retain) NSString *reference_name;
 @property (nullable, nonatomic, retain) NSString *reference_text;
 @property (nonatomic) NSTimeInterval reference_updated;
-@property (nullable, nonatomic, retain) NSSet<Results *> *results;
 @property (nullable, nonatomic, retain) Users *user;
+@property (nullable, nonatomic, retain) NSSet<Results_References *> *results_references;
 
 @end
 
 @interface References (CoreDataGeneratedAccessors)
 
-- (void)addResultsObject:(Results *)value;
-- (void)removeResultsObject:(Results *)value;
-- (void)addResults:(NSSet<Results *> *)values;
-- (void)removeResults:(NSSet<Results *> *)values;
+- (void)addResults_referencesObject:(Results_References *)value;
+- (void)removeResults_referencesObject:(Results_References *)value;
+- (void)addResults_references:(NSSet<Results_References *> *)values;
+- (void)removeResults_references:(NSSet<Results_References *> *)values;
 
 @end
 

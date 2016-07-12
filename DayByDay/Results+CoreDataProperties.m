@@ -2,7 +2,7 @@
 //  Results+CoreDataProperties.m
 //  DayByDay
 //
-//  Created by Admin on 03.04.16.
+//  Created by Admin on 12.07.16.
 //  Copyright © 2016 Sevastyan Rakhimov. All rights reserved.
 //
 //  Choose "Create NSManagedObject Subclass…" from the Core Data editor menu
@@ -22,17 +22,17 @@
 @dynamic result_startDateTime;
 @dynamic result_updated;
 @dynamic resut_timeAmount;
-@dynamic childrenResults;
+@dynamic childResults_relationships;
 @dynamic difficulty;
 @dynamic energy;
 @dynamic hotSpot;
 @dynamic location;
-@dynamic parentResult;
+@dynamic parentResults_relationships;
 @dynamic periodType;
 @dynamic priority;
 @dynamic quality;
-@dynamic references;
-@dynamic tags;
+@dynamic results_references;
+@dynamic tags_results;
 @dynamic user;
 
 @end
