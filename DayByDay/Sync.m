@@ -18,8 +18,8 @@
 
 + (void)syncAllData {
     NSDate *lastSyncOld = [Sync getLastSync];
-    ServerToDeviceSync *serverToDeviceSync = [[ServerToDeviceSync alloc] init];
-    [serverToDeviceSync syncAllData:lastSyncOld];
+    ServerToDeviceSync *serverToDeviceSync = [[ServerToDeviceSync alloc] initWithLastSync:lastSyncOld];
+    [serverToDeviceSync syncAllData];
     DeviceToServerSync *deviceToServerSync = [[DeviceToServerSync alloc] init];
     [deviceToServerSync AllData];
 }

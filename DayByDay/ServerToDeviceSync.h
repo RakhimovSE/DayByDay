@@ -10,6 +10,7 @@
 
 @interface ServerToDeviceSync : NSObject
 
-- (void)syncAllData:(NSDate *)lastSync;
+- (id)initWithLastSync:(NSDate *)lastSync;
+- (void)syncAllData;
 
 @end
