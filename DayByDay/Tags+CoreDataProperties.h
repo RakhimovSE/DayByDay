@@ -2,7 +2,7 @@
 //  Tags+CoreDataProperties.h
 //  DayByDay
 //
-//  Created by Admin on 11.07.16.
+//  Created by Admin on 18.07.16.
 //  Copyright © 2016 Sevastyan Rakhimov. All rights reserved.
 //
 //  Choose "Create NSManagedObject Subclass…" from the Core Data editor menu
@@ -19,17 +19,17 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic) int32_t tag_id;
 @property (nullable, nonatomic, retain) NSString *tag_name;
 @property (nonatomic) NSTimeInterval tag_updated;
+@property (nullable, nonatomic, retain) NSSet<Tags_Results *> *tags_results;
 @property (nullable, nonatomic, retain) Users *user;
-@property (nullable, nonatomic, retain) NSSet<NSManagedObject *> *tags_results;
 
 @end
 
 @interface Tags (CoreDataGeneratedAccessors)
 
-- (void)addTags_resultsObject:(NSManagedObject *)value;
-- (void)removeTags_resultsObject:(NSManagedObject *)value;
-- (void)addTags_results:(NSSet<NSManagedObject *> *)values;
-- (void)removeTags_results:(NSSet<NSManagedObject *> *)values;
+- (void)addTags_resultsObject:(Tags_Results *)value;
+- (void)removeTags_resultsObject:(Tags_Results *)value;
+- (void)addTags_results:(NSSet<Tags_Results *> *)values;
+- (void)removeTags_results:(NSSet<Tags_Results *> *)values;
 
 @end
 

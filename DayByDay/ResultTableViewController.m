@@ -39,15 +39,15 @@
         [self.view addGestureRecognizer:self.revealViewController.panGestureRecognizer];
     }
     
-    resultDataController = [[ResultDataController alloc] init];
-    
-    userResults = [resultDataController getUserResults];
-    resultNameArray = [userResults valueForKey:@"result_name"];
-    periodTypeLengthArray = [userResults valueForKey:@"fk_periodType_length"];
+//    resultDataController = [[ResultDataController alloc] init];
+//    
+//    userResults = [resultDataController getUserResults];
+//    resultNameArray = [userResults valueForKey:@"result_name"];
+//    periodTypeLengthArray = [userResults valueForKey:@"fk_periodType_length"];
 }
 
 - (IBAction)showMenu:(id)sender {
-    [Constants showAlertMessage:[NSString stringWithFormat:@"%@", [resultDataController getUserResults]]];
+//    [Constants showAlertMessage:[NSString stringWithFormat:@"%@", [resultDataController getUserResults]]];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -66,32 +66,32 @@
 //    return 0;
 //}
 
-- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return resultNameArray.count;
-}
-
-
-- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    NSString *identifier = @"resultTableItem";
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:identifier forIndexPath:indexPath];
-    if (!cell)
-        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:identifier];
-    cell.textLabel.text = [resultNameArray objectAtIndex:indexPath.row];
-    NSString *length = [periodTypeLengthArray objectAtIndex:indexPath.row];
-    NSString *detailText = @"";
-    if ([length isEqualToString:@"0000-00-01"])
-        detailText = @"Цель дня";
-    if ([length isEqualToString:@"0000-00-07"])
-        detailText = @"Цель недели";
-    if ([length isEqualToString:@"0000-01-00"])
-        detailText = @"Цель месяца";
-    if ([length isEqualToString:@"0000-03-00"])
-        detailText = @"Цель четверти";
-    if ([length isEqualToString:@"0001-00-00"])
-        detailText = @"Цель года";
-    cell.detailTextLabel.text = detailText;
-    return cell;
-}
+//- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
+//    return resultNameArray.count;
+//}
+//
+//
+//- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
+//    NSString *identifier = @"resultTableItem";
+//    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:identifier forIndexPath:indexPath];
+//    if (!cell)
+//        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:identifier];
+//    cell.textLabel.text = [resultNameArray objectAtIndex:indexPath.row];
+//    NSString *length = [periodTypeLengthArray objectAtIndex:indexPath.row];
+//    NSString *detailText = @"";
+//    if ([length isEqualToString:@"0000-00-01"])
+//        detailText = @"Цель дня";
+//    if ([length isEqualToString:@"0000-00-07"])
+//        detailText = @"Цель недели";
+//    if ([length isEqualToString:@"0000-01-00"])
+//        detailText = @"Цель месяца";
+//    if ([length isEqualToString:@"0000-03-00"])
+//        detailText = @"Цель четверти";
+//    if ([length isEqualToString:@"0001-00-00"])
+//        detailText = @"Цель года";
+//    cell.detailTextLabel.text = detailText;
+//    return cell;
+//}
 
 
 /*

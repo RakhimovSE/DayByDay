@@ -2,7 +2,7 @@
 //  References+CoreDataProperties.m
 //  DayByDay
 //
-//  Created by Admin on 11.07.16.
+//  Created by Admin on 18.07.16.
 //  Copyright © 2016 Sevastyan Rakhimov. All rights reserved.
 //
 //  Choose "Create NSManagedObject Subclass…" from the Core Data editor menu
@@ -18,7 +18,7 @@
 @dynamic reference_name;
 @dynamic reference_text;
 @dynamic reference_updated;
-@dynamic user;
 @dynamic results_references;
+@dynamic user;
 
 @end

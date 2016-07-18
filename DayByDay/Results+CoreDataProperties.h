@@ -2,7 +2,7 @@
 //  Results+CoreDataProperties.h
 //  DayByDay
 //
-//  Created by Admin on 12.07.16.
+//  Created by Admin on 18.07.16.
 //  Copyright © 2016 Sevastyan Rakhimov. All rights reserved.
 //
 //  Choose "Create NSManagedObject Subclass…" from the Core Data editor menu
@@ -10,9 +10,6 @@
 //
 
 #import "Results.h"
-#import "Results_Relationships.h"
-#import "Results_References.h"
-#import "Tags_Results.h"
 
 NS_ASSUME_NONNULL_BEGIN
 

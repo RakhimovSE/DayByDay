@@ -2,14 +2,14 @@
 //  HotSpots.h
 //  DayByDay
 //
-//  Created by Admin on 03.04.16.
+//  Created by Admin on 18.07.16.
 //  Copyright © 2016 Sevastyan Rakhimov. All rights reserved.
 //
 
 #import <Foundation/Foundation.h>
 #import <CoreData/CoreData.h>
 
-@class HotSpotActivities, HotSpotCategories;
+@class HotSpotActivities, HotSpotCategories, Results;
 
 NS_ASSUME_NONNULL_BEGIN
 

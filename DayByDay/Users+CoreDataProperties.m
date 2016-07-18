@@ -2,7 +2,7 @@
 //  Users+CoreDataProperties.m
 //  DayByDay
 //
-//  Created by Admin on 11.07.16.
+//  Created by Admin on 18.07.16.
 //  Copyright © 2016 Sevastyan Rakhimov. All rights reserved.
 //
 //  Choose "Create NSManagedObject Subclass…" from the Core Data editor menu
@@ -16,6 +16,7 @@
 @dynamic user_avatar;
 @dynamic user_deleted;
 @dynamic user_email;
+@dynamic user_emailConfirmed;
 @dynamic user_energy;
 @dynamic user_id;
 @dynamic user_name;
@@ -23,13 +24,12 @@
 @dynamic user_registry;
 @dynamic user_score;
 @dynamic user_updated;
-@dynamic user_emailConfirmed;
 @dynamic hotSpotActivities;
 @dynamic hotSpotCategories;
 @dynamic locations;
 @dynamic references;
 @dynamic results;
-@dynamic users_socialNetworks;
 @dynamic tags;
+@dynamic users_socialNetworks;
 
 @end

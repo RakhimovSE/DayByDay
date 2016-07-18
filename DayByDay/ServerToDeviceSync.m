@@ -50,31 +50,32 @@ const int AMOUNT = 2;
 
 - (void)syncAllData:(NSDate *)lastSync {
     [self users:lastSync];
-    [self difficulties:lastSync];
-    [self energies:lastSync];
-    [self priorities:lastSync];
-    [self qualities:lastSync];
-    [self rates:lastSync];
     [self socialNetworks:lastSync];
-//    Добавить в БД и Core Data periodType_id
+    [self rates:lastSync];
+    [self hotSpotCategoriesDefault:lastSync];
+    [self hotSpotActivitiesDefault:lastSync];
+    [self priorities:lastSync];
+    [self energies:lastSync];
+    [self difficulties:lastSync];
+    [self qualities:lastSync];
     [self periodTypes:lastSync];
     
 //    Создается до того, как были созданы пользователи и соц. сети, возникает ошибка
-//    [self users_SocialNetworks:lastSync];
-    
-//    [self hotSpotActivities:lastSync];
-//    [self hotSpotActivitiesDefault:lastSync];
-//    [self hotSpotCategories:lastSync];
-//    [self hotSpotCategoriesDefault:lastSync];
-//    [self hotSpots:lastSync];
 //    [self hotSpotsDefault:lastSync];
+//    [self hotSpotCategories:lastSync];
+//    [self hotSpotActivities:lastSync];
+//    [self users_SocialNetworks:lastSync];
+//    [self tags:lastSync];
 //    [self locations:lastSync];
 //    [self references:lastSync];
+    
+//    [self hotSpots:lastSync];
+    
 //    [self results:lastSync];
-//    [self results_Relationships:lastSync];
-//    [self results_References:lastSync];
-//    [self tags:lastSync];
+    
 //    [self tags_Results:lastSync];
+//    [self results_References:lastSync];
+//    [self results_Relationships:lastSync];
 }
 
 #pragma mark Difficulties
@@ -162,10 +163,30 @@ const int AMOUNT = 2;
 
 #pragma mark HotSpotActivitiesDefault
 - (void)hotSpotActivitiesDefault:(NSDate *)lastUpdatedDate {
-    
+    NSDictionary *entityAttributeNames = [[NSDictionary alloc] initWithObjectsAndKeys:
+                                          @"HotSpotActivitiesDefault", @"entityName",
+                                          @"hotSpotActivityDefault_id", @"entityId",
+                                          @"", @"entityId2",
+                                          @"hotSpotActivityDefault_updated", @"entityUpdated",
+                                          @"hotSpotActivityDefault_deleted", @"entityDeleted", nil];
+    SEL responseHandler = @selector(hotSpotActivitiesDefaultHandler:EntityAttributeNames:);
+    [self createFirstPartOfRequestAndCallRequestMethod:entityAttributeNames LastUpdatedDate:lastUpdatedDate ResponseHandler:responseHandler];
 }
 - (void)hotSpotActivitiesDefaultHandler:(id)serverData EntityAttributeNames:(NSDictionary *)entityAttributeNames {
+    void (^setItem )(id, NSArray *) = ^(id localItem, NSArray *serverItem) {
+        if (![localItem isKindOfClass:[HotSpotActivitiesDefault class]]) return;
+        HotSpotActivitiesDefault *localHotSpotActivityDefault = localItem;
+        localHotSpotActivityDefault.hotSpotActivityDefault_id = [[serverItem valueForKey:@"hotSpotActivityDefault_id"] intValue];
+        localHotSpotActivityDefault.hotSpotActivityDefault_name = [serverItem valueForKey:@"hotSpotActivityDefault_name"];
+        id hotSpotActivityDefaultDescription = [serverItem valueForKey:@"hotSpotActivityDefault_description"];
+        localHotSpotActivityDefault.hotSpotActivityDefault_description = [hotSpotActivityDefaultDescription isKindOfClass:[NSString class]] ? hotSpotActivityDefaultDescription : nil;
+        NSDate *hotSpotActivityDefaultUpdated = [API mySqlStringToDate:[serverItem valueForKey:@"hotSpotActivityDefault_updated"]];
+        localHotSpotActivityDefault.hotSpotActivityDefault_updated = [hotSpotActivityDefaultUpdated timeIntervalSinceReferenceDate];
+        localHotSpotActivityDefault.hotSpotActivityDefault_deleted = [[serverItem valueForKey:@"hotSpotActivityDefault_deleted"] boolValue];
+    };
     
+    SEL nextBlockOfItems = @selector(hotSpotActivitiesDefault:);
+    [self handleServerData:serverData SetItemMethod:setItem NextBlockOfItemsMethod:nextBlockOfItems EntityAttributeNames:entityAttributeNames];
 }
 
 #pragma mark HotSpotCategories
@@ -178,10 +199,30 @@ const int AMOUNT = 2;
 
 #pragma mark HotSpotCategoriesDefault
 - (void)hotSpotCategoriesDefault:(NSDate *)lastUpdatedDate {
-    
+    NSDictionary *entityAttributeNames = [[NSDictionary alloc] initWithObjectsAndKeys:
+                                          @"HotSpotCategoriesDefault", @"entityName",
+                                          @"hotSpotCategoryDefault_id", @"entityId",
+                                          @"", @"entityId2",
+                                          @"hotSpotCategoryDefault_updated", @"entityUpdated",
+                                          @"hotSpotCategoryDefault_deleted", @"entityDeleted", nil];
+    SEL responseHandler = @selector(hotSpotCategoriesDefaultHandler:EntityAttributeNames:);
+    [self createFirstPartOfRequestAndCallRequestMethod:entityAttributeNames LastUpdatedDate:lastUpdatedDate ResponseHandler:responseHandler];
 }
 - (void)hotSpotCategoriesDefaultHandler:(id)serverData EntityAttributeNames:(NSDictionary *)entityAttributeNames {
+    void (^setItem )(id, NSArray *) = ^(id localItem, NSArray *serverItem) {
+        if (![localItem isKindOfClass:[HotSpotCategoriesDefault class]]) return;
+        HotSpotCategoriesDefault *localHotSpotCategoryDefault = localItem;
+        localHotSpotCategoryDefault.hotSpotCategoryDefault_id = [[serverItem valueForKey:@"hotSpotCategoryDefault_id"] intValue];
+        localHotSpotCategoryDefault.hotSpotCategoryDefault_name = [serverItem valueForKey:@"hotSpotCategoryDefault_name"];
+        id hotSpotCategoryDefaultDescription = [serverItem valueForKey:@"hotSpotCategoryDefault_description"];
+        localHotSpotCategoryDefault.hotSpotCategoryDefault_description = [hotSpotCategoryDefaultDescription isKindOfClass:[NSString class]] ? hotSpotCategoryDefaultDescription : nil;
+        NSDate *hotSpotCategoryDefaultUpdated = [API mySqlStringToDate:[serverItem valueForKey:@"hotSpotCategoryDefault_updated"]];
+        localHotSpotCategoryDefault.hotSpotCategoryDefault_updated = [hotSpotCategoryDefaultUpdated timeIntervalSinceReferenceDate];
+        localHotSpotCategoryDefault.hotSpotCategoryDefault_deleted = [[serverItem valueForKey:@"hotSpotCategoryDefault_deleted"] boolValue];
+    };
     
+    SEL nextBlockOfItems = @selector(hotSpotCategoriesDefault:);
+    [self handleServerData:serverData SetItemMethod:setItem NextBlockOfItemsMethod:nextBlockOfItems EntityAttributeNames:entityAttributeNames];
 }
 
 #pragma mark HotSpots
@@ -194,10 +235,35 @@ const int AMOUNT = 2;
 
 #pragma mark HotSpotsDefault
 - (void)hotSpotsDefault:(NSDate *)lastUpdatedDate {
-    
+    NSDictionary *entityAttributeNames = [[NSDictionary alloc] initWithObjectsAndKeys:
+                                          @"HotSpotsDefault", @"entityName",
+                                          @"hotSpotDefault_id", @"entityId",
+                                          @"", @"entityId2",
+                                          @"hotSpotDefault_updated", @"entityUpdated",
+                                          @"hotSpotDefault_deleted", @"entityDeleted", nil];
+    SEL responseHandler = @selector(hotSpotsDefaultHandler:EntityAttributeNames:);
+    [self createFirstPartOfRequestAndCallRequestMethod:entityAttributeNames LastUpdatedDate:lastUpdatedDate ResponseHandler:responseHandler];
 }
 - (void)hotSpotsDefaultHandler:(id)serverData EntityAttributeNames:(NSDictionary *)entityAttributeNames {
+    void (^setItem )(id, NSArray *) = ^(id localItem, NSArray *serverItem) {
+        if (![localItem isKindOfClass:[HotSpotsDefault class]]) return;
+        HotSpotsDefault *localHotSpotDefault = localItem;
+        localHotSpotDefault.hotSpotDefault_id = [[serverItem valueForKey:@"hotSpotDefault_id"] intValue];
+        HotSpotCategoriesDefault *hotSpotCategoryDefault = (HotSpotCategoriesDefault *)
+            [Variables getVariable:@"HotSpotCategoriesDefault"
+                       EntityIdKey:@"hotSpotCategoryDefault_id" EntityIdValue:[serverItem valueForKey:@"fk_hotSpotCategoryDefault_id"]];
+        localHotSpotDefault.hotSpotCategoryDefault = hotSpotCategoryDefault;
+        HotSpotActivitiesDefault *hotSpotActivityDefault = (HotSpotActivitiesDefault *)
+        [Variables getVariable:@"HotSpotActivitiesDefault"
+                   EntityIdKey:@"hotSpotActivityDefault_id" EntityIdValue:[serverItem valueForKey:@"fk_hotSpotActivityDefault_id"]];
+        localHotSpotDefault.hotSpotActivityDefault = hotSpotActivityDefault;
+        NSDate *hotSpotDefaultUpdated = [API mySqlStringToDate:[serverItem valueForKey:@"hotSpotDefault_updated"]];
+        localHotSpotDefault.hotSpotDefault_updated = [hotSpotDefaultUpdated timeIntervalSinceReferenceDate];
+        localHotSpotDefault.hotSpotDefault_deleted = [[serverItem valueForKey:@"hotSpotDefault_deleted"] boolValue];
+    };
     
+    SEL nextBlockOfItems = @selector(hotSpotsDefault:);
+    [self handleServerData:serverData SetItemMethod:setItem NextBlockOfItemsMethod:nextBlockOfItems EntityAttributeNames:entityAttributeNames];
 }
 
 #pragma mark Locations
@@ -212,7 +278,7 @@ const int AMOUNT = 2;
 - (void)periodTypes:(NSDate *)lastUpdatedDate {
     NSDictionary *entityAttributeNames = [[NSDictionary alloc] initWithObjectsAndKeys:
                                           @"PeriodTypes", @"entityName",
-                                          @"periodType_length", @"entityId",
+                                          @"periodType_id", @"entityId",
                                           @"", @"entityId2",
                                           @"periodType_updated", @"entityUpdated",
                                           @"periodType_deleted", @"entityDeleted", nil];
@@ -223,6 +289,7 @@ const int AMOUNT = 2;
     void (^setItem )(id, NSArray *) = ^(id localItem, NSArray *serverItem) {
         if (![localItem isKindOfClass:[PeriodTypes class]]) return;
         PeriodTypes *localPeriodType = localItem;
+        localPeriodType.periodType_id = [[serverItem valueForKey:@"periodType_id"] intValue];
         NSDate *periodType_length = [API mySqlStringToDate:[serverItem valueForKey:@"periodType_length"]];
         localPeriodType.periodType_length = [periodType_length timeIntervalSinceReferenceDate];
         localPeriodType.periodType_name = [serverItem valueForKey:@"periodType_name"];
@@ -495,28 +562,23 @@ const int AMOUNT = 2;
     
     id lastElement = getLastElement();
     
-    NSString *(^getLastId)(NSString *) = ^(NSString *entityId){
-//        КОСТЫЛИ
-        NSString *result = [entityId isEqualToString:@"periodType_length"] ? @"0000-00-00" : @"0";
+    long (^getLastId)(NSString *) = ^(NSString *entityId){
+        long result = -1000;
         if (!lastElement || !entityId) return result;
         if ([entityId rangeOfString:@"."].location == NSNotFound)
-            return [entityId isEqualToString:@"periodType_length"] ?
-                    [API dateToMySqlString:[lastElement valueForKey:entityId]] :
-                    [[lastElement valueForKey:entityId] stringValue];
+            return [[lastElement valueForKey:entityId] longValue];
         NSArray *parts = [entityId componentsSeparatedByString:@"."];
-        return [[[lastElement valueForKey:parts[0]] valueForKey:parts[1]] stringValue];
+        return [[[lastElement valueForKey:parts[0]] valueForKey:parts[1]] longValue];
     };
-    NSString *lastId = getLastId(localEntityId);
-    NSString *lastId2 = getLastId(localEntityId2);
+    long lastId = getLastId(localEntityId);
+    long lastId2 = getLastId(localEntityId2);
     
     NSMutableDictionary *params = [[NSMutableDictionary alloc] initWithObjectsAndKeys:
                                                                 entityName, @"table_name",
                                    [API dateToMySqlString:lastUpdatedDate], @"last_updated",
-                                                                    lastId, @"last_id", nil];
-    if (entityId2) [params setObject:lastId2 forKey:entityId2];
-    [self downloadDataFromServer:params
-                 ResponseHandler:responseHandler
-            EntityAttributeNames:entityAttributeNames];
+                                [NSString stringWithFormat:@"%ld", lastId], @"last_id", nil];
+    if (entityId2) [params setObject:[NSString stringWithFormat:@"%ld", lastId2] forKey:entityId2];
+    [self downloadDataFromServer:params ResponseHandler:responseHandler EntityAttributeNames:entityAttributeNames];
 }
 
 - (void)downloadDataFromServer:(NSMutableDictionary *)params ResponseHandler:(SEL)responseHandler
@@ -549,10 +611,8 @@ const int AMOUNT = 2;
     NSString *entityDeleted = entityAttributeNames[@"entityDeleted"];
     
     for (NSArray *serverItem in serverData) {
-//        NSNumber *itemId = [NSNumber numberWithInteger:[[serverItem valueForKey:entityId] integerValue]];
-//        NSNumber *itemId2 = entityId2 ? [NSNumber numberWithInteger:[[serverItem valueForKey:entityId2] integerValue]] : nil;
-        NSString *itemId = [serverItem valueForKey:entityId];
-        NSString *itemId2 = [serverItem valueForKey:entityId2];
+        NSNumber *itemId = [NSNumber numberWithInteger:[[serverItem valueForKey:entityId] integerValue]];
+        NSNumber *itemId2 = entityId2 ? [NSNumber numberWithInteger:[[serverItem valueForKey:entityId2] integerValue]] : nil;
         id (^getLocalItem)(void) = ^{
             id result = nil;
             NSFetchRequest *request = [[NSFetchRequest alloc] init];
@@ -565,10 +625,8 @@ const int AMOUNT = 2;
             NSString *localEntityId2 = entityAttributeNames[@"localEntityId2"];
             if (!localEntityId2) localEntityId2 = entityId2;
             NSPredicate *predicate;
-//            КОСТЫЛИ
             if (!localEntityId2)
-                predicate = [NSPredicate predicateWithFormat:@"%K = %@", localEntityId, ([localEntityId isEqualToString:@"periodType_length"] ?
-                                                                                         [API mySqlStringToDate:localEntityId] : localEntityId)];
+                predicate = [NSPredicate predicateWithFormat:@"%K = %@", localEntityId, itemId];
             else
                 predicate = [NSPredicate predicateWithFormat:@"%K = %@ && %K = %@", localEntityId, itemId, localEntityId2, itemId2];
             [request setPredicate:predicate];

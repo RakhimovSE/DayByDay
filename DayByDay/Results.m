@@ -2,7 +2,7 @@
 //  Results.m
 //  DayByDay
 //
-//  Created by Admin on 03.04.16.
+//  Created by Admin on 18.07.16.
 //  Copyright © 2016 Sevastyan Rakhimov. All rights reserved.
 //
 
@@ -14,8 +14,9 @@
 #import "PeriodTypes.h"
 #import "Priorities.h"
 #import "Qualities.h"
-#import "References.h"
-#import "Tags.h"
+#import "Results_References.h"
+#import "Results_Relationships.h"
+#import "Tags_Results.h"
 #import "Users.h"
 
 @implementation Results

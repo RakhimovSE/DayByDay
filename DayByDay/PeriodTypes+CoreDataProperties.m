@@ -2,7 +2,7 @@
 //  PeriodTypes+CoreDataProperties.m
 //  DayByDay
 //
-//  Created by Admin on 11.07.16.
+//  Created by Admin on 18.07.16.
 //  Copyright © 2016 Sevastyan Rakhimov. All rights reserved.
 //
 //  Choose "Create NSManagedObject Subclass…" from the Core Data editor menu
@@ -17,6 +17,7 @@
 @dynamic periodType_length;
 @dynamic periodType_name;
 @dynamic periodType_updated;
+@dynamic periodType_id;
 @dynamic results;
 
 @end

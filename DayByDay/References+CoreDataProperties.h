@@ -2,7 +2,7 @@
 //  References+CoreDataProperties.h
 //  DayByDay
 //
-//  Created by Admin on 11.07.16.
+//  Created by Admin on 18.07.16.
 //  Copyright © 2016 Sevastyan Rakhimov. All rights reserved.
 //
 //  Choose "Create NSManagedObject Subclass…" from the Core Data editor menu
@@ -10,7 +10,6 @@
 //
 
 #import "References.h"
-#import "Results_References.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
@@ -21,8 +20,8 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nullable, nonatomic, retain) NSString *reference_name;
 @property (nullable, nonatomic, retain) NSString *reference_text;
 @property (nonatomic) NSTimeInterval reference_updated;
-@property (nullable, nonatomic, retain) Users *user;
 @property (nullable, nonatomic, retain) NSSet<Results_References *> *results_references;
+@property (nullable, nonatomic, retain) Users *user;
 
 @end
 
