@@ -35,16 +35,15 @@
 #import "Variables.h"
 
 @implementation ServerToDeviceSync {
-    NSDate *lastSyncDateBeforeStart;
     DataController *dataController;
     NSArray *syncWaves;
+    NSDictionary *lastElementParamsOnFirstSync;
 }
 
-const int AMOUNT = 100;
+const int AMOUNT = 1000;
 
 - (id)initWithLastSync:(NSDate *)lastSync {
     if (self = [super init]) {
-        lastSyncDateBeforeStart = lastSync;
         dataController = [[DataController alloc] init];
         NSMutableDictionary *syncWave0 = [NSMutableDictionary dictionaryWithObjectsAndKeys: [NSNumber numberWithBool:FALSE], @"users:", nil];
         NSMutableDictionary *syncWave1 = [NSMutableDictionary dictionaryWithObjectsAndKeys:
@@ -72,6 +71,7 @@ const int AMOUNT = 100;
                                    [NSNumber numberWithBool:FALSE], @"results_References:",
                                    [NSNumber numberWithBool:FALSE], @"results_Relationships:", nil];
         syncWaves = [NSArray arrayWithObjects:syncWave0, syncWave1, syncWave2, syncWave3, syncWave4, syncWave5, nil];
+        lastElementParamsOnFirstSync = [NSDictionary dictionaryWithObjectsAndKeys:lastSync, @"last_updated", nil];
         return self;
     }
     return nil;
@@ -81,48 +81,55 @@ const int AMOUNT = 100;
     [self syncWave0];
 }
 
+#pragma mark - Sync Waves
 - (void)syncWave0 {
-    [self users:lastSyncDateBeforeStart];
+    [self users:lastElementParamsOnFirstSync];
 }
 
 - (void)syncWave1 {
-    [self socialNetworks:lastSyncDateBeforeStart];
-    [self rates:lastSyncDateBeforeStart];
-    [self hotSpotCategoriesDefault:lastSyncDateBeforeStart];
-    [self hotSpotActivitiesDefault:lastSyncDateBeforeStart];
-    [self priorities:lastSyncDateBeforeStart];
-    [self energies:lastSyncDateBeforeStart];
-    [self difficulties:lastSyncDateBeforeStart];
-    [self qualities:lastSyncDateBeforeStart];
-    [self periodTypes:lastSyncDateBeforeStart];
+    [self socialNetworks:lastElementParamsOnFirstSync];
+    [self rates:lastElementParamsOnFirstSync];
+    [self hotSpotCategoriesDefault:lastElementParamsOnFirstSync];
+    [self hotSpotActivitiesDefault:lastElementParamsOnFirstSync];
+    [self priorities:lastElementParamsOnFirstSync];
+    [self energies:lastElementParamsOnFirstSync];
+    [self difficulties:lastElementParamsOnFirstSync];
+    [self qualities:lastElementParamsOnFirstSync];
+    [self periodTypes:lastElementParamsOnFirstSync];
 }
 
 - (void)syncWave2 {
-    [self hotSpotsDefault:lastSyncDateBeforeStart];
-    [self hotSpotCategories:lastSyncDateBeforeStart];
-    [self hotSpotActivities:lastSyncDateBeforeStart];
-    [self users_SocialNetworks:lastSyncDateBeforeStart];
-    [self tags:lastSyncDateBeforeStart];
-    [self locations:lastSyncDateBeforeStart];
-    [self references:lastSyncDateBeforeStart];
+    [self hotSpotsDefault:lastElementParamsOnFirstSync];
+    [self hotSpotCategories:lastElementParamsOnFirstSync];
+    [self hotSpotActivities:lastElementParamsOnFirstSync];
+    [self users_SocialNetworks:lastElementParamsOnFirstSync];
+    [self tags:lastElementParamsOnFirstSync];
+    [self locations:lastElementParamsOnFirstSync];
+    [self references:lastElementParamsOnFirstSync];
 }
 
 - (void)syncWave3 {
-    [self hotSpots:lastSyncDateBeforeStart];
+    [self hotSpots:lastElementParamsOnFirstSync];
 }
 
 - (void)syncWave4 {
-    [self results:lastSyncDateBeforeStart];
+    [self results:lastElementParamsOnFirstSync];
 }
 
 - (void)syncWave5 {
-    [self tags_Results:lastSyncDateBeforeStart];
-    [self results_References:lastSyncDateBeforeStart];
-    [self results_Relationships:lastSyncDateBeforeStart];
+    [self tags_Results:lastElementParamsOnFirstSync];
+    [self results_References:lastElementParamsOnFirstSync];
+    [self results_Relationships:lastElementParamsOnFirstSync];
+}
+
+// Sync is over
+- (void)syncWave6 {
+    [dataController.app saveContext];
+    [Constants showAlertMessage:@"Sync Completed"];
 }
 
 #pragma mark Difficulties
-- (void)difficulties:(NSDate *)lastUpdatedDate {
+- (void)difficulties:(NSDictionary *)lastElementParams {
     NSDictionary *entityAttributeNames = [NSDictionary dictionaryWithObjectsAndKeys:
                                           @"Difficulties", @"entityName",
                                           @"difficulty_level", @"entityId",
@@ -130,7 +137,7 @@ const int AMOUNT = 100;
                                           @"difficulty_updated", @"entityUpdated",
                                           @"difficulty_deleted", @"entityDeleted", nil];
     SEL responseHandler = @selector(difficultiesHandler:EntityAttributeNames:);
-    [self createFirstPartOfRequestAndCallRequestMethod:entityAttributeNames LastUpdatedDate:lastUpdatedDate ResponseHandler:responseHandler];
+    [self createFirstPartOfRequestAndCallRequestMethod:entityAttributeNames LastElementParams:lastElementParams ResponseHandler:responseHandler];
 }
 - (void)difficultiesHandler:(id)serverData EntityAttributeNames:(NSDictionary *)entityAttributeNames {
     void (^setItem )(id, NSArray *) = ^(id localItem, NSArray *serverItem) {
@@ -148,7 +155,7 @@ const int AMOUNT = 100;
 }
 
 #pragma mark Energies
-- (void)energies:(NSDate *)lastUpdatedDate {
+- (void)energies:(NSDictionary *)lastElementParams {
     
     NSDictionary *entityAttributeNames = [NSDictionary dictionaryWithObjectsAndKeys:
                                           @"Energies", @"entityName",
@@ -157,7 +164,7 @@ const int AMOUNT = 100;
                                           @"energy_updated", @"entityUpdated",
                                           @"energy_deleted", @"entityDeleted", nil];
     SEL responseHandler = @selector(energiesHandler:EntityAttributeNames:);
-    [self createFirstPartOfRequestAndCallRequestMethod:entityAttributeNames LastUpdatedDate:lastUpdatedDate ResponseHandler:responseHandler];
+    [self createFirstPartOfRequestAndCallRequestMethod:entityAttributeNames LastElementParams:lastElementParams ResponseHandler:responseHandler];
 }
 - (void)energiesHandler:(id)serverData EntityAttributeNames:(NSDictionary *)entityAttributeNames {
     void (^setItem )(id, NSArray *) = ^(id localItem, NSArray *serverItem) {
@@ -175,7 +182,7 @@ const int AMOUNT = 100;
 }
 
 #pragma mark HotSpotActivities
-- (void)hotSpotActivities:(NSDate *)lastUpdatedDate {
+- (void)hotSpotActivities:(NSDictionary *)lastElementParams {
     NSDictionary *entityAttributeNames = [NSDictionary dictionaryWithObjectsAndKeys:
                                           @"HotSpotActivities", @"entityName",
                                           @"hotSpotActivity_id", @"entityId",
@@ -183,7 +190,7 @@ const int AMOUNT = 100;
                                           @"hotSpotActivity_updated", @"entityUpdated",
                                           @"hotSpotActivity_deleted", @"entityDeleted", nil];
     SEL responseHandler = @selector(hotSpotActivitiesHandler:EntityAttributeNames:);
-    [self createFirstPartOfRequestAndCallRequestMethod:entityAttributeNames LastUpdatedDate:lastUpdatedDate ResponseHandler:responseHandler];
+    [self createFirstPartOfRequestAndCallRequestMethod:entityAttributeNames LastElementParams:lastElementParams ResponseHandler:responseHandler];
 }
 - (void)hotSpotActivitiesHandler:(id)serverData EntityAttributeNames:(NSDictionary *)entityAttributeNames {
     void (^setItem )(id, NSArray *) = ^(id localItem, NSArray *serverItem) {
@@ -208,7 +215,7 @@ const int AMOUNT = 100;
 }
 
 #pragma mark HotSpotActivitiesDefault
-- (void)hotSpotActivitiesDefault:(NSDate *)lastUpdatedDate {
+- (void)hotSpotActivitiesDefault:(NSDictionary *)lastElementParams {
     NSDictionary *entityAttributeNames = [NSDictionary dictionaryWithObjectsAndKeys:
                                           @"HotSpotActivitiesDefault", @"entityName",
                                           @"hotSpotActivityDefault_id", @"entityId",
@@ -216,7 +223,7 @@ const int AMOUNT = 100;
                                           @"hotSpotActivityDefault_updated", @"entityUpdated",
                                           @"hotSpotActivityDefault_deleted", @"entityDeleted", nil];
     SEL responseHandler = @selector(hotSpotActivitiesDefaultHandler:EntityAttributeNames:);
-    [self createFirstPartOfRequestAndCallRequestMethod:entityAttributeNames LastUpdatedDate:lastUpdatedDate ResponseHandler:responseHandler];
+    [self createFirstPartOfRequestAndCallRequestMethod:entityAttributeNames LastElementParams:lastElementParams ResponseHandler:responseHandler];
 }
 - (void)hotSpotActivitiesDefaultHandler:(id)serverData EntityAttributeNames:(NSDictionary *)entityAttributeNames {
     void (^setItem )(id, NSArray *) = ^(id localItem, NSArray *serverItem) {
@@ -237,7 +244,7 @@ const int AMOUNT = 100;
 }
 
 #pragma mark HotSpotCategories
-- (void)hotSpotCategories:(NSDate *)lastUpdatedDate {
+- (void)hotSpotCategories:(NSDictionary *)lastElementParams {
     NSDictionary *entityAttributeNames = [NSDictionary dictionaryWithObjectsAndKeys:
                                           @"HotSpotCategories", @"entityName",
                                           @"hotSpotCategory_id", @"entityId",
@@ -245,7 +252,7 @@ const int AMOUNT = 100;
                                           @"hotSpotCategory_updated", @"entityUpdated",
                                           @"hotSpotCategory_deleted", @"entityDeleted", nil];
     SEL responseHandler = @selector(hotSpotCategoriesHandler:EntityAttributeNames:);
-    [self createFirstPartOfRequestAndCallRequestMethod:entityAttributeNames LastUpdatedDate:lastUpdatedDate ResponseHandler:responseHandler];
+    [self createFirstPartOfRequestAndCallRequestMethod:entityAttributeNames LastElementParams:lastElementParams ResponseHandler:responseHandler];
 }
 - (void)hotSpotCategoriesHandler:(id)serverData EntityAttributeNames:(NSDictionary *)entityAttributeNames {
     void (^setItem )(id, NSArray *) = ^(id localItem, NSArray *serverItem) {
@@ -271,7 +278,7 @@ const int AMOUNT = 100;
 }
 
 #pragma mark HotSpotCategoriesDefault
-- (void)hotSpotCategoriesDefault:(NSDate *)lastUpdatedDate {
+- (void)hotSpotCategoriesDefault:(NSDictionary *)lastElementParams {
     NSDictionary *entityAttributeNames = [NSDictionary dictionaryWithObjectsAndKeys:
                                           @"HotSpotCategoriesDefault", @"entityName",
                                           @"hotSpotCategoryDefault_id", @"entityId",
@@ -279,7 +286,7 @@ const int AMOUNT = 100;
                                           @"hotSpotCategoryDefault_updated", @"entityUpdated",
                                           @"hotSpotCategoryDefault_deleted", @"entityDeleted", nil];
     SEL responseHandler = @selector(hotSpotCategoriesDefaultHandler:EntityAttributeNames:);
-    [self createFirstPartOfRequestAndCallRequestMethod:entityAttributeNames LastUpdatedDate:lastUpdatedDate ResponseHandler:responseHandler];
+    [self createFirstPartOfRequestAndCallRequestMethod:entityAttributeNames LastElementParams:lastElementParams ResponseHandler:responseHandler];
 }
 - (void)hotSpotCategoriesDefaultHandler:(id)serverData EntityAttributeNames:(NSDictionary *)entityAttributeNames {
     void (^setItem )(id, NSArray *) = ^(id localItem, NSArray *serverItem) {
@@ -300,7 +307,7 @@ const int AMOUNT = 100;
 }
 
 #pragma mark HotSpots
-- (void)hotSpots:(NSDate *)lastUpdatedDate {
+- (void)hotSpots:(NSDictionary *)lastElementParams {
     NSDictionary *entityAttributeNames = [NSDictionary dictionaryWithObjectsAndKeys:
                                           @"HotSpots", @"entityName",
                                           @"hotSpot_id", @"entityId",
@@ -308,7 +315,7 @@ const int AMOUNT = 100;
                                           @"hotSpot_updated", @"entityUpdated",
                                           @"hotSpot_deleted", @"entityDeleted", nil];
     SEL responseHandler = @selector(hotSpotsHandler:EntityAttributeNames:);
-    [self createFirstPartOfRequestAndCallRequestMethod:entityAttributeNames LastUpdatedDate:lastUpdatedDate ResponseHandler:responseHandler];
+    [self createFirstPartOfRequestAndCallRequestMethod:entityAttributeNames LastElementParams:lastElementParams ResponseHandler:responseHandler];
 }
 - (void)hotSpotsHandler:(id)serverData EntityAttributeNames:(NSDictionary *)entityAttributeNames {
     void (^setItem )(id, NSArray *) = ^(id localItem, NSArray *serverItem) {
@@ -338,7 +345,7 @@ const int AMOUNT = 100;
 }
 
 #pragma mark HotSpotsDefault
-- (void)hotSpotsDefault:(NSDate *)lastUpdatedDate {
+- (void)hotSpotsDefault:(NSDictionary *)lastElementParams {
     NSDictionary *entityAttributeNames = [NSDictionary dictionaryWithObjectsAndKeys:
                                           @"HotSpotsDefault", @"entityName",
                                           @"hotSpotDefault_id", @"entityId",
@@ -346,7 +353,7 @@ const int AMOUNT = 100;
                                           @"hotSpotDefault_updated", @"entityUpdated",
                                           @"hotSpotDefault_deleted", @"entityDeleted", nil];
     SEL responseHandler = @selector(hotSpotsDefaultHandler:EntityAttributeNames:);
-    [self createFirstPartOfRequestAndCallRequestMethod:entityAttributeNames LastUpdatedDate:lastUpdatedDate ResponseHandler:responseHandler];
+    [self createFirstPartOfRequestAndCallRequestMethod:entityAttributeNames LastElementParams:lastElementParams ResponseHandler:responseHandler];
 }
 - (void)hotSpotsDefaultHandler:(id)serverData EntityAttributeNames:(NSDictionary *)entityAttributeNames {
     void (^setItem )(id, NSArray *) = ^(id localItem, NSArray *serverItem) {
@@ -371,7 +378,7 @@ const int AMOUNT = 100;
 }
 
 #pragma mark Locations
-- (void)locations:(NSDate *)lastUpdatedDate {
+- (void)locations:(NSDictionary *)lastElementParams {
     NSDictionary *entityAttributeNames = [NSDictionary dictionaryWithObjectsAndKeys:
                                           @"Locations", @"entityName",
                                           @"location_id", @"entityId",
@@ -379,7 +386,7 @@ const int AMOUNT = 100;
                                           @"location_updated", @"entityUpdated",
                                           @"location_deleted", @"entityDeleted", nil];
     SEL responseHandler = @selector(locationsHandler:EntityAttributeNames:);
-    [self createFirstPartOfRequestAndCallRequestMethod:entityAttributeNames LastUpdatedDate:lastUpdatedDate ResponseHandler:responseHandler];
+    [self createFirstPartOfRequestAndCallRequestMethod:entityAttributeNames LastElementParams:lastElementParams ResponseHandler:responseHandler];
 }
 - (void)locationsHandler:(id)serverData EntityAttributeNames:(NSDictionary *)entityAttributeNames {
     void (^setItem )(id, NSArray *) = ^(id localItem, NSArray *serverItem) {
@@ -409,7 +416,7 @@ const int AMOUNT = 100;
 }
 
 #pragma mark PeriodTypes
-- (void)periodTypes:(NSDate *)lastUpdatedDate {
+- (void)periodTypes:(NSDictionary *)lastElementParams {
     NSDictionary *entityAttributeNames = [NSDictionary dictionaryWithObjectsAndKeys:
                                           @"PeriodTypes", @"entityName",
                                           @"periodType_id", @"entityId",
@@ -417,7 +424,7 @@ const int AMOUNT = 100;
                                           @"periodType_updated", @"entityUpdated",
                                           @"periodType_deleted", @"entityDeleted", nil];
     SEL responseHandler = @selector(periodTypesHandler:EntityAttributeNames:);
-    [self createFirstPartOfRequestAndCallRequestMethod:entityAttributeNames LastUpdatedDate:lastUpdatedDate ResponseHandler:responseHandler];
+    [self createFirstPartOfRequestAndCallRequestMethod:entityAttributeNames LastElementParams:lastElementParams ResponseHandler:responseHandler];
 }
 - (void)periodTypesHandler:(id)serverData EntityAttributeNames:(NSDictionary *)entityAttributeNames {
     void (^setItem )(id, NSArray *) = ^(id localItem, NSArray *serverItem) {
@@ -437,7 +444,7 @@ const int AMOUNT = 100;
 }
 
 #pragma mark Priorities
-- (void)priorities:(NSDate *)lastUpdatedDate {
+- (void)priorities:(NSDictionary *)lastElementParams {
     NSDictionary *entityAttributeNames = [NSDictionary dictionaryWithObjectsAndKeys:
                                           @"Priorities", @"entityName",
                                           @"priority_level", @"entityId",
@@ -445,7 +452,7 @@ const int AMOUNT = 100;
                                           @"priority_updated", @"entityUpdated",
                                           @"priority_deleted", @"entityDeleted", nil];
     SEL responseHandler = @selector(prioritiesHandler:EntityAttributeNames:);
-    [self createFirstPartOfRequestAndCallRequestMethod:entityAttributeNames LastUpdatedDate:lastUpdatedDate ResponseHandler:responseHandler];
+    [self createFirstPartOfRequestAndCallRequestMethod:entityAttributeNames LastElementParams:lastElementParams ResponseHandler:responseHandler];
 }
 - (void)prioritiesHandler:(id)serverData EntityAttributeNames:(NSDictionary *)entityAttributeNames {
     void (^setItem )(id, NSArray *) = ^(id localItem, NSArray *serverItem) {
@@ -463,7 +470,7 @@ const int AMOUNT = 100;
 }
 
 #pragma mark Qualities
-- (void)qualities:(NSDate *)lastUpdatedDate {
+- (void)qualities:(NSDictionary *)lastElementParams {
     NSDictionary *entityAttributeNames = [NSDictionary dictionaryWithObjectsAndKeys:
                                           @"Qualities", @"entityName",
                                           @"quality_level", @"entityId",
@@ -471,7 +478,7 @@ const int AMOUNT = 100;
                                           @"quality_updated", @"entityUpdated",
                                           @"quality_deleted", @"entityDeleted", nil];
     SEL responseHandler = @selector(qualitiesHandler:EntityAttributeNames:);
-    [self createFirstPartOfRequestAndCallRequestMethod:entityAttributeNames LastUpdatedDate:lastUpdatedDate ResponseHandler:responseHandler];
+    [self createFirstPartOfRequestAndCallRequestMethod:entityAttributeNames LastElementParams:lastElementParams ResponseHandler:responseHandler];
 }
 - (void)qualitiesHandler:(id)serverData EntityAttributeNames:(NSDictionary *)entityAttributeNames {
     void (^setItem )(id, NSArray *) = ^(id localItem, NSArray *serverItem) {
@@ -489,7 +496,7 @@ const int AMOUNT = 100;
 }
 
 #pragma mark Rates
-- (void)rates:(NSDate *)lastUpdatedDate {
+- (void)rates:(NSDictionary *)lastElementParams {
     NSDictionary *entityAttributeNames = [NSDictionary dictionaryWithObjectsAndKeys:
                                           @"Rates", @"entityName",
                                           @"rate_level", @"entityId",
@@ -497,7 +504,7 @@ const int AMOUNT = 100;
                                           @"rate_updated", @"entityUpdated",
                                           @"rate_deleted", @"entityDeleted", nil];
     SEL responseHandler = @selector(ratesHandler:EntityAttributeNames:);
-    [self createFirstPartOfRequestAndCallRequestMethod:entityAttributeNames LastUpdatedDate:lastUpdatedDate ResponseHandler:responseHandler];
+    [self createFirstPartOfRequestAndCallRequestMethod:entityAttributeNames LastElementParams:lastElementParams ResponseHandler:responseHandler];
 }
 - (void)ratesHandler:(id)serverData EntityAttributeNames:(NSDictionary *)entityAttributeNames {
     void (^setItem )(id, NSArray *) = ^(id localItem, NSArray *serverItem) {
@@ -516,7 +523,7 @@ const int AMOUNT = 100;
 }
 
 #pragma mark References
-- (void)references:(NSDate *)lastUpdatedDate {
+- (void)references:(NSDictionary *)lastElementParams {
     NSDictionary *entityAttributeNames = [NSDictionary dictionaryWithObjectsAndKeys:
                                           @"References", @"entityName",
                                           @"reference_id", @"entityId",
@@ -524,7 +531,7 @@ const int AMOUNT = 100;
                                           @"reference_updated", @"entityUpdated",
                                           @"reference_deleted", @"entityDeleted", nil];
     SEL responseHandler = @selector(referencesHandler:EntityAttributeNames:);
-    [self createFirstPartOfRequestAndCallRequestMethod:entityAttributeNames LastUpdatedDate:lastUpdatedDate ResponseHandler:responseHandler];
+    [self createFirstPartOfRequestAndCallRequestMethod:entityAttributeNames LastElementParams:lastElementParams ResponseHandler:responseHandler];
 }
 - (void)referencesHandler:(id)serverData EntityAttributeNames:(NSDictionary *)entityAttributeNames {
     void (^setItem )(id, NSArray *) = ^(id localItem, NSArray *serverItem) {
@@ -547,7 +554,7 @@ const int AMOUNT = 100;
 }
 
 #pragma mark Results
-- (void)results:(NSDate *)lastUpdatedDate {
+- (void)results:(NSDictionary *)lastElementParams {
     NSDictionary *entityAttributeNames = [NSDictionary dictionaryWithObjectsAndKeys:
                                           @"Results", @"entityName",
                                           @"result_id", @"entityId",
@@ -555,7 +562,7 @@ const int AMOUNT = 100;
                                           @"result_updated", @"entityUpdated",
                                           @"result_deleted", @"entityDeleted", nil];
     SEL responseHandler = @selector(resultsHandler:EntityAttributeNames:);
-    [self createFirstPartOfRequestAndCallRequestMethod:entityAttributeNames LastUpdatedDate:lastUpdatedDate ResponseHandler:responseHandler];
+    [self createFirstPartOfRequestAndCallRequestMethod:entityAttributeNames LastElementParams:lastElementParams ResponseHandler:responseHandler];
 }
 - (void)resultsHandler:(id)serverData EntityAttributeNames:(NSDictionary *)entityAttributeNames {
     void (^setItem )(id, NSArray *) = ^(id localItem, NSArray *serverItem) {
@@ -615,7 +622,7 @@ const int AMOUNT = 100;
 }
 
 #pragma mark Results_Relationships
-- (void)results_Relationships:(NSDate *)lastUpdatedDate {
+- (void)results_Relationships:(NSDictionary *)lastElementParams {
     NSDictionary *entityAttributeNames = [NSDictionary dictionaryWithObjectsAndKeys:
                                           @"Results_Relationships", @"entityName",
                                           @"fk_parentResult_id", @"entityId",
@@ -625,7 +632,7 @@ const int AMOUNT = 100;
                                           @"parentResult.result_id", @"localEntityId",
                                           @"childResult.result_id", @"localEntityId2", nil];
     SEL responseHandler = @selector(results_RelationshipsHandler:EntityAttributeNames:);
-    [self createFirstPartOfRequestAndCallRequestMethod:entityAttributeNames LastUpdatedDate:lastUpdatedDate ResponseHandler:responseHandler];
+    [self createFirstPartOfRequestAndCallRequestMethod:entityAttributeNames LastElementParams:lastElementParams ResponseHandler:responseHandler];
 }
 - (void)results_RelationshipsHandler:(id)serverData EntityAttributeNames:(NSDictionary *)entityAttributeNames {
     void (^setItem )(id, NSArray *) = ^(id localItem, NSArray *serverItem) {
@@ -647,7 +654,7 @@ const int AMOUNT = 100;
 }
 
 #pragma mark Results_References
-- (void)results_References:(NSDate *)lastUpdatedDate {
+- (void)results_References:(NSDictionary *)lastElementParams {
     NSDictionary *entityAttributeNames = [NSDictionary dictionaryWithObjectsAndKeys:
                                           @"Results_References", @"entityName",
                                           @"fk_result_id", @"entityId",
@@ -657,7 +664,7 @@ const int AMOUNT = 100;
                                           @"result.result_id", @"localEntityId",
                                           @"reference.reference_id", @"localEntityId2", nil];
     SEL responseHandler = @selector(results_ReferencesHandler:EntityAttributeNames:);
-    [self createFirstPartOfRequestAndCallRequestMethod:entityAttributeNames LastUpdatedDate:lastUpdatedDate ResponseHandler:responseHandler];
+    [self createFirstPartOfRequestAndCallRequestMethod:entityAttributeNames LastElementParams:lastElementParams ResponseHandler:responseHandler];
 }
 - (void)results_ReferencesHandler:(id)serverData EntityAttributeNames:(NSDictionary *)entityAttributeNames {
     void (^setItem )(id, NSArray *) = ^(id localItem, NSArray *serverItem) {
@@ -678,7 +685,7 @@ const int AMOUNT = 100;
 }
 
 #pragma mark SocialNetworks
-- (void)socialNetworks:(NSDate *)lastUpdatedDate {
+- (void)socialNetworks:(NSDictionary *)lastElementParams {
     NSDictionary *entityAttributeNames = [NSDictionary dictionaryWithObjectsAndKeys:
                                           @"SocialNetworks", @"entityName",
                                           @"socialNetwork_id", @"entityId",
@@ -686,7 +693,7 @@ const int AMOUNT = 100;
                                           @"socialNetwork_updated", @"entityUpdated",
                                           @"socialNetwork_deleted", @"entityDeleted", nil];
     SEL responseHandler = @selector(socialNetworksHandler:EntityAttributeNames:);
-    [self createFirstPartOfRequestAndCallRequestMethod:entityAttributeNames LastUpdatedDate:lastUpdatedDate ResponseHandler:responseHandler];
+    [self createFirstPartOfRequestAndCallRequestMethod:entityAttributeNames LastElementParams:lastElementParams ResponseHandler:responseHandler];
 }
 - (void)socialNetworksHandler:(id)serverData EntityAttributeNames:(NSDictionary *)entityAttributeNames {
     void (^setItem )(id, NSArray *) = ^(id localItem, NSArray *serverItem) {
@@ -705,7 +712,7 @@ const int AMOUNT = 100;
 }
 
 #pragma mark Tags
-- (void)tags:(NSDate *)lastUpdatedDate {
+- (void)tags:(NSDictionary *)lastElementParams {
     NSDictionary *entityAttributeNames = [NSDictionary dictionaryWithObjectsAndKeys:
                                           @"Tags", @"entityName",
                                           @"tag_id", @"entityId",
@@ -713,7 +720,7 @@ const int AMOUNT = 100;
                                           @"tag_updated", @"entityUpdated",
                                           @"tag_deleted", @"entityDeleted", nil];
     SEL responseHandler = @selector(tagsHandler:EntityAttributeNames:);
-    [self createFirstPartOfRequestAndCallRequestMethod:entityAttributeNames LastUpdatedDate:lastUpdatedDate ResponseHandler:responseHandler];
+    [self createFirstPartOfRequestAndCallRequestMethod:entityAttributeNames LastElementParams:lastElementParams ResponseHandler:responseHandler];
 }
 - (void)tagsHandler:(id)serverData EntityAttributeNames:(NSDictionary *)entityAttributeNames {
     void (^setItem )(id, NSArray *) = ^(id localItem, NSArray *serverItem) {
@@ -733,7 +740,7 @@ const int AMOUNT = 100;
 }
 
 #pragma mark Tags_Results
-- (void)tags_Results:(NSDate *)lastUpdatedDate {
+- (void)tags_Results:(NSDictionary *)lastElementParams {
     NSDictionary *entityAttributeNames = [NSDictionary dictionaryWithObjectsAndKeys:
                                           @"Tags_Results", @"entityName",
                                           @"fk_result_id", @"entityId",
@@ -743,7 +750,7 @@ const int AMOUNT = 100;
                                           @"result.result_id", @"localEntityId",
                                           @"tag.tag_id", @"localEntityId2", nil];
     SEL responseHandler = @selector(tags_ResultsHandler:EntityAttributeNames:);
-    [self createFirstPartOfRequestAndCallRequestMethod:entityAttributeNames LastUpdatedDate:lastUpdatedDate ResponseHandler:responseHandler];
+    [self createFirstPartOfRequestAndCallRequestMethod:entityAttributeNames LastElementParams:lastElementParams ResponseHandler:responseHandler];
 }
 - (void)tags_ResultsHandler:(id)serverData EntityAttributeNames:(NSDictionary *)entityAttributeNames {
     void (^setItem )(id, NSArray *) = ^(id localItem, NSArray *serverItem) {
@@ -763,7 +770,7 @@ const int AMOUNT = 100;
 }
 
 #pragma mark Users
-- (void)users:(NSDate *)lastUpdatedDate {
+- (void)users:(NSDictionary *)lastElementParams {
     NSDictionary *entityAttributeNames = [NSDictionary dictionaryWithObjectsAndKeys:
                                           @"Users", @"entityName",
                                           @"user_id", @"entityId",
@@ -771,7 +778,7 @@ const int AMOUNT = 100;
                                           @"user_updated", @"entityUpdated",
                                           @"user_deleted", @"entityDeleted", nil];
     SEL responseHandler = @selector(usersHandler:EntityAttributeNames:);
-    [self createFirstPartOfRequestAndCallRequestMethod:entityAttributeNames LastUpdatedDate:lastUpdatedDate ResponseHandler:responseHandler];
+    [self createFirstPartOfRequestAndCallRequestMethod:entityAttributeNames LastElementParams:lastElementParams ResponseHandler:responseHandler];
 }
 - (void)usersHandler:(id)serverData EntityAttributeNames:(NSDictionary *)entityAttributeNames {
     void (^setItem )(id, NSArray *) = ^(id localItem, NSArray *serverItem) {
@@ -798,7 +805,7 @@ const int AMOUNT = 100;
 }
 
 #pragma mark Users_SocialNetworks
-- (void)users_SocialNetworks:(NSDate *)lastUpdatedDate {
+- (void)users_SocialNetworks:(NSDictionary *)lastElementParams {
     NSDictionary *entityAttributeNames = [NSDictionary dictionaryWithObjectsAndKeys:
                                           @"Users_SocialNetworks", @"entityName",
                                           @"fk_user_id", @"entityId",
@@ -808,7 +815,7 @@ const int AMOUNT = 100;
                                           @"user.user_id", @"localEntityId",
                                           @"socialNetwork.socialNetwork_id", @"localEntityId2", nil];
     SEL responseHandler = @selector(users_SocialNetworksHandler:EntityAttributeNames:);
-    [self createFirstPartOfRequestAndCallRequestMethod:entityAttributeNames LastUpdatedDate:lastUpdatedDate ResponseHandler:responseHandler];
+    [self createFirstPartOfRequestAndCallRequestMethod:entityAttributeNames LastElementParams:lastElementParams ResponseHandler:responseHandler];
 }
 - (void)users_SocialNetworksHandler:(id)serverData EntityAttributeNames:(NSDictionary *)entityAttributeNames {
     void (^setItem )(id, NSArray *) = ^(id localItem, NSArray *serverItem) {
@@ -830,7 +837,7 @@ const int AMOUNT = 100;
 }
 
 #pragma mark WeekLimits
-- (void)weekLimits:(NSDate *)lastUpdatedDate {
+- (void)weekLimits:(NSDictionary *)lastElementParams {
     
 }
 - (void)weekLimitsHandler:(id)serverData EntityAttributeNames:(NSDictionary *)entityAttributeNames {
@@ -840,7 +847,7 @@ const int AMOUNT = 100;
 #pragma mark - Additional Functions
 
 - (void)createFirstPartOfRequestAndCallRequestMethod:(NSDictionary *)entityAttributeNames
-                                     LastUpdatedDate:(NSDate *)lastUpdatedDate ResponseHandler:(SEL)responseHandler {
+                                     LastElementParams:(NSDictionary *)lastElementParams ResponseHandler:(SEL)responseHandler {
     NSString *entityName     = entityAttributeNames[@"entityName"];
     NSString *entityId       = entityAttributeNames[@"entityId"];
     NSString *entityId2      = entityAttributeNames[@"entityId2"];
@@ -850,41 +857,15 @@ const int AMOUNT = 100;
     if (!localEntityId) localEntityId = entityId;
     NSString *localEntityId2 = entityAttributeNames[@"localEntityId2"];
     if (!localEntityId2) localEntityId2 = entityId2;
-    
-    id (^getLastElement)(void) = ^{
-        id result = nil;
-        NSFetchRequest *request = [[NSFetchRequest alloc] init];
-        NSEntityDescription *entity = [NSEntityDescription entityForName:entityName inManagedObjectContext:dataController.managedObjectContext];
-        
-        NSArray *sortDecriptors = !entityId2 ? [self getSortDescriptors:localEntityId UpdatedKey:entityUpdated] :
-                                               [self getSortDescriptors:localEntityId Id2Key:localEntityId2 UpdatedKey:entityUpdated];
-        [request setSortDescriptors:sortDecriptors];
-        [request setEntity:entity];
-        [request setFetchLimit:1];
-        NSError *error = nil;
-        NSArray *elementsArray = [dataController.managedObjectContext executeFetchRequest:request error:&error];
-        result = elementsArray.count > 0 ? [elementsArray firstObject] : nil;
-        return result;
-    };
-    
-    id lastElement = getLastElement();
-    
-    long (^getLastId)(NSString *) = ^(NSString *entityId){
-        long result = -1000;
-        if (!lastElement || !entityId) return result;
-        if ([entityId rangeOfString:@"."].location == NSNotFound)
-            return [[lastElement valueForKey:entityId] longValue];
-        NSArray *parts = [entityId componentsSeparatedByString:@"."];
-        return [[[lastElement valueForKey:parts[0]] valueForKey:parts[1]] longValue];
-    };
-    long lastId = getLastId(localEntityId);
-    long lastId2 = getLastId(localEntityId2);
+    NSString *lastUpdatedString = [API dateToMySqlString:[lastElementParams valueForKey:@"last_updated"]];
+    NSString *lastId = [[lastElementParams valueForKey:@"last_id"] stringValue];
+    NSString *lastId2 = [[lastElementParams valueForKey:@"last_id2"] stringValue];
     
     NSMutableDictionary *params = [[NSMutableDictionary alloc] initWithObjectsAndKeys:
-                                                                entityName, @"table_name",
-                                   [API dateToMySqlString:lastUpdatedDate], @"last_updated",
-                                [NSString stringWithFormat:@"%ld", lastId], @"last_id", nil];
-    if (entityId2) [params setObject:[NSString stringWithFormat:@"%ld", lastId2] forKey:@"last_id2"];
+                                   entityName, @"table_name",
+                                   lastUpdatedString, @"last_updated", nil];
+    if (lastId) [params setObject:lastId forKey:@"last_id"];
+    if (lastId2) [params setObject:lastId2 forKey:@"last_id2"];
     [self downloadDataFromServer:params ResponseHandler:responseHandler EntityAttributeNames:entityAttributeNames];
 }
 
@@ -1011,7 +992,8 @@ const int AMOUNT = 100;
         }
     }
     
-    NSString *lastElementUpdatedDateString = [[serverData lastObject] valueForKey:entityUpdated];
+    NSDictionary *lastElement = [serverData lastObject];
+    NSString *lastElementUpdatedDateString = [lastElement valueForKey:entityUpdated];
     NSDate *lastElementUpdatedDate = [API mySqlStringToDate:lastElementUpdatedDateString];
     
     void (^updateLastSyncServerDate)(void) = ^{
@@ -1024,27 +1006,21 @@ const int AMOUNT = 100;
     };
     
 //    updateLastSyncServerDate();
-    [dataController.app saveContext];
+    
+    void (^syncNextBlockOfItems)(void) = ^{
+        NSMutableDictionary *lastElementParams = [NSMutableDictionary dictionaryWithObjectsAndKeys:
+                                                  lastElementUpdatedDate, @"last_updated",
+                                                  [lastElement valueForKey:entityId], @"last_id", nil];
+        if (entityId2) [lastElementParams setObject:[lastElement valueForKey:entityId2] forKey:@"last_id2"];
+        if ([self respondsToSelector:nextBlockOfItems])
+            [self performSelector:nextBlockOfItems withObject:[NSDictionary dictionaryWithDictionary:lastElementParams]];
+    };
+    
     if ([serverData count] == AMOUNT) {
         // Table sync isn't completed, request next block of items
-        if ([self respondsToSelector:nextBlockOfItems])
-            [self performSelector:nextBlockOfItems withObject:lastElementUpdatedDate];
+        syncNextBlockOfItems();
     } else
         completeTableSync();
-}
-
-- (NSArray *)getSortDescriptors:(NSString *)idKey UpdatedKey:(NSString *)updatedKey {
-    NSSortDescriptor *idSortDescriptor = [NSSortDescriptor sortDescriptorWithKey:idKey ascending:NO];
-    NSSortDescriptor *updatedSortDescriptor = [NSSortDescriptor sortDescriptorWithKey:updatedKey ascending:NO];
-    NSArray *result = [NSArray arrayWithObjects:idSortDescriptor, updatedSortDescriptor, nil];
-    return result;
-}
-
-- (NSArray *)getSortDescriptors:(NSString *)idKey Id2Key:(NSString *)id2Key UpdatedKey:(NSString *)updatedKey {
-    NSSortDescriptor *id2SortDescriptor = [NSSortDescriptor sortDescriptorWithKey:id2Key ascending:NO];
-    NSMutableArray *result = [NSMutableArray arrayWithArray:[self getSortDescriptors:idKey UpdatedKey:updatedKey]];
-    [result insertObject:id2SortDescriptor atIndex:1];
-    return [NSArray arrayWithArray:result];
 }
 
 @end
