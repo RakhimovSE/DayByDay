@@ -38,6 +38,7 @@
     DataController *dataController;
     NSArray *syncWaves;
     NSDictionary *lastElementParamsOnFirstSync;
+    NSDate *lastElementUpdatedDate;
 }
 
 const int AMOUNT = 1000;
@@ -71,6 +72,7 @@ const int AMOUNT = 1000;
                                    [NSNumber numberWithBool:FALSE], @"results_References:",
                                    [NSNumber numberWithBool:FALSE], @"results_Relationships:", nil];
         syncWaves = [NSArray arrayWithObjects:syncWave0, syncWave1, syncWave2, syncWave3, syncWave4, syncWave5, nil];
+        lastElementUpdatedDate = lastSync;
         lastElementParamsOnFirstSync = [NSDictionary dictionaryWithObjectsAndKeys:lastSync, @"last_updated", nil];
         return self;
     }
@@ -124,6 +126,8 @@ const int AMOUNT = 1000;
 
 // Sync is over
 - (void)syncWave6 {
+    Variables *lastSyncVariable = [Variables getVariable:@"lastSyncServer"];
+    lastSyncVariable.variable_value = lastElementUpdatedDate;
     [dataController.app saveContext];
     [Constants showAlertMessage:@"Sync Completed"];
 }
@@ -994,22 +998,19 @@ const int AMOUNT = 1000;
     
     NSDictionary *lastElement = [serverData lastObject];
     NSString *lastElementUpdatedDateString = [lastElement valueForKey:entityUpdated];
-    NSDate *lastElementUpdatedDate = [API mySqlStringToDate:lastElementUpdatedDateString];
+    NSDate *localLastElementUpdatedDate = [API mySqlStringToDate:lastElementUpdatedDateString];
     
-    void (^updateLastSyncServerDate)(void) = ^{
-        Variables *lastSyncServer = [Variables getVariable:@"lastSyncServer"];
-        NSDate *currentLastSyncServerDate = lastSyncServer.variable_value;
-        if ([[currentLastSyncServerDate laterDate:lastElementUpdatedDate] isEqualToDate:lastElementUpdatedDate]) {
-            lastSyncServer.variable_value = lastElementUpdatedDate;
-            NSLog(@"New lastUpdatedDate: %@", lastElementUpdatedDate);
+    void (^updateLastElementUpdatedDate)(void) = ^{
+        if ([[lastElementUpdatedDate laterDate:localLastElementUpdatedDate] isEqualToDate:localLastElementUpdatedDate]) {
+            lastElementUpdatedDate = localLastElementUpdatedDate;
+            NSLog(@"New lastUpdatedDate: %@", localLastElementUpdatedDate);
         }
     };
-    
-//    updateLastSyncServerDate();
+    updateLastElementUpdatedDate();
     
     void (^syncNextBlockOfItems)(void) = ^{
         NSMutableDictionary *lastElementParams = [NSMutableDictionary dictionaryWithObjectsAndKeys:
-                                                  lastElementUpdatedDate, @"last_updated",
+                                                  localLastElementUpdatedDate, @"last_updated",
                                                   [lastElement valueForKey:entityId], @"last_id", nil];
         if (entityId2) [lastElementParams setObject:[lastElement valueForKey:entityId2] forKey:@"last_id2"];
         if ([self respondsToSelector:nextBlockOfItems])

@@ -7,6 +7,8 @@
 //
 
 #import "MenuTableViewController.h"
+#import "LoginViewController.h"
+#import "DBRemover.h"
 
 @interface MenuTableViewController ()
 
@@ -42,7 +44,12 @@
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-    NSLog(@"%@", indexPath);
+    UITableViewCell *cell = [tableView cellForRowAtIndexPath:indexPath];
+    if ([cell.reuseIdentifier isEqualToString:@"logoutCell"]) {
+        [[[DBRemover alloc] init] removeEntireDatabase];
+        [self presentViewController:[[LoginViewController alloc] init] animated:YES completion:nil];
+    }
+    NSLog(@"%@", cell.reuseIdentifier);
 }
 
 /*

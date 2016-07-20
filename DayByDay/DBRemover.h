@@ -27,13 +27,13 @@
 - (void)removeRates;
 - (void)removeReferences;
 - (void)removeResults;
-- (void)removeResultsLinks;
-- (void)removeResultsReferences;
+- (void)removeResults_Relationships;
+- (void)removeResults_References;
 - (void)removeSocialNetworks;
 - (void)removeTags;
-- (void)removeTagsResults;
+- (void)removeTags_Results;
 - (void)removeUsers;
-- (void)removeUsersSocialNetworks;
-- (void)removeWeekLimits;
+- (void)removeUsers_SocialNetworks;
+- (void)removeVariables;
 
 @end

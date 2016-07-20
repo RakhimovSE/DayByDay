@@ -23,29 +23,29 @@
 }
 
 - (void)removeEntireDatabase {
-    [self removeDifficulties];
-    [self removeEnergies];
-    [self removeHotSpotActivities];
-    [self removeHotSpotActivitiesDefault];
-    [self removeHotSpotCategories];
-    [self removeHotSpotCategoriesDefault];
+    [self removeVariables];
+    [self removeTags_Results];
+    [self removeResults_References];
+    [self removeResults_Relationships];
+    [self removeResults];
     [self removeHotSpots];
     [self removeHotSpotsDefault];
-    [self removeLocations];
-    [self removePeriodTypes];
-    [self removePriorities];
-    [self removeQualities];
-    [self removeRates];
-    [self removeReferences];
-    [self removeResults];
-    [self removeResultsLinks];
-    [self removeResultsReferences];
-    [self removeSocialNetworks];
+    [self removeHotSpotCategories];
+    [self removeHotSpotActivities];
+    [self removeUsers_SocialNetworks];
     [self removeTags];
-    [self removeTagsResults];
+    [self removeLocations];
+    [self removeReferences];
+    [self removeSocialNetworks];
+    [self removeRates];
+    [self removeHotSpotCategoriesDefault];
+    [self removeHotSpotActivitiesDefault];
+    [self removePriorities];
+    [self removeEnergies];
+    [self removeDifficulties];
+    [self removeQualities];
+    [self removePeriodTypes];
     [self removeUsers];
-    [self removeUsersSocialNetworks];
-    [self removeWeekLimits];
 }
 
 - (void)removeDifficulties {
@@ -108,12 +108,12 @@
     [self deleteAllObjects:@"Results"];
 }
 
-- (void)removeResultsLinks {
-    [self deleteAllObjects:@"ResultsLinks"];
+- (void)removeResults_Relationships {
+    [self deleteAllObjects:@"Results_Relationships"];
 }
 
-- (void)removeResultsReferences {
-    [self deleteAllObjects:@"ResultsReferences"];
+- (void)removeResults_References {
+    [self deleteAllObjects:@"Results_References"];
 }
 
 - (void)removeSocialNetworks {
@@ -124,20 +124,20 @@
     [self deleteAllObjects:@"Tags"];
 }
 
-- (void)removeTagsResults {
-    [self deleteAllObjects:@"TagsResults"];
+- (void)removeTags_Results {
+    [self deleteAllObjects:@"Tags_Results"];
 }
 
 - (void)removeUsers {
     [self deleteAllObjects:@"Users"];
 }
 
-- (void)removeUsersSocialNetworks {
-    [self deleteAllObjects:@"UsersSocialNetworks"];
+- (void)removeUsers_SocialNetworks {
+    [self deleteAllObjects:@"Users_SocialNetworks"];
 }
 
-- (void)removeWeekLimits {
-    [self deleteAllObjects:@"WeekLimits"];
+- (void)removeVariables {
+    [self deleteAllObjects:@"Variables"];
 }
 
 - (void) deleteAllObjects: (NSString *) entityDescription  {

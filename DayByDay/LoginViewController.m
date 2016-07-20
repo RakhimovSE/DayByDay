@@ -27,11 +27,11 @@
 
 @synthesize userEmailTextField;
 @synthesize userPasswordTextField;
-BOOL loggedIn;
+BOOL isLogin;
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    loggedIn = NO;
+    isLogin = NO;
     
     userDataController = [[UserDataController alloc] init];
     
@@ -43,12 +43,12 @@ BOOL loggedIn;
 
 - (IBAction)login:(id)sender {
     [self.view endEditing:YES];
-    loggedIn = [userDataController login:userEmailTextField.text Password:userPasswordTextField.text];
+    isLogin = [userDataController login:userEmailTextField.text Password:userPasswordTextField.text];
 }
 
 - (BOOL)shouldPerformSegueWithIdentifier:(NSString *)identifier sender:(id)sender {
     if ([identifier isEqual:@"resultSegue"]) {
-        if (!loggedIn)
+        if (!isLogin)
             return NO;
         [Sync syncAllData];
     }
