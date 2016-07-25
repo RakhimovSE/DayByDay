@@ -23,6 +23,19 @@
 }
 
 - (void)removeEntireDatabase {
+    [self removeSocialNetworks];
+    [self removeRates];
+    [self removeHotSpotCategoriesDefault];
+    [self removeHotSpotActivitiesDefault];
+    [self removeUserData];
+    [self removePriorities];
+    [self removeEnergies];
+    [self removeDifficulties];
+    [self removeQualities];
+    [self removePeriodTypes];
+}
+
+- (void)removeUserData {
     [self removeVariables];
     [self removeTags_Results];
     [self removeResults_References];
@@ -36,15 +49,6 @@
     [self removeTags];
     [self removeLocations];
     [self removeReferences];
-    [self removeSocialNetworks];
-    [self removeRates];
-    [self removeHotSpotCategoriesDefault];
-    [self removeHotSpotActivitiesDefault];
-    [self removePriorities];
-    [self removeEnergies];
-    [self removeDifficulties];
-    [self removeQualities];
-    [self removePeriodTypes];
     [self removeUsers];
 }
 

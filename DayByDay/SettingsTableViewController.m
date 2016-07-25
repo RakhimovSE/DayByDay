@@ -1,23 +1,18 @@
 //
-//  MenuTableViewController.m
+//  SettingsTableViewController.m
 //  DayByDay
 //
-//  Created by Admin on 23.03.16.
+//  Created by Admin on 26.07.16.
 //  Copyright © 2016 Sevastyan Rakhimov. All rights reserved.
 //
 
-#import "MenuTableViewController.h"
-#import "LoginViewController.h"
 #import "SettingsTableViewController.h"
-#import "DBRemover.h"
 
-@interface MenuTableViewController ()
+@interface SettingsTableViewController ()
 
 @end
 
-@implementation MenuTableViewController {
-    NSArray *menuItems;
-}
+@implementation SettingsTableViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -36,26 +31,25 @@
 
 #pragma mark - Table view data source
 
-//- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-//    return 1;
-//}
-//
-//- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-//    return menuItems.count;
-//}
-
-- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-    UITableViewCell *cell = [tableView cellForRowAtIndexPath:indexPath];
-    NSLog(@"%@", cell.reuseIdentifier);
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
+#warning Incomplete implementation, return the number of sections
+    return 0;
 }
 
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
+#warning Incomplete implementation, return the number of rows
+    return 0;
+}
 
-//- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-//    NSString *CellIdentifier = [menuItems objectAtIndex:indexPath.row];
-//    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier forIndexPath:indexPath];
-//    
-//    return cell;
-//}
+/*
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
+    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:<#@"reuseIdentifier"#> forIndexPath:indexPath];
+    
+    // Configure the cell...
+    
+    return cell;
+}
+*/
 
 /*
 // Override to support conditional editing of the table view.
@@ -91,15 +85,14 @@
 }
 */
 
-
+/*
 #pragma mark - Navigation
 
+// In a storyboard-based application, you will often want to do a little preparation before navigation
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    
-    // Set the title of navigation bar by using the menu items
-    NSIndexPath *indexPath = [self.tableView indexPathForSelectedRow];
-    UINavigationController *destViewController = (UINavigationController*)segue.destinationViewController;
-    destViewController.title = [[menuItems objectAtIndex:indexPath.row] capitalizedString];
+    // Get the new view controller using [segue destinationViewController].
+    // Pass the selected object to the new view controller.
 }
+*/
 
 @end

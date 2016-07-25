@@ -11,6 +11,7 @@
 @interface DBRemover : NSObject
 
 - (void)removeEntireDatabase;
+- (void)removeUserData;
 
 - (void)removeDifficulties;
 - (void)removeEnergies;
