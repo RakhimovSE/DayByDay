@@ -209,6 +209,8 @@ const int AMOUNT = 1000;
         id hotSpotActivityDescription = [serverItem valueForKey:@"hotSpotActivity_description"];
         if (![hotSpotActivityDescription isKindOfClass:[NSNull class]])
             localHotSpotActivity.hotSpotActivity_description = hotSpotActivityDescription;
+        else
+            localHotSpotActivity.hotSpotActivity_description = nil;
         NSDate *hotSpotActivity_updated = [API mySqlStringToDate:[serverItem valueForKey:@"hotSpotActivity_updated"]];
         localHotSpotActivity.hotSpotActivity_updated = [hotSpotActivity_updated timeIntervalSinceReferenceDate];
         localHotSpotActivity.hotSpotActivity_deleted = [[serverItem valueForKey:@"hotSpotActivity_deleted"] boolValue];
@@ -238,6 +240,8 @@ const int AMOUNT = 1000;
         id hotSpotActivityDefaultDescription = [serverItem valueForKey:@"hotSpotActivityDefault_description"];
         if (![hotSpotActivityDefaultDescription isKindOfClass:[NSNull class]])
             localHotSpotActivityDefault.hotSpotActivityDefault_description = hotSpotActivityDefaultDescription;
+        else
+            localHotSpotActivityDefault.hotSpotActivityDefault_description = nil;
         NSDate *hotSpotActivityDefaultUpdated = [API mySqlStringToDate:[serverItem valueForKey:@"hotSpotActivityDefault_updated"]];
         localHotSpotActivityDefault.hotSpotActivityDefault_updated = [hotSpotActivityDefaultUpdated timeIntervalSinceReferenceDate];
         localHotSpotActivityDefault.hotSpotActivityDefault_deleted = [[serverItem valueForKey:@"hotSpotActivityDefault_deleted"] boolValue];
@@ -272,6 +276,8 @@ const int AMOUNT = 1000;
         id hotSpotCategoryDescription = [serverItem valueForKey:@"hotSpotCategory_description"];
         if (![hotSpotCategoryDescription isKindOfClass:[NSNull class]])
             localHotSpotCategory.hotSpotCategory_description = hotSpotCategoryDescription;
+        else
+            localHotSpotCategory.hotSpotCategory_description = nil;
         NSDate *hotSpotCategoryUpdated = [API mySqlStringToDate:[serverItem valueForKey:@"hotSpotCategory_updated"]];
         localHotSpotCategory.hotSpotCategory_updated = [hotSpotCategoryUpdated timeIntervalSinceReferenceDate];
         localHotSpotCategory.hotSpotCategory_deleted = [[serverItem valueForKey:@"hotSpotCategory_deleted"] boolValue];
@@ -301,6 +307,8 @@ const int AMOUNT = 1000;
         id hotSpotCategoryDefaultDescription = [serverItem valueForKey:@"hotSpotCategoryDefault_description"];
         if (![hotSpotCategoryDefaultDescription isKindOfClass:[NSNull class]])
             localHotSpotCategoryDefault.hotSpotCategoryDefault_description = hotSpotCategoryDefaultDescription;
+        else
+            localHotSpotCategoryDefault.hotSpotCategoryDefault_description = nil;
         NSDate *hotSpotCategoryDefaultUpdated = [API mySqlStringToDate:[serverItem valueForKey:@"hotSpotCategoryDefault_updated"]];
         localHotSpotCategoryDefault.hotSpotCategoryDefault_updated = [hotSpotCategoryDefaultUpdated timeIntervalSinceReferenceDate];
         localHotSpotCategoryDefault.hotSpotCategoryDefault_deleted = [[serverItem valueForKey:@"hotSpotCategoryDefault_deleted"] boolValue];
@@ -336,9 +344,13 @@ const int AMOUNT = 1000;
         id hotSpotBoundaryMinimum = [serverItem valueForKey:@"hotSpot_boundaryMinimum"];
         if (![hotSpotBoundaryMinimum isKindOfClass:[NSNull class]])
             localHotSpot.hotSpot_boundaryMinimum = [hotSpotBoundaryMinimum intValue];
+        else
+            [localHotSpot setValue:nil forKey:@"hotSpot_boundaryMinimum"];
         id hotSpotBoundaryMaximum = [serverItem valueForKey:@"hotSpot_boundaryMaximum"];
         if (![hotSpotBoundaryMaximum isKindOfClass:[NSNull class]])
             localHotSpot.hotSpot_boundaryMaximum = [hotSpotBoundaryMaximum intValue];
+        else
+            [localHotSpot setValue:nil forKey:@"hotSpot_boundaryMaximum"];
         NSDate *hotSpotUpdated = [API mySqlStringToDate:[serverItem valueForKey:@"hotSpot_updated"]];
         localHotSpot.hotSpot_updated = [hotSpotUpdated timeIntervalSinceReferenceDate];
         localHotSpot.hotSpot_deleted = [[serverItem valueForKey:@"hotSpot_deleted"] boolValue];
@@ -403,12 +415,18 @@ const int AMOUNT = 1000;
         id locationAddress = [serverItem valueForKey:@"location_address"];
         if (![locationAddress isKindOfClass:[NSNull class]])
             localLocation.location_address = locationAddress;
+        else
+            localLocation.location_address = nil;
         id locationLatitude = [serverItem valueForKey:@"location_latitude"];
         if (![locationLatitude isKindOfClass:[NSNull class]])
             localLocation.location_latitude = [locationLatitude doubleValue];
+        else
+            [localLocation setValue:nil forKey:@"location_latitude"];
         id locationLongitude = [serverItem valueForKey:@"location_longitude"];
         if (![locationLongitude isKindOfClass:[NSNull class]])
             localLocation.location_longitude = [locationLongitude doubleValue];
+        else
+            [localLocation setValue:nil forKey:@"location_longitude"];
         NSDate *locationUpdated = [API mySqlStringToDate:[serverItem valueForKey:@"location_updated"]];
         localLocation.location_updated = [locationUpdated timeIntervalSinceReferenceDate];
         localLocation.location_deleted = [[serverItem valueForKey:@"location_deleted"] boolValue];
@@ -548,6 +566,8 @@ const int AMOUNT = 1000;
         id referenceText = [serverItem valueForKey:@"reference_text"];
         if (![referenceText isKindOfClass:[NSNull class]])
             localReference.reference_text = referenceText;
+        else
+            localReference.reference_text = nil;
         NSDate *referenceUpdated = [API mySqlStringToDate:[serverItem valueForKey:@"reference_updated"]];
         localReference.reference_updated = [referenceUpdated timeIntervalSinceReferenceDate];
         localReference.reference_deleted = [[serverItem valueForKey:@"reference_deleted"] boolValue];
@@ -579,7 +599,8 @@ const int AMOUNT = 1000;
         if (![hotSpotId isKindOfClass:[NSNull class]]) {
             HotSpots *hotSpot = (HotSpots *)[Variables getVariable:@"HotSpots" EntityIdKey:@"hotSpot_id" EntityIdValue:hotSpotId];
             [localResult setHotSpot:hotSpot];
-        }
+        } else
+            [localResult setHotSpot:nil];
         Priorities *priority = (Priorities *)[Variables getVariable:@"Priorities"
             EntityIdKey:@"priority_level" EntityIdValue:[serverItem valueForKey:@"fk_priority_level"]];
         [localResult setPriority:priority];
@@ -587,6 +608,8 @@ const int AMOUNT = 1000;
         id resultDescription = [serverItem valueForKey:@"result_description"];
         if (![resultDescription isKindOfClass:[NSNull class]])
             localResult.result_description = resultDescription;
+        else
+            localResult.result_description = nil;
         localResult.result_main = [[serverItem valueForKey:@"result_main"] boolValue];
         Energies *energy = (Energies *)[Variables getVariable:@"Energies"
             EntityIdKey:@"energy_level" EntityIdValue:[serverItem valueForKey:@"fk_energy_level"]];
@@ -603,16 +626,23 @@ const int AMOUNT = 1000;
             NSDate *resultFinishDateDate = [API mySqlStringToDate:resultFinishDate];
             localResult.result_finishDate = [resultFinishDateDate timeIntervalSinceReferenceDate];
         }
+        else {
+            [localResult setValue:nil forKey:@"result_finishDate"];
+        }
         id qualityLevel = [serverItem valueForKey:@"fk_quality_level"];
         if (![qualityLevel isKindOfClass:[NSNull class]]) {
             Qualities *quality = (Qualities *)[Variables getVariable:@"Qualities" EntityIdKey:@"quality_level" EntityIdValue:qualityLevel];
             [localResult setQuality:quality];
         }
+        else
+            [localResult setQuality:nil];
         id locationId = [serverItem valueForKey:@"fk_location_id"];
         if (![locationId isKindOfClass:[NSNull class]]) {
             Locations *location = (Locations *)[Variables getVariable:@"Locations" EntityIdKey:@"location_id" EntityIdValue:locationId];
             [localResult setLocation:location];
         }
+        else
+            [localResult setLocation:nil];
         PeriodTypes *periodType = (PeriodTypes *)[Variables getVariable:@"PeriodTypes"
              EntityIdKey:@"periodType_id" EntityIdValue:[serverItem valueForKey:@"fk_periodType_id"]];
         [localResult setPeriodType:periodType];

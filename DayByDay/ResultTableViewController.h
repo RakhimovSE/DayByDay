@@ -8,6 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-@interface ResultTableViewController : UITableViewController <UITableViewDelegate, UITableViewDataSource>
+@interface ResultTableViewController : UITableViewController <UITableViewDelegate, UITableViewDataSource, NSFetchedResultsControllerDelegate>
+
 
 @end

@@ -129,12 +129,12 @@
         <attribute name="result_startDateTime" attributeType="Date" syncable="YES"/>
         <attribute name="result_updated" attributeType="Date" syncable="YES"/>
         <attribute name="resut_timeAmount" attributeType="Date" syncable="YES"/>
-        <relationship name="childResults_relationships" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Results_Relationships" inverseName="parentResult" inverseEntity="Results_Relationships" syncable="YES"/>
+        <relationship name="childResults_relationships" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="Results_Relationships" inverseName="parentResult" inverseEntity="Results_Relationships" syncable="YES"/>
         <relationship name="difficulty" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Difficulties" inverseName="results" inverseEntity="Difficulties" syncable="YES"/>
         <relationship name="energy" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Energies" inverseName="results" inverseEntity="Energies" syncable="YES"/>
         <relationship name="hotSpot" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="HotSpots" inverseName="results" inverseEntity="HotSpots" syncable="YES"/>
         <relationship name="location" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Locations" inverseName="results" inverseEntity="Locations" syncable="YES"/>
-        <relationship name="parentResults_relationships" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Results_Relationships" inverseName="childResult" inverseEntity="Results_Relationships" syncable="YES"/>
+        <relationship name="parentResults_relationships" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="Results_Relationships" inverseName="childResult" inverseEntity="Results_Relationships" syncable="YES"/>
         <relationship name="periodType" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="PeriodTypes" inverseName="results" inverseEntity="PeriodTypes" syncable="YES"/>
         <relationship name="priority" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Priorities" inverseName="results" inverseEntity="Priorities" syncable="YES"/>
         <relationship name="quality" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Qualities" inverseName="results" inverseEntity="Qualities" syncable="YES"/>

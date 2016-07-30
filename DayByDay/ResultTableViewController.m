@@ -11,15 +11,16 @@
 #import "ResultDataController.h"
 #import "ResultTableViewController.h"
 #import "NewResultViewController.h"
+#import "Results.h"
+#import "PeriodTypes.h"
+#import "Constants.h"
 
 @interface ResultTableViewController () {
     ResultDataController *resultDataController;
-    NSMutableDictionary *userResults;
-    NSArray *resultNameArray;
-    NSArray *periodTypeLengthArray;
 }
 @property (weak, nonatomic) IBOutlet UIBarButtonItem *createResultButton;
 @property (weak, nonatomic) IBOutlet UIBarButtonItem *menuButton;
+@property (nonatomic, strong) NSFetchedResultsController *fetchedResultsController;
 
 @end
 
@@ -39,11 +40,56 @@
         [self.view addGestureRecognizer:self.revealViewController.panGestureRecognizer];
     }
     
-//    resultDataController = [[ResultDataController alloc] init];
-//    
-//    userResults = [resultDataController getUserResults];
-//    resultNameArray = [userResults valueForKey:@"result_name"];
-//    periodTypeLengthArray = [userResults valueForKey:@"fk_periodType_length"];
+    resultDataController = [[ResultDataController alloc] init];
+    
+    NSError *error;
+    if (![[self fetchedResultsController] performFetch:&error]) {
+        // Update to handle the error appropriately.
+        NSLog(@"Unresolved error %@, %@", error, [error userInfo]);
+        exit(-1);  // Fail
+    }
+}
+
+- (void)viewDidUnload {
+    self.fetchedResultsController = nil;
+}
+
+- (NSArray *)getResults {
+    NSFetchRequest *request = [[NSFetchRequest alloc] init];
+    NSEntityDescription *entity = [NSEntityDescription entityForName:@"Results"
+                                              inManagedObjectContext:resultDataController.managedObjectContext];
+    [request setEntity:entity];
+    NSError *error;
+    NSArray *itemArray = [resultDataController.managedObjectContext executeFetchRequest:request error:&error];
+    return itemArray;
+}
+
+- (NSFetchedResultsController *)fetchedResultsController {
+    
+    if (_fetchedResultsController != nil) {
+        return _fetchedResultsController;
+    }
+    
+    NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
+    NSEntityDescription *entity = [NSEntityDescription
+                                   entityForName:@"Results" inManagedObjectContext:resultDataController.managedObjectContext];
+    [fetchRequest setEntity:entity];
+    
+    NSSortDescriptor *sort = [[NSSortDescriptor alloc]
+                              initWithKey:@"result_startDateTime" ascending:NO];
+    [fetchRequest setSortDescriptors:[NSArray arrayWithObject:sort]];
+    
+    [fetchRequest setFetchBatchSize:20];
+    
+    NSFetchedResultsController *theFetchedResultsController =
+    [[NSFetchedResultsController alloc] initWithFetchRequest:fetchRequest
+                                        managedObjectContext:resultDataController.managedObjectContext sectionNameKeyPath:nil
+                                                   cacheName:@"Root"];
+    self.fetchedResultsController = theFetchedResultsController;
+    _fetchedResultsController.delegate = self;
+    
+    return _fetchedResultsController;
+    
 }
 
 - (IBAction)showMenu:(id)sender {
@@ -61,38 +107,98 @@
 
 #pragma mark - Table view data source
 
-//- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-//#warning Incomplete implementation, return the number of sections
-//    return 0;
-//}
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
+    return [[_fetchedResultsController sections] count];
+}
 
-//- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-//    return resultNameArray.count;
-//}
-//
-//
-//- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-//    NSString *identifier = @"resultTableItem";
-//    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:identifier forIndexPath:indexPath];
-//    if (!cell)
-//        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:identifier];
-//    cell.textLabel.text = [resultNameArray objectAtIndex:indexPath.row];
-//    NSString *length = [periodTypeLengthArray objectAtIndex:indexPath.row];
-//    NSString *detailText = @"";
-//    if ([length isEqualToString:@"0000-00-01"])
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
+    id< NSFetchedResultsSectionInfo> sectionInfo = [[self fetchedResultsController] sections][section];
+    return [sectionInfo numberOfObjects];
+}
+
+- (void)configureCell:(UITableViewCell *)cell atIndexPath:(NSIndexPath *)indexPath {
+    Results *result = [_fetchedResultsController objectAtIndexPath:indexPath];
+    cell.textLabel.text = result.result_name;
+    NSLog(@"%f", [result result_startDateTime]);
+//    NSString *periodTypeLength = [API dateToMySqlString:date];
+//    if ([periodTypeLength hasPrefix:@"0000-00-01"])
 //        detailText = @"Цель дня";
-//    if ([length isEqualToString:@"0000-00-07"])
+//    if ([periodTypeLength hasPrefix:@"0000-00-07"])
 //        detailText = @"Цель недели";
-//    if ([length isEqualToString:@"0000-01-00"])
+//    if ([periodTypeLength hasPrefix:@"0000-01-00"])
 //        detailText = @"Цель месяца";
-//    if ([length isEqualToString:@"0000-03-00"])
+//    if ([periodTypeLength hasPrefix:@"0000-03-00"])
 //        detailText = @"Цель четверти";
-//    if ([length isEqualToString:@"0001-00-00"])
+//    if ([periodTypeLength hasPrefix:@"0001-00-00"])
 //        detailText = @"Цель года";
-//    cell.detailTextLabel.text = detailText;
-//    return cell;
-//}
+    cell.detailTextLabel.text = [result result_description];
+}
 
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
+    static NSString *CellIdentifier = @"resultTableItem";
+    
+    UITableViewCell *cell =
+    [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+    
+    [self configureCell:cell atIndexPath:indexPath];
+    
+    return cell;
+}
+
+#pragma mark - NSFetchedResultsControllerDelegate implementation
+- (void)controllerWillChangeContent:(NSFetchedResultsController *)controller {
+    // The fetch controller is about to start sending change notifications, so prepare the table view for updates.
+    [self.tableView beginUpdates];
+}
+
+
+- (void)controller:(NSFetchedResultsController *)controller didChangeObject:(id)anObject atIndexPath:(NSIndexPath *)indexPath forChangeType:(NSFetchedResultsChangeType)type newIndexPath:(NSIndexPath *)newIndexPath {
+    
+    UITableView *tableView = self.tableView;
+    
+    switch(type) {
+            
+        case NSFetchedResultsChangeInsert:
+            [tableView insertRowsAtIndexPaths:[NSArray arrayWithObject:newIndexPath] withRowAnimation:UITableViewRowAnimationFade];
+            break;
+            
+        case NSFetchedResultsChangeDelete:
+            [tableView deleteRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation:UITableViewRowAnimationFade];
+            break;
+            
+        case NSFetchedResultsChangeUpdate:
+            [self configureCell:[tableView cellForRowAtIndexPath:indexPath] atIndexPath:indexPath];
+            break;
+            
+        case NSFetchedResultsChangeMove:
+            [tableView deleteRowsAtIndexPaths:[NSArray
+                                               arrayWithObject:indexPath] withRowAnimation:UITableViewRowAnimationFade];
+            [tableView insertRowsAtIndexPaths:[NSArray
+                                               arrayWithObject:newIndexPath] withRowAnimation:UITableViewRowAnimationFade];
+            break;
+    }
+}
+
+
+- (void)controller:(NSFetchedResultsController *)controller didChangeSection:(id )sectionInfo atIndex:(NSUInteger)sectionIndex forChangeType:(NSFetchedResultsChangeType)type {
+    
+    switch(type) {
+            
+        case NSFetchedResultsChangeInsert:
+            [self.tableView insertSections:[NSIndexSet indexSetWithIndex:sectionIndex] withRowAnimation:UITableViewRowAnimationFade];
+            break;
+            
+        case NSFetchedResultsChangeDelete:
+            [self.tableView deleteSections:[NSIndexSet indexSetWithIndex:sectionIndex] withRowAnimation:UITableViewRowAnimationFade];
+            break;
+    }
+}
+
+
+- (void)controllerDidChangeContent:(NSFetchedResultsController *)controller {
+    // The fetch controller has sent all current change notifications, so tell the table view to process all updates.
+    [self.tableView endUpdates];
+}
 
 /*
 // Override to support conditional editing of the table view.
