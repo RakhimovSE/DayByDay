@@ -18,7 +18,6 @@
 @interface ResultTableViewController () {
     ResultDataController *resultDataController;
 }
-@property (weak, nonatomic) IBOutlet UIBarButtonItem *createResultButton;
 @property (weak, nonatomic) IBOutlet UIBarButtonItem *menuButton;
 @property (nonatomic, strong) NSFetchedResultsController *fetchedResultsController;
 
@@ -54,16 +53,6 @@
     self.fetchedResultsController = nil;
 }
 
-- (NSArray *)getResults {
-    NSFetchRequest *request = [[NSFetchRequest alloc] init];
-    NSEntityDescription *entity = [NSEntityDescription entityForName:@"Results"
-                                              inManagedObjectContext:resultDataController.managedObjectContext];
-    [request setEntity:entity];
-    NSError *error;
-    NSArray *itemArray = [resultDataController.managedObjectContext executeFetchRequest:request error:&error];
-    return itemArray;
-}
-
 - (NSFetchedResultsController *)fetchedResultsController {
     
     if (_fetchedResultsController != nil) {
@@ -75,9 +64,11 @@
                                    entityForName:@"Results" inManagedObjectContext:resultDataController.managedObjectContext];
     [fetchRequest setEntity:entity];
     
-    NSSortDescriptor *sort = [[NSSortDescriptor alloc]
-                              initWithKey:@"result_startDateTime" ascending:NO];
-    [fetchRequest setSortDescriptors:[NSArray arrayWithObject:sort]];
+    NSSortDescriptor *sort1 = [NSSortDescriptor sortDescriptorWithKey:@"periodType.periodType_years" ascending:NO];
+    NSSortDescriptor *sort2 = [NSSortDescriptor sortDescriptorWithKey:@"periodType.periodType_months" ascending:NO];
+    NSSortDescriptor *sort3 = [NSSortDescriptor sortDescriptorWithKey:@"periodType.periodType_days" ascending:NO];
+    NSSortDescriptor *sort4 = [NSSortDescriptor sortDescriptorWithKey:@"result_startDate" ascending:NO];
+    [fetchRequest setSortDescriptors:[NSArray arrayWithObjects:sort1, sort2, sort3, sort4, nil]];
     
     [fetchRequest setFetchBatchSize:20];
     
@@ -90,10 +81,6 @@
     
     return _fetchedResultsController;
     
-}
-
-- (IBAction)showMenu:(id)sender {
-//    [Constants showAlertMessage:[NSString stringWithFormat:@"%@", [resultDataController getUserResults]]];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -119,19 +106,7 @@
 - (void)configureCell:(UITableViewCell *)cell atIndexPath:(NSIndexPath *)indexPath {
     Results *result = [_fetchedResultsController objectAtIndexPath:indexPath];
     cell.textLabel.text = result.result_name;
-    NSLog(@"%f", [result result_startDateTime]);
-//    NSString *periodTypeLength = [API dateToMySqlString:date];
-//    if ([periodTypeLength hasPrefix:@"0000-00-01"])
-//        detailText = @"Цель дня";
-//    if ([periodTypeLength hasPrefix:@"0000-00-07"])
-//        detailText = @"Цель недели";
-//    if ([periodTypeLength hasPrefix:@"0000-01-00"])
-//        detailText = @"Цель месяца";
-//    if ([periodTypeLength hasPrefix:@"0000-03-00"])
-//        detailText = @"Цель четверти";
-//    if ([periodTypeLength hasPrefix:@"0001-00-00"])
-//        detailText = @"Цель года";
-    cell.detailTextLabel.text = [result result_description];
+    cell.detailTextLabel.text = [NSString stringWithFormat:@"%@: %@", result.periodType.periodType_name, result.result_description];
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {

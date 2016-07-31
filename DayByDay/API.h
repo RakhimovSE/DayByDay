@@ -18,6 +18,7 @@
 + (NSMutableDictionary *)allValuesFromMutableDictionary:(NSMutableDictionary *)dictionary ForKey:(NSString *)keyKey Value:(NSString *)valueKey;
 
 + (NSDate *)dateWithJSONString:(NSString *)dateString;
++ (NSString *)getSyncDateString:(NSDate *)date;
 + (NSDate *)mySqlStringToDate:(NSString *)dateString;
 + (NSString *)dateToMySqlString:(NSDate *)date;
 

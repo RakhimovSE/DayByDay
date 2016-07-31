@@ -10,6 +10,8 @@
 
 @interface ServerToDeviceSync : NSObject
 
+@property (strong, nonatomic) id viewControllerDelegate;
+
 - (id)initWithLastSync:(NSDate *)lastSync;
 - (void)syncAllData;
 

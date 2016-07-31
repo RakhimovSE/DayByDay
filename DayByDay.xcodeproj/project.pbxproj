@@ -12,6 +12,11 @@
 		84306B601D31641200A15238 /* Variables+CoreDataProperties.m in Sources */ = {isa = PBXBuildFile; fileRef = 84306B5D1D31641200A15238 /* Variables+CoreDataProperties.m */; };
 		84306B611D31641200A15238 /* Variables.m in Sources */ = {isa = PBXBuildFile; fileRef = 84306B5F1D31641200A15238 /* Variables.m */; };
 		84308CD41D28E58900B72D83 /* DBRemover.m in Sources */ = {isa = PBXBuildFile; fileRef = 84308CD31D28E58900B72D83 /* DBRemover.m */; };
+		843148911D4DE50500AA1B06 /* CreateResultTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 843148901D4DE50500AA1B06 /* CreateResultTableViewController.m */; };
+		843148961D4DE6F500AA1B06 /* TagsDefault+CoreDataProperties.m in Sources */ = {isa = PBXBuildFile; fileRef = 843148931D4DE6F500AA1B06 /* TagsDefault+CoreDataProperties.m */; };
+		843148971D4DE6F500AA1B06 /* TagsDefault.m in Sources */ = {isa = PBXBuildFile; fileRef = 843148951D4DE6F500AA1B06 /* TagsDefault.m */; };
+		843148991D4DFD6200AA1B06 /* sync.png in Resources */ = {isa = PBXBuildFile; fileRef = 843148981D4DFD6200AA1B06 /* sync.png */; };
+		8431489B1D4E36BC00AA1B06 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8431489A1D4E36BC00AA1B06 /* QuartzCore.framework */; };
 		8432230C1C5D269D009D21D2 /* API.m in Sources */ = {isa = PBXBuildFile; fileRef = 8432230B1C5D269D009D21D2 /* API.m */; };
 		843BEBAE1CAAF87A00EC485C /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 843BEBAC1CAAF87A00EC485C /* Main.storyboard */; };
 		84734C8C1D291EA90017E99B /* no_avatar.png in Resources */ = {isa = PBXBuildFile; fileRef = 84734C8B1D291EA90017E99B /* no_avatar.png */; };
@@ -102,6 +107,14 @@
 		84306B5F1D31641200A15238 /* Variables.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Variables.m; sourceTree = "<group>"; };
 		84308CD21D28E58800B72D83 /* DBRemover.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DBRemover.h; sourceTree = "<group>"; };
 		84308CD31D28E58900B72D83 /* DBRemover.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DBRemover.m; sourceTree = "<group>"; };
+		8431488F1D4DE50500AA1B06 /* CreateResultTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CreateResultTableViewController.h; sourceTree = "<group>"; };
+		843148901D4DE50500AA1B06 /* CreateResultTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CreateResultTableViewController.m; sourceTree = "<group>"; };
+		843148921D4DE6F500AA1B06 /* TagsDefault+CoreDataProperties.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "TagsDefault+CoreDataProperties.h"; sourceTree = "<group>"; };
+		843148931D4DE6F500AA1B06 /* TagsDefault+CoreDataProperties.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "TagsDefault+CoreDataProperties.m"; sourceTree = "<group>"; };
+		843148941D4DE6F500AA1B06 /* TagsDefault.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TagsDefault.h; sourceTree = "<group>"; };
+		843148951D4DE6F500AA1B06 /* TagsDefault.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TagsDefault.m; sourceTree = "<group>"; };
+		843148981D4DFD6200AA1B06 /* sync.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = sync.png; sourceTree = "<group>"; };
+		8431489A1D4E36BC00AA1B06 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		8432230A1C5D269D009D21D2 /* API.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = API.h; sourceTree = "<group>"; };
 		8432230B1C5D269D009D21D2 /* API.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = API.m; sourceTree = "<group>"; };
 		843BEBAD1CAAF87A00EC485C /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -244,6 +257,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8431489B1D4E36BC00AA1B06 /* QuartzCore.framework in Frameworks */,
 				91D7AB0D1F0C13D00EE6D5FD /* libPods-DayByDay.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -291,6 +305,7 @@
 				84734C8B1D291EA90017E99B /* no_avatar.png */,
 				84799DBF1D469D5B009B50A8 /* quarter.png */,
 				84799DC91D469DEF009B50A8 /* settings.png */,
+				843148981D4DFD6200AA1B06 /* sync.png */,
 				84799DC01D469D5B009B50A8 /* week.png */,
 				84799DC11D469D5B009B50A8 /* year.png */,
 			);
@@ -468,6 +483,10 @@
 				84FDC4861D3CECF8008727ED /* Locations+CoreDataProperties.m */,
 				84FDC4871D3CECF8008727ED /* Locations.h */,
 				84FDC4881D3CECF8008727ED /* Locations.m */,
+				843148921D4DE6F500AA1B06 /* TagsDefault+CoreDataProperties.h */,
+				843148931D4DE6F500AA1B06 /* TagsDefault+CoreDataProperties.m */,
+				843148941D4DE6F500AA1B06 /* TagsDefault.h */,
+				843148951D4DE6F500AA1B06 /* TagsDefault.m */,
 			);
 			name = "Core Data Classes";
 			sourceTree = "<group>";
@@ -475,6 +494,8 @@
 		84EACB551C6A6FF0006F3E2A /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
+				8431488F1D4DE50500AA1B06 /* CreateResultTableViewController.h */,
+				843148901D4DE50500AA1B06 /* CreateResultTableViewController.m */,
 				84E298B41C4CF4A000DF48B2 /* LoginViewController.h */,
 				84E298B51C4CF4A000DF48B2 /* LoginViewController.m */,
 				8422378D1CAAF57E00745C3B /* MenuTableViewController.h */,
@@ -503,6 +524,7 @@
 		C3BAD6DD5D7CC08592B7FA25 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				8431489A1D4E36BC00AA1B06 /* QuartzCore.framework */,
 				142E5BEFE0FA1508F43EB9A2 /* libPods-DayByDay.a */,
 			);
 			name = Frameworks;
@@ -580,6 +602,7 @@
 				84799DCE1D469E8F009B50A8 /* hot_spot.png in Resources */,
 				84799DC41D469D5B009B50A8 /* quarter.png in Resources */,
 				84E298BE1C4CF4A000DF48B2 /* Assets.xcassets in Resources */,
+				843148991D4DFD6200AA1B06 /* sync.png in Resources */,
 				84799DCA1D469DEF009B50A8 /* archive.png in Resources */,
 				84799DCB1D469DEF009B50A8 /* help.png in Resources */,
 				84799DC51D469D5B009B50A8 /* week.png in Resources */,
@@ -643,6 +666,7 @@
 			files = (
 				84E24CBA1CAE7A6D00090044 /* Sync.m in Sources */,
 				84FDC48D1D3CECF8008727ED /* Rates+CoreDataProperties.m in Sources */,
+				843148911D4DE50500AA1B06 /* CreateResultTableViewController.m in Sources */,
 				84FDC4A51D3CECF8008727ED /* SocialNetworks+CoreDataProperties.m in Sources */,
 				84FDC4A91D3CECF8008727ED /* Qualities+CoreDataProperties.m in Sources */,
 				84FDC4A71D3CECF8008727ED /* HotSpotActivitiesDefault+CoreDataProperties.m in Sources */,
@@ -650,6 +674,7 @@
 				84EACB541C6A6FE5006F3E2A /* NewResultViewController.m in Sources */,
 				84FDC48E1D3CECF8008727ED /* Rates.m in Sources */,
 				84FDC4A01D3CECF8008727ED /* Results_Relationships.m in Sources */,
+				843148961D4DE6F500AA1B06 /* TagsDefault+CoreDataProperties.m in Sources */,
 				84FDC4B21D3CECF8008727ED /* Energies.m in Sources */,
 				84FDC4951D3CECF8008727ED /* References+CoreDataProperties.m in Sources */,
 				84FDC4A31D3CECF8008727ED /* PeriodTypes+CoreDataProperties.m in Sources */,
@@ -703,6 +728,7 @@
 				84FDC49A1D3CECF8008727ED /* Results.m in Sources */,
 				84E24CC71CAE7D2400090044 /* DeviceToServerSync.m in Sources */,
 				84FDC4AB1D3CECF8008727ED /* Priorities+CoreDataProperties.m in Sources */,
+				843148971D4DE6F500AA1B06 /* TagsDefault.m in Sources */,
 				84FDC48A1D3CECF8008727ED /* Results_References.m in Sources */,
 				84FDC4A21D3CECF8008727ED /* HotSpotActivities.m in Sources */,
 				84E298B01C4CF4A000DF48B2 /* main.m in Sources */,

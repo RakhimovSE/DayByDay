@@ -8,6 +8,9 @@
 
 #import "ServerToDeviceSync.h"
 #import <AFNetworking.h>
+#import "UIImageView+AFNetworking.h"
+#import "MenuTableViewController.h"
+
 #import "Constants.h"
 #import "DataController.h"
 #import "Difficulties.h"
@@ -29,6 +32,7 @@
 #import "Results_References.h"
 #import "SocialNetworks.h"
 #import "Tags.h"
+#import "TagsDefault.h"
 #import "Tags_Results.h"
 #import "Users.h"
 #import "Users_SocialNetworks.h"
@@ -39,6 +43,8 @@
     NSArray *syncWaves;
     NSDictionary *lastElementParamsOnFirstSync;
     NSDate *lastElementUpdatedDate;
+    long user_id;
+    UIImageView *userAvatarImageView;
 }
 
 const int AMOUNT = 1000;
@@ -48,32 +54,34 @@ const int AMOUNT = 1000;
         dataController = [[DataController alloc] init];
         NSMutableDictionary *syncWave0 = [NSMutableDictionary dictionaryWithObjectsAndKeys: [NSNumber numberWithBool:FALSE], @"users:", nil];
         NSMutableDictionary *syncWave1 = [NSMutableDictionary dictionaryWithObjectsAndKeys:
-                                   [NSNumber numberWithBool:FALSE], @"socialNetworks:",
-                                   [NSNumber numberWithBool:FALSE], @"rates:",
-                                   [NSNumber numberWithBool:FALSE], @"hotSpotCategoriesDefault:",
-                                   [NSNumber numberWithBool:FALSE], @"hotSpotActivitiesDefault:",
-                                   [NSNumber numberWithBool:FALSE], @"priorities:",
-                                   [NSNumber numberWithBool:FALSE], @"energies:",
-                                   [NSNumber numberWithBool:FALSE], @"difficulties:",
-                                   [NSNumber numberWithBool:FALSE], @"qualities:",
-                                   [NSNumber numberWithBool:FALSE], @"periodTypes:", nil];
+                                          [NSNumber numberWithBool:FALSE], @"socialNetworks:",
+                                          [NSNumber numberWithBool:FALSE], @"rates:",
+                                          [NSNumber numberWithBool:FALSE], @"tagsDefault:",
+                                          [NSNumber numberWithBool:FALSE], @"hotSpotCategoriesDefault:",
+                                          [NSNumber numberWithBool:FALSE], @"hotSpotActivitiesDefault:",
+                                          [NSNumber numberWithBool:FALSE], @"priorities:",
+                                          [NSNumber numberWithBool:FALSE], @"energies:",
+                                          [NSNumber numberWithBool:FALSE], @"difficulties:",
+                                          [NSNumber numberWithBool:FALSE], @"qualities:",
+                                          [NSNumber numberWithBool:FALSE], @"periodTypes:", nil];
         NSMutableDictionary *syncWave2 = [NSMutableDictionary dictionaryWithObjectsAndKeys:
-                                   [NSNumber numberWithBool:FALSE], @"hotSpotsDefault:",
-                                   [NSNumber numberWithBool:FALSE], @"hotSpotCategories:",
-                                   [NSNumber numberWithBool:FALSE], @"hotSpotActivities:",
-                                   [NSNumber numberWithBool:FALSE], @"users_SocialNetworks:",
-                                   [NSNumber numberWithBool:FALSE], @"tags:",
-                                   [NSNumber numberWithBool:FALSE], @"locations:",
-                                   [NSNumber numberWithBool:FALSE], @"references:", nil];
+                                          [NSNumber numberWithBool:FALSE], @"hotSpotsDefault:",
+                                          [NSNumber numberWithBool:FALSE], @"hotSpotCategories:",
+                                          [NSNumber numberWithBool:FALSE], @"hotSpotActivities:",
+                                          [NSNumber numberWithBool:FALSE], @"users_SocialNetworks:",
+                                          [NSNumber numberWithBool:FALSE], @"tags:",
+                                          [NSNumber numberWithBool:FALSE], @"locations:",
+                                          [NSNumber numberWithBool:FALSE], @"references:", nil];
         NSMutableDictionary *syncWave3 = [NSMutableDictionary dictionaryWithObjectsAndKeys: [NSNumber numberWithBool:FALSE], @"hotSpots:", nil];
         NSMutableDictionary *syncWave4 = [NSMutableDictionary dictionaryWithObjectsAndKeys: [NSNumber numberWithBool:FALSE], @"results:", nil];
         NSMutableDictionary *syncWave5 = [NSMutableDictionary dictionaryWithObjectsAndKeys:
-                                   [NSNumber numberWithBool:FALSE], @"tags_Results:",
-                                   [NSNumber numberWithBool:FALSE], @"results_References:",
-                                   [NSNumber numberWithBool:FALSE], @"results_Relationships:", nil];
+                                          [NSNumber numberWithBool:FALSE], @"tags_Results:",
+                                          [NSNumber numberWithBool:FALSE], @"results_References:",
+                                          [NSNumber numberWithBool:FALSE], @"results_Relationships:", nil];
         syncWaves = [NSArray arrayWithObjects:syncWave0, syncWave1, syncWave2, syncWave3, syncWave4, syncWave5, nil];
         lastElementUpdatedDate = lastSync;
         lastElementParamsOnFirstSync = [NSDictionary dictionaryWithObjectsAndKeys:lastSync, @"last_updated", nil];
+        user_id = [dataController getUserId];
         return self;
     }
     return nil;
@@ -91,6 +99,7 @@ const int AMOUNT = 1000;
 - (void)syncWave1 {
     [self socialNetworks:lastElementParamsOnFirstSync];
     [self rates:lastElementParamsOnFirstSync];
+    [self tagsDefault:lastElementParamsOnFirstSync];
     [self hotSpotCategoriesDefault:lastElementParamsOnFirstSync];
     [self hotSpotActivitiesDefault:lastElementParamsOnFirstSync];
     [self priorities:lastElementParamsOnFirstSync];
@@ -101,6 +110,7 @@ const int AMOUNT = 1000;
 }
 
 - (void)syncWave2 {
+    [self periodTypes:lastElementParamsOnFirstSync];
     [self hotSpotsDefault:lastElementParamsOnFirstSync];
     [self hotSpotCategories:lastElementParamsOnFirstSync];
     [self hotSpotActivities:lastElementParamsOnFirstSync];
@@ -126,10 +136,22 @@ const int AMOUNT = 1000;
 
 // Sync is over
 - (void)syncWave6 {
-    Variables *lastSyncVariable = [Variables getVariable:@"lastSyncServer"];
-    lastSyncVariable.variable_value = lastElementUpdatedDate;
+    Variables *lastSyncServer = [Variables getVariable:@"lastSyncServer"];
+    lastSyncServer.variable_value = lastElementUpdatedDate;
+    NSDate *localDate = [NSDate date];
+    Variables *lastSyncLocal = [Variables getVariable:@"lastSyncLocal"];
+    if (!lastSyncLocal)
+        [Variables insertVariable:@"lastSyncLocal" Value:localDate];
+    else
+        lastSyncLocal.variable_value = localDate;
     [dataController.app saveContext];
-    [Constants showAlertMessage:@"Sync Completed"];
+    if (self.viewControllerDelegate && [self.viewControllerDelegate isKindOfClass:[MenuTableViewController class]]) {
+        MenuTableViewController *controller = (MenuTableViewController *)self.viewControllerDelegate;
+        [controller setMenuTableViewControllerStyle];
+        [controller.syncImageView.layer removeAllAnimations];
+        controller.syncStarted = 0;
+    }
+//    [Constants showAlertMessage:@"Sync Completed"];
 }
 
 #pragma mark Difficulties
@@ -453,9 +475,26 @@ const int AMOUNT = 1000;
         if (![localItem isKindOfClass:[PeriodTypes class]]) return;
         PeriodTypes *localPeriodType = localItem;
         localPeriodType.periodType_id = [[serverItem valueForKey:@"periodType_id"] intValue];
-        NSDate *periodType_length = [API mySqlStringToDate:[serverItem valueForKey:@"periodType_length"]];
-        localPeriodType.periodType_length = [periodType_length timeIntervalSinceReferenceDate];
         localPeriodType.periodType_name = [serverItem valueForKey:@"periodType_name"];
+        localPeriodType.periodType_years = [[serverItem valueForKey:@"periodType_years"] intValue];
+        localPeriodType.periodType_months = [[serverItem valueForKey:@"periodType_months"] intValue];
+        localPeriodType.periodType_days = [[serverItem valueForKey:@"periodType_days"] intValue];
+        id parentPeriodTypeId = [serverItem valueForKey:@"periodType_parentPeriodType_id"];
+        if (![parentPeriodTypeId isKindOfClass:[NSNull class]]) {
+            PeriodTypes *parentPeriodType = (PeriodTypes *)
+                [Variables getVariable:@"PeriodTypes" EntityIdKey:@"periodType_id" EntityIdValue:parentPeriodTypeId];
+            [localPeriodType setParentPeriodType:parentPeriodType];
+        }
+        else
+            [localPeriodType setParentPeriodType:nil];
+        id childPeriodTypeId = [serverItem valueForKey:@"periodType_childPeriodType_id"];
+        if (![childPeriodTypeId isKindOfClass:[NSNull class]]) {
+            PeriodTypes *childPeriodType = (PeriodTypes *)
+                [Variables getVariable:@"PeriodTypes" EntityIdKey:@"periodType_id" EntityIdValue:childPeriodTypeId];
+            [localPeriodType setChildPeriodType:childPeriodType];
+        }
+        else
+            [localPeriodType setChildPeriodType:nil];
         NSDate *periodType_updated = [API mySqlStringToDate:[serverItem valueForKey:@"periodType_updated"]];
         localPeriodType.periodType_updated = [periodType_updated timeIntervalSinceReferenceDate];
         localPeriodType.periodType_deleted = [[serverItem valueForKey:@"periodType_deleted"] boolValue];
@@ -614,10 +653,8 @@ const int AMOUNT = 1000;
         Energies *energy = (Energies *)[Variables getVariable:@"Energies"
             EntityIdKey:@"energy_level" EntityIdValue:[serverItem valueForKey:@"fk_energy_level"]];
         [localResult setEnergy:energy];
-        NSDate *resultStartDateTime = [API mySqlStringToDate:[serverItem valueForKey:@"result_startDateTime"]];
-        localResult.result_startDateTime = [resultStartDateTime timeIntervalSinceReferenceDate];
-        NSDate *resultTimeAmount = [API mySqlStringToDate:[serverItem valueForKey:@"result_timeAmount"]];
-        localResult.resut_timeAmount = [resultTimeAmount timeIntervalSinceReferenceDate];
+        NSDate *resultStartDate = [API mySqlStringToDate:[serverItem valueForKey:@"result_startDate"]];
+        localResult.result_startDate = [resultStartDate timeIntervalSinceReferenceDate];
         Difficulties *difficulty = (Difficulties *)[Variables getVariable:@"Difficulties"
             EntityIdKey:@"difficulty_level" EntityIdValue:[serverItem valueForKey:@"fk_difficulty_level"]];
         [localResult setDifficulty:difficulty];
@@ -773,6 +810,32 @@ const int AMOUNT = 1000;
     [self handleServerData:serverData SetItemMethod:setItem NextBlockOfItemsMethod:nextBlockOfItems EntityAttributeNames:entityAttributeNames];
 }
 
+#pragma mark TagsDefault
+- (void)tagsDefault:(NSDictionary *)lastElementParams {
+    NSDictionary *entityAttributeNames = [NSDictionary dictionaryWithObjectsAndKeys:
+                                          @"TagsDefault", @"entityName",
+                                          @"tagDefault_id", @"entityId",
+                                          @"", @"entityId2",
+                                          @"tagDefault_updated", @"entityUpdated",
+                                          @"tagDefault_deleted", @"entityDeleted", nil];
+    SEL responseHandler = @selector(tagsDefaultHandler:EntityAttributeNames:);
+    [self createFirstPartOfRequestAndCallRequestMethod:entityAttributeNames LastElementParams:lastElementParams ResponseHandler:responseHandler];
+}
+- (void)tagsDefaultHandler:(id)serverData EntityAttributeNames:(NSDictionary *)entityAttributeNames {
+    void (^setItem )(id, NSArray *) = ^(id localItem, NSArray *serverItem) {
+        if (![localItem isKindOfClass:[TagsDefault class]]) return;
+        TagsDefault *localTagDefault = localItem;
+        localTagDefault.tagDefault_id = [[serverItem valueForKey:@"tagDefault_id"] intValue];
+        localTagDefault.tagDefault_name = [serverItem valueForKey:@"tagDefault_name"];
+        NSDate *tagDefaultUpdated = [API mySqlStringToDate:[serverItem valueForKey:@"tagDefault_updated"]];
+        localTagDefault.tagDefault_updated = [tagDefaultUpdated timeIntervalSinceReferenceDate];
+        localTagDefault.tagDefault_deleted = [[serverItem valueForKey:@"tagDefault_deleted"] boolValue];
+    };
+    
+    SEL nextBlockOfItems = @selector(tagsDefault:);
+    [self handleServerData:serverData SetItemMethod:setItem NextBlockOfItemsMethod:nextBlockOfItems EntityAttributeNames:entityAttributeNames];
+}
+
 #pragma mark Tags_Results
 - (void)tags_Results:(NSDictionary *)lastElementParams {
     NSDictionary *entityAttributeNames = [NSDictionary dictionaryWithObjectsAndKeys:
@@ -814,6 +877,10 @@ const int AMOUNT = 1000;
     SEL responseHandler = @selector(usersHandler:EntityAttributeNames:);
     [self createFirstPartOfRequestAndCallRequestMethod:entityAttributeNames LastElementParams:lastElementParams ResponseHandler:responseHandler];
 }
+
+- (void)downloadUserAvatar:(Users *)user Avatar:(NSString *)userAvatarPath {
+    
+}
 - (void)usersHandler:(id)serverData EntityAttributeNames:(NSDictionary *)entityAttributeNames {
     void (^setItem )(id, NSArray *) = ^(id localItem, NSArray *serverItem) {
         if (![localItem isKindOfClass:[Users class]]) return;
@@ -822,8 +889,24 @@ const int AMOUNT = 1000;
         localUser.user_email = [serverItem valueForKey:@"user_email"];
         localUser.user_password = [serverItem valueForKey:@"user_password"];
         localUser.user_name = [serverItem valueForKey:@"user_name"];
-//        Доработать
-//        localUser.user_avatar = ;
+        
+        id userAvatarPath = [serverItem valueForKey:@"user_avatarPath"];
+        if (![userAvatarPath isKindOfClass:[NSNull class]]) {
+            NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:@"%@avatars/%@", apiURL, userAvatarPath]];
+            NSURLRequest *request = [NSURLRequest requestWithURL:url];
+            UIImage *placeholderImage = [UIImage imageNamed:@"no_avatar.png"];
+            userAvatarImageView = [[UIImageView alloc] initWithImage:placeholderImage];
+            [userAvatarImageView setImageWithURLRequest:request placeholderImage:placeholderImage
+                                success:^(NSURLRequest *request, NSHTTPURLResponse *response, UIImage *image) {
+                                    NSData *dataImage = UIImagePNGRepresentation(image);
+                                    localUser.user_avatar = dataImage;
+                                } failure:^(NSURLRequest * _Nonnull request, NSHTTPURLResponse * _Nullable response, NSError * _Nonnull error) {
+                                    
+                                }];
+        }
+        else
+            localUser.user_avatar = nil;
+        
         localUser.user_energy = [[serverItem valueForKey:@"user_energy"] doubleValue];
         localUser.user_score = [[serverItem valueForKey:@"user_score"] intValue];
         NSDate *user_registry = [API mySqlStringToDate:[serverItem valueForKey:@"user_registry"]];
@@ -906,7 +989,6 @@ const int AMOUNT = 1000;
 - (void)downloadDataFromServer:(NSMutableDictionary *)params ResponseHandler:(SEL)responseHandler
           EntityAttributeNames:(NSDictionary *)entityAttributeNames {
     
-    long user_id = [dataController getUserId];
     [params setValuesForKeysWithDictionary:[[NSMutableDictionary alloc] initWithObjectsAndKeys:
                                             @"API", @"className",
                                  @"serverToDevice", @"methodName",

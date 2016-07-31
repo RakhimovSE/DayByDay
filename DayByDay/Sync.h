@@ -10,6 +10,6 @@
 
 @interface Sync : NSObject;
 
-+ (void)syncAllData;
++ (void)syncAllData:(id)viewControllerDelegate;
 
 @end

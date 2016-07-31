@@ -10,4 +10,12 @@
 
 @interface MenuTableViewController : UITableViewController <UITableViewDelegate, UITableViewDataSource>
 
+@property (weak, nonatomic) IBOutlet UILabel *userLabel;
+@property (weak, nonatomic) IBOutlet UIImageView *userAvatarImageView;
+@property BOOL syncStarted;
+@property (weak, nonatomic) IBOutlet UIImageView *syncImageView;
+@property (weak, nonatomic) IBOutlet UILabel *syncLabel;
+
+- (void)setMenuTableViewControllerStyle;
+
 @end

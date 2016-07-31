@@ -7,9 +7,16 @@
 //
 
 #import "MenuTableViewController.h"
+#import "SWRevealViewController.h"
 #import "LoginViewController.h"
 #import "SettingsTableViewController.h"
 #import "DBRemover.h"
+#import "Variables.h"
+#import "Users.h"
+#import "DataController.h"
+#import <AFNetworking.h>
+#import "UIImageView+AFNetworking.h"
+#import "Sync.h"
 
 @interface MenuTableViewController ()
 
@@ -22,6 +29,8 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
+    self.syncStarted = 0;
+    [self setMenuTableViewControllerStyle];
     // Uncomment the following line to preserve selection between presentations.
     // self.clearsSelectionOnViewWillAppear = NO;
     
@@ -32,6 +41,45 @@
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+
+- (void)setMenuTableViewControllerStyle {
+    void (^setUserAvatarImageViewStyle)(void) = ^() {
+        self.userAvatarImageView.layer.cornerRadius = self.userAvatarImageView.frame.size.height /2;
+        self.userAvatarImageView.layer.masksToBounds = YES;
+        self.userAvatarImageView.layer.borderWidth = 0;
+    };
+    setUserAvatarImageViewStyle();
+    
+    Variables *lastSyncLocal = [Variables getVariable:@"lastSyncLocal"];
+    if (lastSyncLocal)
+        self.syncLabel.text = [API getSyncDateString:lastSyncLocal.variable_value];
+    long userId = [[[DataController alloc] init] getUserId];
+    Users *user = (Users *)[Variables getVariable:@"Users" EntityIdKey:@"user_id"
+                                    EntityIdValue:[NSString stringWithFormat:@"%ld", userId]];
+    if (user) {
+        self.userLabel.text = user.user_name;
+        UIImage *userAvatarImage = user.user_avatar ? [UIImage imageWithData:user.user_avatar] :
+        [UIImage imageNamed:@"no_avatar.png"];
+        self.userAvatarImageView.image = userAvatarImage;
+    }
+}
+
+- (void)runSpinAnimationOnView:(UIView*)view duration:(CGFloat)duration rotations:(CGFloat)rotations repeat:(float)repeat {
+    CABasicAnimation* rotationAnimation;
+    rotationAnimation = [CABasicAnimation animationWithKeyPath:@"transform.rotation.z"];
+    rotationAnimation.toValue = [NSNumber numberWithFloat: M_PI * 2.0 /* full rotation*/ * rotations * duration ];
+    rotationAnimation.duration = duration;
+    rotationAnimation.cumulative = YES;
+    rotationAnimation.repeatCount = repeat;
+    
+    [view.layer addAnimation:rotationAnimation forKey:@"rotationAnimation"];
+}
+
+- (void)startSync {
+    [self runSpinAnimationOnView:self.syncImageView duration:1 rotations:1 repeat:HUGE_VALF];
+    self.syncStarted = 1;
+    [Sync syncAllData:self];
 }
 
 #pragma mark - Table view data source
@@ -45,11 +93,15 @@
 //}
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    [tableView deselectRowAtIndexPath:indexPath animated:YES];
     UITableViewCell *cell = [tableView cellForRowAtIndexPath:indexPath];
-    NSLog(@"%@", cell.reuseIdentifier);
+    if ([cell.reuseIdentifier isEqualToString:@"sync"] && !self.syncStarted) {
+        [self startSync];
+    }
+//    NSLog(@"%@", cell.reuseIdentifier);
 }
 
-
+//
 //- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
 //    NSString *CellIdentifier = [menuItems objectAtIndex:indexPath.row];
 //    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier forIndexPath:indexPath];
@@ -95,11 +147,6 @@
 #pragma mark - Navigation
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    
-    // Set the title of navigation bar by using the menu items
-    NSIndexPath *indexPath = [self.tableView indexPathForSelectedRow];
-    UINavigationController *destViewController = (UINavigationController*)segue.destinationViewController;
-    destViewController.title = [[menuItems objectAtIndex:indexPath.row] capitalizedString];
 }
 
 @end

@@ -2,7 +2,7 @@
 //  Results+CoreDataProperties.h
 //  DayByDay
 //
-//  Created by Admin on 18.07.16.
+//  Created by Admin on 31.07.16.
 //  Copyright © 2016 Sevastyan Rakhimov. All rights reserved.
 //
 //  Choose "Create NSManagedObject Subclass…" from the Core Data editor menu
@@ -21,9 +21,8 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic) int32_t result_id;
 @property (nonatomic) BOOL result_main;
 @property (nullable, nonatomic, retain) NSString *result_name;
-@property (nonatomic) NSTimeInterval result_startDateTime;
+@property (nonatomic) NSTimeInterval result_startDate;
 @property (nonatomic) NSTimeInterval result_updated;
-@property (nonatomic) NSTimeInterval resut_timeAmount;
 @property (nullable, nonatomic, retain) NSSet<Results_Relationships *> *childResults_relationships;
 @property (nullable, nonatomic, retain) Difficulties *difficulty;
 @property (nullable, nonatomic, retain) Energies *energy;

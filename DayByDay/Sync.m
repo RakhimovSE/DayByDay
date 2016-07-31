@@ -16,12 +16,13 @@
 
 #pragma mark - Data downloading
 
-+ (void)syncAllData {
++ (void)syncAllData:(id)viewControllerDelegate {
     NSDate *lastSyncOld = [Sync getLastSync];
-    ServerToDeviceSync *serverToDeviceSync = [[ServerToDeviceSync alloc] initWithLastSync:lastSyncOld];
-    [serverToDeviceSync syncAllData];
     DeviceToServerSync *deviceToServerSync = [[DeviceToServerSync alloc] init];
     [deviceToServerSync AllData];
+    ServerToDeviceSync *serverToDeviceSync = [[ServerToDeviceSync alloc] initWithLastSync:lastSyncOld];
+    serverToDeviceSync.viewControllerDelegate = viewControllerDelegate;
+    [serverToDeviceSync syncAllData];
 }
 
 + (NSDate *)getLastSync {

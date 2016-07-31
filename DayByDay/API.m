@@ -85,8 +85,21 @@
     return date;
 }
 
++ (NSString *)getSyncDateString:(NSDate *)date {
+    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+    NSTimeZone *timeZone = [NSTimeZone defaultTimeZone];
+    [dateFormatter setTimeZone:timeZone];
+    NSCalendar *calendar = [NSCalendar currentCalendar];
+    BOOL today = [calendar isDateInToday:date];
+    BOOL yesterday = [calendar isDateInYesterday:date];
+    if (today) [dateFormatter setDateFormat:@"Сегодня HH':'mm':'ss'"];
+    else if (yesterday) [dateFormatter setDateFormat:@"Вчера HH':'mm':'ss'"];
+    else [dateFormatter setDateFormat:@"dd'.'MM'.'yyyy' 'HH':'mm':'ss'"];
+    return [dateFormatter stringFromDate:date];
+}
+
 + (NSDate *)mySqlStringToDate:(NSString *)dateString {
-    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc]init];
+    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
     NSTimeZone *timeZone = [NSTimeZone timeZoneWithName:@"UTC"];
     [dateFormatter setTimeZone:timeZone];
     [dateFormatter setDateFormat:@"yyyy'-'MM'-'dd' 'HH':'mm':'ss'"];
@@ -94,7 +107,7 @@
 }
 
 + (NSString *)dateToMySqlString:(NSDate *)date {
-    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc]init];
+    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
     NSTimeZone *timeZone = [NSTimeZone timeZoneWithName:@"UTC"];
     [dateFormatter setTimeZone:timeZone];
     [dateFormatter setDateFormat:@"yyyy'-'MM'-'dd' 'HH':'mm':'ss'"];

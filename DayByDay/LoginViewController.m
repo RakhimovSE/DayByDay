@@ -36,7 +36,6 @@ BOOL isLogin;
     userDataController = [[UserDataController alloc] init];
     
     if ([userDataController getUserCount] > 0) {
-        [Sync syncAllData];
         [self performSegueWithIdentifier:@"resultSegue" sender:self];
     }
 }
@@ -50,7 +49,6 @@ BOOL isLogin;
     if ([identifier isEqual:@"resultSegue"]) {
         if (!isLogin)
             return NO;
-        [Sync syncAllData];
     }
     return YES;
 }
