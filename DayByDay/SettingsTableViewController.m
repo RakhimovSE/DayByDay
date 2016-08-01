@@ -7,8 +7,10 @@
 //
 
 #import "SettingsTableViewController.h"
+#import "SWRevealViewController.h"
 
 @interface SettingsTableViewController ()
+@property (weak, nonatomic) IBOutlet UIBarButtonItem *menuButton;
 
 @end
 
@@ -17,6 +19,11 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
+    if (self.revealViewController) {
+        [self.menuButton setTarget: self.revealViewController];
+        [self.menuButton setAction: @selector( revealToggle: )];
+        [self.view addGestureRecognizer:self.revealViewController.panGestureRecognizer];
+    }
     // Uncomment the following line to preserve selection between presentations.
     // self.clearsSelectionOnViewWillAppear = NO;
     

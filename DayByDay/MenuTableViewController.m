@@ -54,11 +54,23 @@
     Variables *lastSyncLocal = [Variables getVariable:@"lastSyncLocal"];
     if (lastSyncLocal)
         self.syncLabel.text = [API getSyncDateString:lastSyncLocal.variable_value];
+    else
+        self.syncLabel.text = @"Никогда";
     long userId = [[[DataController alloc] init] getUserId];
     Users *user = (Users *)[Variables getVariable:@"Users" EntityIdKey:@"user_id"
                                     EntityIdValue:[NSString stringWithFormat:@"%ld", userId]];
+    
     if (user) {
-        self.userLabel.text = user.user_name;
+        self.userNameLabel.text = user.user_name;
+        NSString *(^getScoreCase)(void) = ^NSString *() {
+            if (user.user_score % 100 >= 11 && user.user_score % 100 <= 19)
+                return @"баллов";
+            int mod = user.user_score % 10;
+            if (mod == 1) return @"балл";
+            if (mod >= 2 && mod <= 4) return @"балла";
+            return @"баллов";
+        };
+        self.userScoreLabel.text = [NSString stringWithFormat:@"%i %@", user.user_score, getScoreCase()];
         UIImage *userAvatarImage = user.user_avatar ? [UIImage imageWithData:user.user_avatar] :
         [UIImage imageNamed:@"no_avatar.png"];
         self.userAvatarImageView.image = userAvatarImage;
@@ -79,6 +91,7 @@
 - (void)startSync {
     [self runSpinAnimationOnView:self.syncImageView duration:1 rotations:1 repeat:HUGE_VALF];
     self.syncStarted = 1;
+    self.syncLabel.text = @"Синхронизирую...";
     [Sync syncAllData:self];
 }
 

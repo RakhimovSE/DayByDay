@@ -1,0 +1,69 @@
+
+/* Class = "UILabel"; text = "Цели недели"; ObjectID = "1b3-S6-Xv9"; */
+"1b3-S6-Xv9.text" = "Цели недели";
+
+/* Class = "UIBarButtonItem"; title = "Зарегистрироваться"; ObjectID = "2YX-g6-knJ"; */
+"2YX-g6-knJ.title" = "Зарегистрироваться";
+
+/* Class = "UILabel"; text = "Title"; ObjectID = "8rF-DL-Swy"; */
+"8rF-DL-Swy.text" = "Title";
+
+/* Class = "UILabel"; text = "Настройки"; ObjectID = "9K4-Pi-36Q"; */
+"9K4-Pi-36Q.text" = "Настройки";
+
+/* Class = "UILabel"; text = "Помощь"; ObjectID = "Ees-4q-VcY"; */
+"Ees-4q-VcY.text" = "Помощь";
+
+/* Class = "UIButton"; normalTitle = "Войти"; ObjectID = "KGG-iK-gMw"; */
+"KGG-iK-gMw.normalTitle" = "Войти";
+
+/* Class = "UILabel"; text = "Сферы влияния"; ObjectID = "LM0-M4-Yfi"; */
+"LM0-M4-Yfi.text" = "Сферы влияния";
+
+/* Class = "UILabel"; text = "Архив"; ObjectID = "Ocj-W6-hBr"; */
+"Ocj-W6-hBr.text" = "Архив";
+
+/* Class = "UITextField"; placeholder = "Электронная почта"; ObjectID = "Q8q-8E-DnG"; */
+"Q8q-8E-DnG.placeholder" = "Электронная почта";
+
+/* Class = "UILabel"; text = "Цели дня"; ObjectID = "Qst-H3-t2O"; */
+"Qst-H3-t2O.text" = "Цели дня";
+
+/* Class = "UITableViewController"; title = "Настройки"; ObjectID = "Rbk-iM-BiL"; */
+"Rbk-iM-BiL.title" = "Настройки";
+
+/* Class = "UITextField"; placeholder = "Повторите пароль"; ObjectID = "Rj1-eu-e2G"; */
+"Rj1-eu-e2G.placeholder" = "Повторите пароль";
+
+/* Class = "UINavigationItem"; title = "Настройки"; ObjectID = "Rxe-XM-jP1"; */
+"Rxe-XM-jP1.title" = "Настройки";
+
+/* Class = "UILabel"; text = "Sync Label"; ObjectID = "S4d-rU-L3Z"; */
+"S4d-rU-L3Z.text" = "Sync Label";
+
+/* Class = "UILabel"; text = "User Name Label"; ObjectID = "Ueg-iG-PPh"; */
+"Ueg-iG-PPh.text" = "User Name Label";
+
+/* Class = "UITextField"; placeholder = "Имя пользователя"; ObjectID = "YTZ-Bc-uHu"; */
+"YTZ-Bc-uHu.placeholder" = "Имя пользователя";
+
+/* Class = "UILabel"; text = "Detail"; ObjectID = "enE-7V-e3H"; */
+"enE-7V-e3H.text" = "Detail";
+
+/* Class = "UITextField"; placeholder = "Пароль"; ObjectID = "foT-le-o9s"; */
+"foT-le-o9s.placeholder" = "Пароль";
+
+/* Class = "UILabel"; text = "User Score Label"; ObjectID = "gnZ-sf-F5C"; */
+"gnZ-sf-F5C.text" = "User Score Label";
+
+/* Class = "UITextField"; placeholder = "Электронная почта"; ObjectID = "q10-F6-UZB"; */
+"q10-F6-UZB.placeholder" = "Электронная почта";
+
+/* Class = "UITextField"; placeholder = "Пароль"; ObjectID = "rPf-yf-z3q"; */
+"rPf-yf-z3q.placeholder" = "Пароль";
+
+/* Class = "UILabel"; text = "Последняя синхронизация:"; ObjectID = "sIJ-61-EhN"; */
+"sIJ-61-EhN.text" = "Последняя синхронизация:";
+
+/* Class = "UIButton"; normalTitle = "Зарегистрироваться"; ObjectID = "uPh-Y8-qmY"; */
+"uPh-Y8-qmY.normalTitle" = "Зарегистрироваться";
