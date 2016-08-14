@@ -1,126 +1,126 @@
 
 /* Class = "UILabel"; text = "Monday vision"; ObjectID = "1b3-S6-Xv9"; */
-"1b3-S6-Xv9.text" = "Monday vision";
+"1b3-S6-Xv9.text" = "План в понедельник";
 
 /* Class = "UILabel"; text = "Activity"; ObjectID = "2RP-ND-qYJ"; */
-"2RP-ND-qYJ.text" = "Activity";
+"2RP-ND-qYJ.text" = "Активность";
 
 /* Class = "UIBarButtonItem"; title = "Register"; ObjectID = "2YX-g6-knJ"; */
-"2YX-g6-knJ.title" = "Register";
+"2YX-g6-knJ.title" = "Регистрация";
 
 /* Class = "UILabel"; text = "Name"; ObjectID = "520-1D-wa0"; */
-"520-1D-wa0.text" = "Name";
+"520-1D-wa0.text" = "Имя";
 
 /* Class = "UITableViewSection"; headerTitle = "Result info"; ObjectID = "5Ym-Zz-4Sc"; */
-"5Ym-Zz-4Sc.headerTitle" = "Result info";
+"5Ym-Zz-4Sc.headerTitle" = "Параметры цели";
 
 /* Class = "UILabel"; text = "Priority"; ObjectID = "8MF-SC-A8C"; */
-"8MF-SC-A8C.text" = "Priority";
+"8MF-SC-A8C.text" = "Приритет";
 
 /* Class = "UILabel"; text = "Result name"; ObjectID = "8rF-DL-Swy"; */
-"8rF-DL-Swy.text" = "Result name";
+"8rF-DL-Swy.text" = "Цель";
 
 /* Class = "UILabel"; text = "Settings"; ObjectID = "9K4-Pi-36Q"; */
-"9K4-Pi-36Q.text" = "Settings";
+"9K4-Pi-36Q.text" = "Настройки";
 
 /* Class = "UILabel"; text = "Is main"; ObjectID = "AI9-Ig-Kc1"; */
-"AI9-Ig-Kc1.text" = "Is main";
+"AI9-Ig-Kc1.text" = "Является главной";
 
 /* Class = "UILabel"; text = "Energy"; ObjectID = "DxQ-nf-svS"; */
-"DxQ-nf-svS.text" = "Energy";
+"DxQ-nf-svS.text" = "Энергия";
 
 /* Class = "UITableViewSection"; headerTitle = "Result was reached"; ObjectID = "EeT-hS-Jm4"; */
-"EeT-hS-Jm4.headerTitle" = "Result was reached";
+"EeT-hS-Jm4.headerTitle" = "Цель достигнута";
 
 /* Class = "UILabel"; text = "Help"; ObjectID = "Ees-4q-VcY"; */
-"Ees-4q-VcY.text" = "Help";
+"Ees-4q-VcY.text" = "Помощь";
 
 /* Class = "UILabel"; text = "Description"; ObjectID = "I0f-L4-Jh7"; */
-"I0f-L4-Jh7.text" = "Description";
+"I0f-L4-Jh7.text" = "Описание";
 
 /* Class = "UIButton"; normalTitle = "Login"; ObjectID = "KGG-iK-gMw"; */
-"KGG-iK-gMw.normalTitle" = "Login";
+"KGG-iK-gMw.normalTitle" = "Войти";
 
 /* Class = "UILabel"; text = "Hot spots"; ObjectID = "LM0-M4-Yfi"; */
-"LM0-M4-Yfi.text" = "Hot spots";
+"LM0-M4-Yfi.text" = "Сферы влияния";
 
 /* Class = "UILabel"; text = "Friday Reflection"; ObjectID = "Msm-Rp-WIi"; */
-"Msm-Rp-WIi.text" = "Friday Reflection";
+"Msm-Rp-WIi.text" = "Пятничный обзор";
 
 /* Class = "UILabel"; text = "Archive"; ObjectID = "Ocj-W6-hBr"; */
-"Ocj-W6-hBr.text" = "Archive";
+"Ocj-W6-hBr.text" = "Архив";
 
 /* Class = "UILabel"; text = "Category"; ObjectID = "P7b-k0-C2k"; */
-"P7b-k0-C2k.text" = "Category";
+"P7b-k0-C2k.text" = "Категория";
 
 /* Class = "UITextField"; placeholder = "*Email"; ObjectID = "Q8q-8E-DnG"; */
 "Q8q-8E-DnG.placeholder" = "*Email";
 
 /* Class = "UILabel"; text = "Daily outcomes"; ObjectID = "Qst-H3-t2O"; */
-"Qst-H3-t2O.text" = "Daily outcomes";
+"Qst-H3-t2O.text" = "Результаты дня";
 
 /* Class = "UITableViewController"; title = "Settings Table View Controller"; ObjectID = "Rbk-iM-BiL"; */
 "Rbk-iM-BiL.title" = "Settings Table View Controller";
 
 /* Class = "UITextField"; placeholder = "*Confirm password"; ObjectID = "Rj1-eu-e2G"; */
-"Rj1-eu-e2G.placeholder" = "*Confirm password";
+"Rj1-eu-e2G.placeholder" = "*Подтвердите пароль";
 
 /* Class = "UINavigationItem"; title = "Settings"; ObjectID = "Rxe-XM-jP1"; */
-"Rxe-XM-jP1.title" = "Settings";
+"Rxe-XM-jP1.title" = "Настройки";
 
 /* Class = "UILabel"; text = "Sync Label"; ObjectID = "S4d-rU-L3Z"; */
 "S4d-rU-L3Z.text" = "Sync Label";
 
 /* Class = "UILabel"; text = "Location"; ObjectID = "SiE-5l-9oZ"; */
-"SiE-5l-9oZ.text" = "Location";
+"SiE-5l-9oZ.text" = "Местоположение";
 
 /* Class = "UILabel"; text = "User Name Label"; ObjectID = "Ueg-iG-PPh"; */
 "Ueg-iG-PPh.text" = "User Name Label";
 
 /* Class = "UILabel"; text = "Parent Result"; ObjectID = "Vbs-bt-d11"; */
-"Vbs-bt-d11.text" = "Parent Result";
+"Vbs-bt-d11.text" = "Цель принадлежит";
 
 /* Class = "UITextField"; placeholder = "User name"; ObjectID = "YTZ-Bc-uHu"; */
-"YTZ-Bc-uHu.placeholder" = "User name";
+"YTZ-Bc-uHu.placeholder" = "Имя пользователя";
 
 /* Class = "UILabel"; text = "Difficulty"; ObjectID = "bz4-qz-Ytt"; */
-"bz4-qz-Ytt.text" = "Difficulty";
+"bz4-qz-Ytt.text" = "Сложность";
 
 /* Class = "UILabel"; text = "Finish Date"; ObjectID = "c1j-nz-haO"; */
-"c1j-nz-haO.text" = "Finish Date";
+"c1j-nz-haO.text" = "Дата окончания";
 
 /* Class = "UILabel"; text = "Result description"; ObjectID = "enE-7V-e3H"; */
-"enE-7V-e3H.text" = "Result description";
+"enE-7V-e3H.text" = "Описание цели";
 
 /* Class = "UITextField"; placeholder = "*Password"; ObjectID = "foT-le-o9s"; */
-"foT-le-o9s.placeholder" = "*Password";
+"foT-le-o9s.placeholder" = "*Пароль";
 
 /* Class = "UILabel"; text = "Quality"; ObjectID = "fod-L0-Hvz"; */
-"fod-L0-Hvz.text" = "Quality";
+"fod-L0-Hvz.text" = "Качество";
 
 /* Class = "UILabel"; text = "User Score Label"; ObjectID = "gnZ-sf-F5C"; */
 "gnZ-sf-F5C.text" = "User Score Label";
 
 /* Class = "UILabel"; text = "Period Type"; ObjectID = "i62-o8-sCf"; */
-"i62-o8-sCf.text" = "Period Type";
+"i62-o8-sCf.text" = "Период";
 
 /* Class = "UITextField"; placeholder = "Email"; ObjectID = "q10-F6-UZB"; */
 "q10-F6-UZB.placeholder" = "Email";
 
 /* Class = "UITextField"; placeholder = "Password"; ObjectID = "rPf-yf-z3q"; */
-"rPf-yf-z3q.placeholder" = "Password";
+"rPf-yf-z3q.placeholder" = "Пароль";
 
 /* Class = "UILabel"; text = "Last synchronization:"; ObjectID = "sIJ-61-EhN"; */
-"sIJ-61-EhN.text" = "Last synchronization:";
+"sIJ-61-EhN.text" = "Последняя синхронизация:";
 
 /* Class = "UIButton"; normalTitle = "Register"; ObjectID = "uPh-Y8-qmY"; */
-"uPh-Y8-qmY.normalTitle" = "Register";
+"uPh-Y8-qmY.normalTitle" = "Зарегистрироваться";
 
 /* Class = "UILabel"; text = "Tags"; ObjectID = "w9n-5H-7f9"; */
-"w9n-5H-7f9.text" = "Tags";
+"w9n-5H-7f9.text" = "Теги";
 
 /* Class = "UILabel"; text = "Start Date"; ObjectID = "xtM-Bm-Pnd"; */
-"xtM-Bm-Pnd.text" = "Start Date";
+"xtM-Bm-Pnd.text" = "Дата начала";
 
 /* Class = "UILabel"; text = "References"; ObjectID = "ybg-Q7-s40"; */
-"ybg-Q7-s40.text" = "References";
+"ybg-Q7-s40.text" = "Справочники";

@@ -51,11 +51,11 @@
     };
     setUserAvatarImageViewStyle();
     
-    Variables *lastSyncLocal = [Variables getVariable:@"lastSyncLocal"];
+    Variables *lastSyncLocal = [Variables getVariableWithKey:@"lastSyncLocal"];
     if (lastSyncLocal)
         self.syncLabel.text = [API getSyncDateString:lastSyncLocal.variable_value];
     else
-        self.syncLabel.text = @"Никогда";
+        self.syncLabel.text = NSLocalizedString(@"neverSynced", @"Sync has never been done");
     long userId = [[[DataController alloc] init] getUserId];
     Users *user = (Users *)[Variables getVariable:@"Users" EntityIdKey:@"user_id"
                                     EntityIdValue:[NSString stringWithFormat:@"%ld", userId]];
@@ -63,17 +63,24 @@
     if (user) {
         self.userNameLabel.text = user.user_name;
         NSString *(^getScoreCase)(void) = ^NSString *() {
+            NSString *singularNominative = NSLocalizedString(@"scoreSingularNominative", @"User's score in singular nominative form");
+            NSString *singularGenetive = NSLocalizedString(@"scoreSingularGenetive", @"User's score in singular genetive form");
+            NSString *pluralGenetive = NSLocalizedString(@"scorePluralGenetive", @"User's score in plural genetive form");
             if (user.user_score % 100 >= 11 && user.user_score % 100 <= 19)
-                return @"баллов";
+                return pluralGenetive;
             int mod = user.user_score % 10;
-            if (mod == 1) return @"балл";
-            if (mod >= 2 && mod <= 4) return @"балла";
-            return @"баллов";
+            if (mod == 1) return singularNominative;
+            if (mod >= 2 && mod <= 4) return singularGenetive;
+            return pluralGenetive;
         };
         self.userScoreLabel.text = [NSString stringWithFormat:@"%i %@", user.user_score, getScoreCase()];
         UIImage *userAvatarImage = user.user_avatar ? [UIImage imageWithData:user.user_avatar] :
         [UIImage imageNamed:@"no_avatar.png"];
         self.userAvatarImageView.image = userAvatarImage;
+    }
+    if (self.syncStarted) {
+        self.syncLabel.text = NSLocalizedString(@"syncingProcess", @"Started syncing");
+//        [self runSpinAnimationOnView:self.syncImageView duration:1 rotations:1 repeat:HUGE_VALF];
     }
 }
 
@@ -91,7 +98,8 @@
 - (void)startSync {
     [self runSpinAnimationOnView:self.syncImageView duration:1 rotations:1 repeat:HUGE_VALF];
     self.syncStarted = 1;
-    self.syncLabel.text = @"Синхронизирую...";
+    self.syncLabel.textColor = [UIColor darkGrayColor];
+    self.syncLabel.text = NSLocalizedString(@"syncingProcess", @"Started syncing");
     [Sync syncAllData:self];
 }
 

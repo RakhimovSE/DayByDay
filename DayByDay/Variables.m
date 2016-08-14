@@ -50,7 +50,7 @@
     return result;
 }
 
-+ (Variables *)getVariable:(NSString *)key {
++ (Variables *)getVariableWithKey:(NSString *)key {
     DataController *dataController = [[DataController alloc] init];
     NSFetchRequest *request = [[NSFetchRequest alloc] init];
     NSEntityDescription *entity = [NSEntityDescription entityForName:@"Variables"
@@ -65,14 +65,14 @@
 
 + (void)updateVariable:(NSString *)key Value:(id)value {
     DataController *dataController = [[DataController alloc] init];
-    Variables *result = [Variables getVariable:key];
+    Variables *result = [Variables getVariableWithKey:key];
     result.variable_value = value;
     [dataController.app saveContext];
 }
 
 + (void)deleteVariable:(NSString *)key {
     DataController *dataController = [[DataController alloc] init];
-    Variables *result = [Variables getVariable:key];
+    Variables *result = [Variables getVariableWithKey:key];
     [dataController.managedObjectContext deleteObject:result];
 }
 

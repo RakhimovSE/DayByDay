@@ -88,10 +88,27 @@ const int AMOUNT = 1000;
 }
 
 - (void)syncAllData {
-    [self syncWave0];
+    [self getServerDate];
 }
 
 #pragma mark - Sync Waves
+- (void)getServerDate {
+    Variables *lastSyncLocal = [Variables getVariableWithKey:@"lastSyncLocal"];
+    lastSyncLocal.variable_value = [NSDate date];
+    NSMutableDictionary *params = [NSMutableDictionary dictionaryWithObjectsAndKeys:
+                                   @"API", @"className",
+                                   @"getServerDate", @"methodName", nil];
+    AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
+    [manager POST:apiURL parameters:params progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+        Variables *lastSyncServer = [Variables getVariableWithKey:@"lastSyncServer"];
+        NSDate *serverDate = [API dateFromMySqlString:[responseObject valueForKey:@"serverDate"]];
+        lastSyncServer.variable_value = serverDate;
+        [self syncWave0];
+    } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+        NSLog([NSString stringWithFormat:@"Error: %@", error]);
+        [self finishSyncWithSuccess:NO];
+    }];
+}
 - (void)syncWave0 {
     [self users:lastElementParamsOnFirstSync];
 }
@@ -136,22 +153,27 @@ const int AMOUNT = 1000;
 
 // Sync is over
 - (void)syncWave6 {
-    Variables *lastSyncServer = [Variables getVariable:@"lastSyncServer"];
+    Variables *lastSyncServer = [Variables getVariableWithKey:@"lastSyncServer"];
     lastSyncServer.variable_value = lastElementUpdatedDate;
-    NSDate *localDate = [NSDate date];
-    Variables *lastSyncLocal = [Variables getVariable:@"lastSyncLocal"];
+    NSDate *lastSyncLocalDate = [NSDate date];
+    Variables *lastSyncLocal = [Variables getVariableWithKey:@"lastSyncLocal"];
     if (!lastSyncLocal)
-        [Variables insertVariable:@"lastSyncLocal" Value:localDate];
+        [Variables insertVariable:@"lastSyncLocal" Value:lastSyncLocalDate];
     else
-        lastSyncLocal.variable_value = localDate;
+        lastSyncLocal.variable_value = lastSyncLocalDate;
     [dataController.app saveContext];
+    [self finishSyncWithSuccess:YES];
+}
+
+- (void)finishSyncWithSuccess:(BOOL)success {
     if (self.viewControllerDelegate && [self.viewControllerDelegate isKindOfClass:[MenuTableViewController class]]) {
         MenuTableViewController *controller = (MenuTableViewController *)self.viewControllerDelegate;
-        [controller setMenuTableViewControllerStyle];
+        if (!success) controller.syncLabel.textColor = [UIColor redColor];
         [controller.syncImageView.layer removeAllAnimations];
         controller.syncStarted = 0;
+        [controller setMenuTableViewControllerStyle];
     }
-//    [Constants showAlertMessage:@"Sync Completed"];
+    //    [Constants showAlertMessage:@"Sync Completed"];
 }
 
 #pragma mark Difficulties
@@ -171,7 +193,7 @@ const int AMOUNT = 1000;
         Difficulties *localDifficulty = localItem;
         localDifficulty.difficulty_level = [[serverItem valueForKey:@"difficulty_level"] intValue];
         localDifficulty.difficulty_name = [serverItem valueForKey:@"difficulty_name"];
-        NSDate *difficulty_updated = [API mySqlStringToDate:[serverItem valueForKey:@"difficulty_updated"]];
+        NSDate *difficulty_updated = [API dateFromMySqlString:[serverItem valueForKey:@"difficulty_updated"]];
         localDifficulty.difficulty_updated = [difficulty_updated timeIntervalSinceReferenceDate];
         localDifficulty.difficulty_deleted = [[serverItem valueForKey:@"difficulty_deleted"] boolValue];
     };
@@ -198,7 +220,7 @@ const int AMOUNT = 1000;
         Energies *localEnergy = localItem;
         localEnergy.energy_level = [[serverItem valueForKey:@"energy_level"] intValue];
         localEnergy.energy_name  = [serverItem valueForKey:@"energy_name"];
-        NSDate *energy_updated = [API mySqlStringToDate:[serverItem valueForKey:@"energy_updated"]];
+        NSDate *energy_updated = [API dateFromMySqlString:[serverItem valueForKey:@"energy_updated"]];
         localEnergy.energy_updated = [energy_updated timeIntervalSinceReferenceDate];
         localEnergy.energy_deleted = [[serverItem valueForKey:@"energy_deleted"] boolValue];
     };
@@ -233,7 +255,7 @@ const int AMOUNT = 1000;
             localHotSpotActivity.hotSpotActivity_description = hotSpotActivityDescription;
         else
             localHotSpotActivity.hotSpotActivity_description = nil;
-        NSDate *hotSpotActivity_updated = [API mySqlStringToDate:[serverItem valueForKey:@"hotSpotActivity_updated"]];
+        NSDate *hotSpotActivity_updated = [API dateFromMySqlString:[serverItem valueForKey:@"hotSpotActivity_updated"]];
         localHotSpotActivity.hotSpotActivity_updated = [hotSpotActivity_updated timeIntervalSinceReferenceDate];
         localHotSpotActivity.hotSpotActivity_deleted = [[serverItem valueForKey:@"hotSpotActivity_deleted"] boolValue];
     };
@@ -264,7 +286,7 @@ const int AMOUNT = 1000;
             localHotSpotActivityDefault.hotSpotActivityDefault_description = hotSpotActivityDefaultDescription;
         else
             localHotSpotActivityDefault.hotSpotActivityDefault_description = nil;
-        NSDate *hotSpotActivityDefaultUpdated = [API mySqlStringToDate:[serverItem valueForKey:@"hotSpotActivityDefault_updated"]];
+        NSDate *hotSpotActivityDefaultUpdated = [API dateFromMySqlString:[serverItem valueForKey:@"hotSpotActivityDefault_updated"]];
         localHotSpotActivityDefault.hotSpotActivityDefault_updated = [hotSpotActivityDefaultUpdated timeIntervalSinceReferenceDate];
         localHotSpotActivityDefault.hotSpotActivityDefault_deleted = [[serverItem valueForKey:@"hotSpotActivityDefault_deleted"] boolValue];
     };
@@ -300,7 +322,7 @@ const int AMOUNT = 1000;
             localHotSpotCategory.hotSpotCategory_description = hotSpotCategoryDescription;
         else
             localHotSpotCategory.hotSpotCategory_description = nil;
-        NSDate *hotSpotCategoryUpdated = [API mySqlStringToDate:[serverItem valueForKey:@"hotSpotCategory_updated"]];
+        NSDate *hotSpotCategoryUpdated = [API dateFromMySqlString:[serverItem valueForKey:@"hotSpotCategory_updated"]];
         localHotSpotCategory.hotSpotCategory_updated = [hotSpotCategoryUpdated timeIntervalSinceReferenceDate];
         localHotSpotCategory.hotSpotCategory_deleted = [[serverItem valueForKey:@"hotSpotCategory_deleted"] boolValue];
     };
@@ -331,7 +353,7 @@ const int AMOUNT = 1000;
             localHotSpotCategoryDefault.hotSpotCategoryDefault_description = hotSpotCategoryDefaultDescription;
         else
             localHotSpotCategoryDefault.hotSpotCategoryDefault_description = nil;
-        NSDate *hotSpotCategoryDefaultUpdated = [API mySqlStringToDate:[serverItem valueForKey:@"hotSpotCategoryDefault_updated"]];
+        NSDate *hotSpotCategoryDefaultUpdated = [API dateFromMySqlString:[serverItem valueForKey:@"hotSpotCategoryDefault_updated"]];
         localHotSpotCategoryDefault.hotSpotCategoryDefault_updated = [hotSpotCategoryDefaultUpdated timeIntervalSinceReferenceDate];
         localHotSpotCategoryDefault.hotSpotCategoryDefault_deleted = [[serverItem valueForKey:@"hotSpotCategoryDefault_deleted"] boolValue];
     };
@@ -373,7 +395,7 @@ const int AMOUNT = 1000;
             localHotSpot.hotSpot_boundaryMaximum = [hotSpotBoundaryMaximum intValue];
         else
             [localHotSpot setValue:nil forKey:@"hotSpot_boundaryMaximum"];
-        NSDate *hotSpotUpdated = [API mySqlStringToDate:[serverItem valueForKey:@"hotSpot_updated"]];
+        NSDate *hotSpotUpdated = [API dateFromMySqlString:[serverItem valueForKey:@"hotSpot_updated"]];
         localHotSpot.hotSpot_updated = [hotSpotUpdated timeIntervalSinceReferenceDate];
         localHotSpot.hotSpot_deleted = [[serverItem valueForKey:@"hotSpot_deleted"] boolValue];
     };
@@ -406,7 +428,7 @@ const int AMOUNT = 1000;
         [Variables getVariable:@"HotSpotActivitiesDefault"
                    EntityIdKey:@"hotSpotActivityDefault_id" EntityIdValue:[serverItem valueForKey:@"fk_hotSpotActivityDefault_id"]];
         [localHotSpotDefault setHotSpotActivityDefault:hotSpotActivityDefault];
-        NSDate *hotSpotDefaultUpdated = [API mySqlStringToDate:[serverItem valueForKey:@"hotSpotDefault_updated"]];
+        NSDate *hotSpotDefaultUpdated = [API dateFromMySqlString:[serverItem valueForKey:@"hotSpotDefault_updated"]];
         localHotSpotDefault.hotSpotDefault_updated = [hotSpotDefaultUpdated timeIntervalSinceReferenceDate];
         localHotSpotDefault.hotSpotDefault_deleted = [[serverItem valueForKey:@"hotSpotDefault_deleted"] boolValue];
     };
@@ -449,7 +471,7 @@ const int AMOUNT = 1000;
             localLocation.location_longitude = [locationLongitude doubleValue];
         else
             [localLocation setValue:nil forKey:@"location_longitude"];
-        NSDate *locationUpdated = [API mySqlStringToDate:[serverItem valueForKey:@"location_updated"]];
+        NSDate *locationUpdated = [API dateFromMySqlString:[serverItem valueForKey:@"location_updated"]];
         localLocation.location_updated = [locationUpdated timeIntervalSinceReferenceDate];
         localLocation.location_deleted = [[serverItem valueForKey:@"location_deleted"] boolValue];
     };
@@ -495,7 +517,7 @@ const int AMOUNT = 1000;
         }
         else
             [localPeriodType setChildPeriodType:nil];
-        NSDate *periodType_updated = [API mySqlStringToDate:[serverItem valueForKey:@"periodType_updated"]];
+        NSDate *periodType_updated = [API dateFromMySqlString:[serverItem valueForKey:@"periodType_updated"]];
         localPeriodType.periodType_updated = [periodType_updated timeIntervalSinceReferenceDate];
         localPeriodType.periodType_deleted = [[serverItem valueForKey:@"periodType_deleted"] boolValue];
     };
@@ -521,7 +543,7 @@ const int AMOUNT = 1000;
         Priorities *localPriority = localItem;
         localPriority.priority_level = [[serverItem valueForKey:@"priority_level"] intValue];
         localPriority.priority_name = [serverItem valueForKey:@"priority_name"];
-        NSDate *priority_updated = [API mySqlStringToDate:[serverItem valueForKey:@"priority_updated"]];
+        NSDate *priority_updated = [API dateFromMySqlString:[serverItem valueForKey:@"priority_updated"]];
         localPriority.priority_updated = [priority_updated timeIntervalSinceReferenceDate];
         localPriority.priority_deleted = [[serverItem valueForKey:@"priority_deleted"] boolValue];
     };
@@ -547,7 +569,7 @@ const int AMOUNT = 1000;
         Qualities *localQuality = localItem;
         localQuality.quality_level = [[serverItem valueForKey:@"quality_level"] intValue];
         localQuality.quality_name = [serverItem valueForKey:@"quality_name"];
-        NSDate *quality_updated = [API mySqlStringToDate:[serverItem valueForKey:@"quality_updated"]];
+        NSDate *quality_updated = [API dateFromMySqlString:[serverItem valueForKey:@"quality_updated"]];
         localQuality.quality_updated = [quality_updated timeIntervalSinceReferenceDate];
         localQuality.quality_deleted = [[serverItem valueForKey:@"quality_deleted"] boolValue];
     };
@@ -574,7 +596,7 @@ const int AMOUNT = 1000;
         localRate.rate_level = [[serverItem valueForKey:@"rate_level"] intValue];
         localRate.rate_name = [serverItem valueForKey:@"rate_name"];
         localRate.rate_minScore = [[serverItem valueForKey:@"rate_minScore"] intValue];
-        NSDate *rate_updated = [API mySqlStringToDate:[serverItem valueForKey:@"rate_updated"]];
+        NSDate *rate_updated = [API dateFromMySqlString:[serverItem valueForKey:@"rate_updated"]];
         localRate.rate_updated = [rate_updated timeIntervalSinceReferenceDate];
         localRate.rate_deleted = [[serverItem valueForKey:@"rate_deleted"] boolValue];
     };
@@ -607,7 +629,7 @@ const int AMOUNT = 1000;
             localReference.reference_text = referenceText;
         else
             localReference.reference_text = nil;
-        NSDate *referenceUpdated = [API mySqlStringToDate:[serverItem valueForKey:@"reference_updated"]];
+        NSDate *referenceUpdated = [API dateFromMySqlString:[serverItem valueForKey:@"reference_updated"]];
         localReference.reference_updated = [referenceUpdated timeIntervalSinceReferenceDate];
         localReference.reference_deleted = [[serverItem valueForKey:@"reference_deleted"] boolValue];
     };
@@ -653,14 +675,14 @@ const int AMOUNT = 1000;
         Energies *energy = (Energies *)[Variables getVariable:@"Energies"
             EntityIdKey:@"energy_level" EntityIdValue:[serverItem valueForKey:@"fk_energy_level"]];
         [localResult setEnergy:energy];
-        NSDate *resultStartDate = [API mySqlStringToDate:[serverItem valueForKey:@"result_startDate"]];
+        NSDate *resultStartDate = [API dateFromMySqlString:[serverItem valueForKey:@"result_startDate"]];
         localResult.result_startDate = [resultStartDate timeIntervalSinceReferenceDate];
         Difficulties *difficulty = (Difficulties *)[Variables getVariable:@"Difficulties"
             EntityIdKey:@"difficulty_level" EntityIdValue:[serverItem valueForKey:@"fk_difficulty_level"]];
         [localResult setDifficulty:difficulty];
         id resultFinishDate = [serverItem valueForKey:@"result_finishDate"];
         if (![resultFinishDate isKindOfClass:[NSNull class]]) {
-            NSDate *resultFinishDateDate = [API mySqlStringToDate:resultFinishDate];
+            NSDate *resultFinishDateDate = [API dateFromMySqlString:resultFinishDate];
             localResult.result_finishDate = [resultFinishDateDate timeIntervalSinceReferenceDate];
         }
         else {
@@ -683,7 +705,7 @@ const int AMOUNT = 1000;
         PeriodTypes *periodType = (PeriodTypes *)[Variables getVariable:@"PeriodTypes"
              EntityIdKey:@"periodType_id" EntityIdValue:[serverItem valueForKey:@"fk_periodType_id"]];
         [localResult setPeriodType:periodType];
-        NSDate *resultUpdated = [API mySqlStringToDate:[serverItem valueForKey:@"result_updated"]];
+        NSDate *resultUpdated = [API dateFromMySqlString:[serverItem valueForKey:@"result_updated"]];
         localResult.result_updated = [resultUpdated timeIntervalSinceReferenceDate];
         localResult.result_deleted = [[serverItem valueForKey:@"result_deleted"] boolValue];
     };
@@ -715,7 +737,7 @@ const int AMOUNT = 1000;
         Results *childResult = (Results *)[Variables getVariable:@"Results"
             EntityIdKey:@"result_id" EntityIdValue:[serverItem valueForKey:@"fk_childResult_id"]];
         [localResult_Relationship setChildResult:childResult];
-        NSDate *result_RelationshipUpdated = [API mySqlStringToDate:[serverItem valueForKey:@"result_relationship_updated"]];
+        NSDate *result_RelationshipUpdated = [API dateFromMySqlString:[serverItem valueForKey:@"result_relationship_updated"]];
         localResult_Relationship.result_relationship_updated = [result_RelationshipUpdated timeIntervalSinceReferenceDate];
         localResult_Relationship.result_relationship_deleted = [[serverItem valueForKey:@"result_relationship_deleted"] boolValue];
     };
@@ -746,7 +768,7 @@ const int AMOUNT = 1000;
         References *reference = (References *)[Variables getVariable:@"References"
             EntityIdKey:@"reference_id" EntityIdValue:[serverItem valueForKey:@"fk_reference_id"]];
         [localResult_Reference setReference:reference];
-        NSDate *result_referenceUpdated = [API mySqlStringToDate:[serverItem valueForKey:@"result_reference_updated"]];
+        NSDate *result_referenceUpdated = [API dateFromMySqlString:[serverItem valueForKey:@"result_reference_updated"]];
         localResult_Reference.result_reference_updated = [result_referenceUpdated timeIntervalSinceReferenceDate];
         localResult_Reference.result_reference_deleted = [[serverItem valueForKey:@"result_reference_deleted"] boolValue];
     };
@@ -773,7 +795,7 @@ const int AMOUNT = 1000;
         localSocialNetwork.socialNetwork_id = [[serverItem valueForKey:@"socialNetwork_id"] intValue];
         localSocialNetwork.socialNetwork_name = [serverItem valueForKey:@"socialNetwork_name"];
         localSocialNetwork.socialNetwork_link = [serverItem valueForKey:@"socialNetwork_link"];
-        NSDate *socialNetwork_updated = [API mySqlStringToDate:[serverItem valueForKey:@"socialNetwork_updated"]];
+        NSDate *socialNetwork_updated = [API dateFromMySqlString:[serverItem valueForKey:@"socialNetwork_updated"]];
         localSocialNetwork.socialNetwork_updated = [socialNetwork_updated timeIntervalSinceReferenceDate];
         localSocialNetwork.socialNetwork_deleted = [[serverItem valueForKey:@"socialNetwork_deleted"] boolValue];
     };
@@ -801,7 +823,7 @@ const int AMOUNT = 1000;
         Users *user = (Users *)[Variables getVariable:@"Users" EntityIdKey:@"user_id" EntityIdValue:[serverItem valueForKey:@"fk_user_id"]];
         [localTag setUser:user];
         localTag.tag_name = [serverItem valueForKey:@"tag_name"];
-        NSDate *tagUpdated = [API mySqlStringToDate:[serverItem valueForKey:@"tag_updated"]];
+        NSDate *tagUpdated = [API dateFromMySqlString:[serverItem valueForKey:@"tag_updated"]];
         localTag.tag_updated = [tagUpdated timeIntervalSinceReferenceDate];
         localTag.tag_deleted = [[serverItem valueForKey:@"tag_deleted"] boolValue];
     };
@@ -827,7 +849,7 @@ const int AMOUNT = 1000;
         TagsDefault *localTagDefault = localItem;
         localTagDefault.tagDefault_id = [[serverItem valueForKey:@"tagDefault_id"] intValue];
         localTagDefault.tagDefault_name = [serverItem valueForKey:@"tagDefault_name"];
-        NSDate *tagDefaultUpdated = [API mySqlStringToDate:[serverItem valueForKey:@"tagDefault_updated"]];
+        NSDate *tagDefaultUpdated = [API dateFromMySqlString:[serverItem valueForKey:@"tagDefault_updated"]];
         localTagDefault.tagDefault_updated = [tagDefaultUpdated timeIntervalSinceReferenceDate];
         localTagDefault.tagDefault_deleted = [[serverItem valueForKey:@"tagDefault_deleted"] boolValue];
     };
@@ -857,7 +879,7 @@ const int AMOUNT = 1000;
         [localTag_Result setResult:result];
         Tags *tag = (Tags *)[Variables getVariable:@"Tags" EntityIdKey:@"tag_id" EntityIdValue:[serverItem valueForKey:@"fk_tag_id"]];
         [localTag_Result setTag:tag];
-        NSDate *tag_resultUpdated = [API mySqlStringToDate:[serverItem valueForKey:@"tag_result_updated"]];
+        NSDate *tag_resultUpdated = [API dateFromMySqlString:[serverItem valueForKey:@"tag_result_updated"]];
         localTag_Result.tag_result_updated = [tag_resultUpdated timeIntervalSinceReferenceDate];
         localTag_Result.tag_result_deleted = [[serverItem valueForKey:@"tag_result_deleted"] boolValue];
     };
@@ -909,10 +931,10 @@ const int AMOUNT = 1000;
         
         localUser.user_energy = [[serverItem valueForKey:@"user_energy"] doubleValue];
         localUser.user_score = [[serverItem valueForKey:@"user_score"] intValue];
-        NSDate *user_registry = [API mySqlStringToDate:[serverItem valueForKey:@"user_registry"]];
+        NSDate *user_registry = [API dateFromMySqlString:[serverItem valueForKey:@"user_registry"]];
         localUser.user_registry = [user_registry timeIntervalSinceReferenceDate];
         localUser.user_emailConfirmed = [[serverItem valueForKey:@"user_emailConfirmed"] boolValue];
-        NSDate *user_updated = [API mySqlStringToDate:[serverItem valueForKey:@"user_updated"]];
+        NSDate *user_updated = [API dateFromMySqlString:[serverItem valueForKey:@"user_updated"]];
         localUser.user_updated = [user_updated timeIntervalSinceReferenceDate];
         localUser.user_deleted = [[serverItem valueForKey:@"user_deleted"] boolValue];
     };
@@ -944,7 +966,7 @@ const int AMOUNT = 1000;
             [Variables getVariable:@"SocialNetworks" EntityIdKey:@"socialNetwork_id" EntityIdValue:[serverItem valueForKey:@"fk_socialNetwork_id"]];
         [localUser_SocialNetwork setSocialNetwork:socialNetwork];
         localUser_SocialNetwork.user_socialNetwork_main = [[serverItem valueForKey:@"user_socialNetwork_main"] boolValue];
-        NSDate *user_socialNetwork_updated = [API mySqlStringToDate:[serverItem valueForKey:@"user_socialNetwork_updated"]];
+        NSDate *user_socialNetwork_updated = [API dateFromMySqlString:[serverItem valueForKey:@"user_socialNetwork_updated"]];
         localUser_SocialNetwork.user_socialNetwork_updated = [user_socialNetwork_updated timeIntervalSinceReferenceDate];
         localUser_SocialNetwork.user_socialNetwork_deleted = [[serverItem valueForKey:@"user_socialNetwork_deleted"] boolValue];
     };
@@ -974,7 +996,7 @@ const int AMOUNT = 1000;
     if (!localEntityId) localEntityId = entityId;
     NSString *localEntityId2 = entityAttributeNames[@"localEntityId2"];
     if (!localEntityId2) localEntityId2 = entityId2;
-    NSString *lastUpdatedString = [API dateToMySqlString:[lastElementParams valueForKey:@"last_updated"]];
+    NSString *lastUpdatedString = [API mySqlStringFromDate:[lastElementParams valueForKey:@"last_updated"]];
     NSString *lastId = [[lastElementParams valueForKey:@"last_id"] stringValue];
     NSString *lastId2 = [[lastElementParams valueForKey:@"last_id2"] stringValue];
     
@@ -1000,6 +1022,7 @@ const int AMOUNT = 1000;
             [self performSelector:responseHandler withObject:responseObject withObject:entityAttributeNames];
     } failure:^(NSURLSessionTask *operation, NSError *error) {
         NSLog([NSString stringWithFormat:@"Error: %@", error]);
+        [self finishSyncWithSuccess:NO];
     }];
 }
 
@@ -1110,7 +1133,7 @@ const int AMOUNT = 1000;
     
     NSDictionary *lastElement = [serverData lastObject];
     NSString *lastElementUpdatedDateString = [lastElement valueForKey:entityUpdated];
-    NSDate *localLastElementUpdatedDate = [API mySqlStringToDate:lastElementUpdatedDateString];
+    NSDate *localLastElementUpdatedDate = [API dateFromMySqlString:lastElementUpdatedDateString];
     
     void (^updateLastElementUpdatedDate)(void) = ^{
         if ([[lastElementUpdatedDate laterDate:localLastElementUpdatedDate] isEqualToDate:localLastElementUpdatedDate]) {

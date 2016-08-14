@@ -20,7 +20,7 @@ NS_ASSUME_NONNULL_BEGIN
                     EntityId2Key:(NSString *)entityId2Key EntityId2Value:(NSString *)entityId2Value;
 
 + (Variables *)insertVariable:(NSString *)key Value:(id)value;
-+ (Variables *)getVariable:(NSString *)key;
++ (Variables *)getVariableWithKey:(NSString *)key;
 + (void)updateVariable:(NSString *)key Value:(id)value;
 + (void)deleteVariable:(NSString *)key;
 

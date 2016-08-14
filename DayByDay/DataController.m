@@ -30,7 +30,7 @@
     NSArray *results = [self.managedObjectContext executeFetchRequest:request error:&error];
     
     NSManagedObject *user_id = [results objectAtIndex:0];
-    return [[[user_id valueForKey:@"user_id"] description] longLongValue];
+    return [[user_id valueForKey:@"user_id"] longValue];
 }
 
 @end

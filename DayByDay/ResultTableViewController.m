@@ -10,7 +10,6 @@
 #import "SWRevealViewController.h"
 #import "ResultDataController.h"
 #import "ResultTableViewController.h"
-#import "NewResultViewController.h"
 #import "Results.h"
 #import "PeriodTypes.h"
 #import "Constants.h"

@@ -23,7 +23,7 @@ NSString *const className = @"UserAPI";
     password = [password stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]];
     if (email.length == 0 || password.length == 0)
     {
-        [Constants showAlertMessage:@"Введите логин и пароль"];
+        [Constants showAlertMessage:NSLocalizedString(@"loginPasswordNotEntered", @"User must enter login and password")];
         return NO;
     }
     
@@ -39,7 +39,8 @@ NSString *const className = @"UserAPI";
     long responseCode = [responseNumber longValue];
     
     if (responseCode != 200) {
-        [Constants showAlertMessage:[NSString stringWithFormat:@"Error %li", responseCode] Title:@"Ошибка авторизации"];
+        [Constants showAlertMessage:[NSString stringWithFormat:@"Error %li", responseCode]
+                              Title:NSLocalizedString(@"authFailed", @"Response code not OK")];
         return NO;
     }
     [self updateUserData:result];
@@ -49,7 +50,7 @@ NSString *const className = @"UserAPI";
 - (BOOL)signup:(NSString *)email Password:(NSString *)password RepeatPassword:(NSString *)repeatPassword Name:(NSString *)name
 {
     if (![password isEqualToString:repeatPassword]) {
-        [Constants showAlertMessage:@"Пароли не совпадают"];
+        [Constants showAlertMessage:NSLocalizedString(@"passwordsNotMatch", @"'Password' and 'Confirm password' values doesn't match")];
         return NO;
     }
     NSString *methodName = @"signup";
@@ -62,7 +63,7 @@ NSString *const className = @"UserAPI";
     long responseCode;
     responseCode = [API performRequestAndGetResponseCode:params];
     if (responseCode != 200)
-        [Constants showAlertMessage:@"Пользователь уже существует"];
+        [Constants showAlertMessage:NSLocalizedString(@"userExists", @"User was found in server DB")];
     return responseCode == 200;
 }
 

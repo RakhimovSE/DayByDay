@@ -8,6 +8,6 @@
 
 #import <UIKit/UIKit.h>
 
-@interface CreateResultTableViewController : UITableViewController <UIPickerViewDataSource, UIPickerViewDelegate>
+@interface CreateResultTableViewController : UITableViewController <UITableViewDelegate, UITableViewDataSource>
 
 @end

@@ -11,6 +11,7 @@
 #import <AFNetworking.h>
 #import <CoreData/CoreData.h>
 #import "DataController.h"
+#import "Variables.h";
 
 @implementation API
 
@@ -76,15 +77,6 @@
     return result;
 }
 
-+ (NSDate *)dateWithJSONString:(NSString *)dateString
-{
-    // Convert string to date object
-    NSDateFormatter *dateFormat = [[NSDateFormatter alloc] init];
-    [dateFormat setDateFormat:@"yyyy'-'MM'-'dd'T'HH':'mm':'ss'Z'"];
-    NSDate *date = [dateFormat dateFromString:dateString];
-    return date;
-}
-
 + (NSString *)getSyncDateString:(NSDate *)date {
     NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
     NSTimeZone *timeZone = [NSTimeZone defaultTimeZone];
@@ -92,13 +84,26 @@
     NSCalendar *calendar = [NSCalendar currentCalendar];
     BOOL today = [calendar isDateInToday:date];
     BOOL yesterday = [calendar isDateInYesterday:date];
-    if (today) [dateFormatter setDateFormat:@"Сегодня HH':'mm':'ss'"];
-    else if (yesterday) [dateFormatter setDateFormat:@"Вчера HH':'mm':'ss'"];
-    else [dateFormatter setDateFormat:@"dd'.'MM'.'yyyy' 'HH':'mm':'ss'"];
-    return [dateFormatter stringFromDate:date];
+    if (!today && !yesterday) {
+        [dateFormatter setDateFormat:@"dd'.'MM'.'yyyy' 'HH':'mm':'ss'"];
+        return [dateFormatter stringFromDate:date];
+    }
+    NSString *todayString = NSLocalizedString(@"today", nil);
+    NSString *yesterdayString = NSLocalizedString(@"yesterday", nil);
+    [dateFormatter setDateFormat:@"HH':'mm':'ss'"];
+    return [NSString stringWithFormat:@"%@ %@",
+            today ? todayString : yesterdayString, [dateFormatter stringFromDate:date]];
 }
 
-+ (NSDate *)mySqlStringToDate:(NSString *)dateString {
++ (NSTimeInterval)getServerDateAndLocalDateDifference {
+    Variables *lastSyncServer = [Variables getVariableWithKey:@"lastSyncServer"];
+    NSDate *lastSyncServerDate = lastSyncServer.variable_value;
+    Variables *lastSyncLocal = [Variables getVariableWithKey:@"lastSyncLocal"];
+    NSDate *lastSyncLocalDate = lastSyncLocal.variable_value;
+    return [lastSyncServerDate timeIntervalSinceDate:lastSyncLocalDate];
+}
+
++ (NSDate *)dateFromMySqlString:(NSString *)dateString {
     NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
     NSTimeZone *timeZone = [NSTimeZone timeZoneWithName:@"UTC"];
     [dateFormatter setTimeZone:timeZone];
@@ -106,12 +111,26 @@
     return [dateFormatter dateFromString:dateString];
 }
 
-+ (NSString *)dateToMySqlString:(NSDate *)date {
++ (NSString *)mySqlStringFromDate:(NSDate *)date {
     NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
     NSTimeZone *timeZone = [NSTimeZone timeZoneWithName:@"UTC"];
     [dateFormatter setTimeZone:timeZone];
     [dateFormatter setDateFormat:@"yyyy'-'MM'-'dd' 'HH':'mm':'ss'"];
     return [dateFormatter stringFromDate:date];
+}
+
++ (NSDate *)dateWithJSONString:(NSString *)dateStr
+{
+    // Convert string to date object
+    NSDateFormatter *dateFormat = [[NSDateFormatter alloc] init];
+    [dateFormat setDateFormat:@"yyyy'-'MM'-'dd'T'HH':'mm':'ss'Z'"];
+    NSDate *date = [dateFormat dateFromString:dateStr];
+    
+    // This is for check the output
+    // Convert date object to desired output format
+    [dateFormat setDateFormat:@"yyyy'-'MM'-'dd'T'HH':'mm':'ss'Z'"]; // Here you can change your require output date format EX. @"EEE, MMM d YYYY"
+    dateStr = [dateFormat stringFromDate:date];
+    return date;
 }
 
 @end

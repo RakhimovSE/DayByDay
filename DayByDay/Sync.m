@@ -26,12 +26,12 @@
 }
 
 + (NSDate *)getLastSync {
-    Variables *lastSyncVariableOld = [Variables getVariable:@"lastSyncServer"];
+    Variables *lastSyncVariableOld = [Variables getVariableWithKey:@"lastSyncServer"];
     NSDate *result;
     if (lastSyncVariableOld) {
         result = lastSyncVariableOld.variable_value;
     } else {
-        result = [API mySqlStringToDate:@"0001-01-01 00:00:00"];
+        result = [API dateFromMySqlString:@"0001-01-01 00:00:00"];
         [Variables insertVariable:@"lastSyncServer" Value:result];
     }
     return result;

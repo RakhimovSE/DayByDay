@@ -11,11 +11,6 @@
 
 @implementation ResultDataController
 
-- (void)initNewResultViewController:(UIPickerView **)hotSpotsPickerView {
-    [*hotSpotsPickerView setValue:@"TestValue" forKey:@"TestKey"];
-    [*hotSpotsPickerView reloadAllComponents];
-}
-
 - (NSMutableDictionary *)getUserResults {
     NSMutableDictionary *params = [[NSMutableDictionary alloc] initWithObjectsAndKeys:
                                                         @"ResultAPI", @"className",
